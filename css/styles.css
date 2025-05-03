@@ -527,4 +527,222 @@ footer {
         width: 100%;
         max-width: 330px;
     }
+}
+
+/* 个人自我介绍栏样式 */
+.about-me {
+    margin: 3rem 0;
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(10, 186, 181, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-me:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(10, 186, 181, 0.15);
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.about-image {
+    margin-bottom: 1.5rem;
+}
+
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.about-content {
+    text-align: center;
+}
+
+.about-content h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.about-bio {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.6;
+}
+
+.about-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* 三栏卡片布局样式 */
+.featured-categories {
+    margin-bottom: 3rem;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.featured-card {
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--card-border);
+    height: 100%;
+}
+
+.featured-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px var(--card-shadow);
+}
+
+.featured-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.featured-header h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.view-more {
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.view-more:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+.featured-content {
+    padding: 1rem;
+}
+
+.featured-item {
+    display: block;
+    padding: 1rem;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    margin-bottom: 0.5rem;
+}
+
+.featured-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.featured-item h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.featured-item p {
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    margin: 0;
+}
+
+.featured-item:hover h4 {
+    color: var(--accent);
+}
+
+/* 针对中等屏幕的响应式布局 */
+@media (max-width: 992px) {
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-container {
+        flex-direction: column;
+    }
+}
+
+/* 针对小屏幕的响应式布局 */
+@media (max-width: 768px) {
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-bio {
+        font-size: 1rem;
+    }
+    
+    .about-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .featured-header h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* 针对大屏幕增强自我介绍栏布局 */
+@media (min-width: 768px) {
+    .about-container {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+    }
+    
+    .about-image {
+        margin-right: 2rem;
+        margin-bottom: 0;
+    }
+    
+    .about-content {
+        text-align: left;
+    }
+    
+    .about-social {
+        justify-content: flex-start;
+    }
 } 
