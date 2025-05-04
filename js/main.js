@@ -38,42 +38,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 移动端导航菜单
-    function setupMobileNav() {
-        const navToggle = document.createElement('button');
-        navToggle.className = 'nav-toggle';
-        navToggle.setAttribute('aria-label', '切换导航菜单');
-        navToggle.innerHTML = `
-            <span></span>
-            <span></span>
-            <span></span>
-        `;
+    // Highlight the active navigation link based on current page
+    function setActiveNavLink() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
         
-        const header = document.querySelector('.header-content');
-        const mainNav = document.querySelector('.main-nav');
-        
-        // 仅在移动视图下添加汉堡菜单按钮
-        if (window.innerWidth < 768) {
-            if (!document.querySelector('.nav-toggle')) {
-                header.insertBefore(navToggle, document.querySelector('.theme-toggle'));
-            }
-        } else {
-            const existingToggle = document.querySelector('.nav-toggle');
-            if (existingToggle) {
-                existingToggle.remove();
-            }
+        // Default to home if on root path
+        if (currentPath === '/' || currentPath.endsWith('index.html')) {
+            document.querySelector('.sidebar-nav a[href="index.html"]').classList.add('active');
+            return;
         }
         
-        // 点击汉堡菜单切换导航显示
-        navToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('show');
-            navToggle.classList.toggle('active');
+        // Otherwise, match the current path
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
+            if (currentPath.endsWith(linkPath)) {
+                link.classList.add('active');
+            }
         });
     }
     
-    // 初始设置移动导航
-    setupMobileNav();
+    // Initialize active nav link
+    setActiveNavLink();
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
     
-    // 窗口大小改变时重新设置
-    window.addEventListener('resize', setupMobileNav);
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            mobileMenuToggle.classList.toggle('active');
+        });
+    }
+
+    // Close sidebar when clicking outside (mobile)
+    document.addEventListener('click', (event) => {
+        if (window.innerWidth <= 768) {
+            const isClickInsideSidebar = sidebar.contains(event.target);
+            const isClickOnMenuToggle = mobileMenuToggle.contains(event.target);
+            
+            if (!isClickInsideSidebar && !isClickOnMenuToggle && sidebar.classList.contains('show')) {
+                sidebar.classList.remove('show');
+                mobileMenuToggle.classList.remove('active');
+            }
+        }
+    });
+
+    // Handle window resize for responsive behavior
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && sidebar.classList.contains('show')) {
+            sidebar.classList.remove('show');
+            if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
+        }
+    });
+
+    // ========== newsletter 轮播逻辑 ==========
+    document.querySelectorAll('.newsletter-carousel').forEach(container => {
+        const slides = container.querySelector('.slides');
+        const dots   = container.querySelectorAll('.dot');
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                // 切换 transform
+                slides.style.transform = `translateX(-${idx * 100}%)`;
+                // 更新 active 状态
+                container.querySelector('.dot.active').classList.remove('active');
+                dot.classList.add('active');
+            });
+        });
+    });
 }); 
