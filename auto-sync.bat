@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 > nul
 echo === ThinkingLeaf GitHub自动同步 ===
 echo 正在同步文件到GitHub...
 
