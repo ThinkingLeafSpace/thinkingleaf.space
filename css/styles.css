@@ -90,7 +90,7 @@ body {
 }
 
 .sidebar-logo h1 span {
-    font-weight: 300;
+    font-weight: 700;
     margin-left: 0.25rem;
     color: var(--accent);
 }
