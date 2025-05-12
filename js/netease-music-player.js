@@ -144,17 +144,3 @@ function addDragFunctionality(element) {
     }
   });
 }
-
-/* 默认样式（移动端） */
-.sidebar {
-  /* 这里是移动端的样式，可以是其他宽度或自适应 */
-  width: auto; /* 或其他适合移动端的宽度 */
-}
-
-/* 桌面端样式 - 只在屏幕宽度大于等于992px时应用 */
-@media screen and (min-width: 992px) {
-  .sidebar {
-    width: 180px; /* 固定宽度 */
-    /* 可能需要添加其他桌面端特定样式 */
-  }
-} 
