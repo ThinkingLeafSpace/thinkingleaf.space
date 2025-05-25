@@ -964,4 +964,21 @@ header {
         width: 100%;
         text-align: center;
     }
+}
+
+/* 添加日期标签样式 */
+.date-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: -0.25rem;
+    margin-bottom: 0.5rem;
+    padding: 0.15rem 0.5rem;
+    background-color: var(--bg-secondary);
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+.dark-mode .date-tag {
+    background-color: var(--dark-bg-secondary);
 } 

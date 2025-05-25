@@ -44,6 +44,24 @@
             border-radius: 8px;
             margin: 20px 0;
         }
+        
+        /* Fix for the cut-off display issue */
+        .main-content {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+        
+        /* Ensure proper spacing for mobile view */
+        @media (max-width: 768px) {
+            .main-content {
+                padding-top: 60px; /* More padding on top for mobile */
+            }
+            
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
     </style>
 </head>
 <body>
