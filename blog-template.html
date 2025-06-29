@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客文章标题 - ThinkingLeaf</title>
+    <meta name="description" content="博客文章描述">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/blog-post.css">
+    <link rel="icon" href="../images/icon/icon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-content {
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .blog-content h1, .blog-content h2, .blog-content h3 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .blog-content blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            font-style: italic;
+            margin: 20px 0;
+        }
+        .blog-meta {
+            margin-bottom: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .blog-aside {
+            background-color: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        /* Fix for the cut-off display issue */
+        .main-content {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+        
+        /* Ensure proper spacing for mobile view */
+        @media (max-width: 768px) {
+            .main-content {
+                padding-top: 60px; /* More padding on top for mobile */
+            }
+            
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+        
+        /* 版权声明样式 */
+        .copyright-notice {
+            margin-top: 40px;
+            padding: 15px;
+            background-color: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">ThinkingLeaf</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../blogs.html" class="active">博客</a></li>
+                    <li><a href="../newsletter.html">周报</a></li>
+                    <li><a href="../portfolio.html">作品集</a></li>
+                    <li><a href="../cabinet.html">收藏柜</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container blog-post">
+        <article>
+            <h1>博客文章标题</h1>
+            
+            <div class="blog-meta">
+                <span class="date-tag">2025年6月1日</span>
+            </div>
+            
+            <!-- 文章内容 -->
+            <p>这里是文章内容，请替换为实际内容。</p>
+            
+            <p>这是第二段落，继续添加您的文章内容。</p>
+            
+            <h2>二级标题</h2>
+            
+            <p>这是二级标题下的段落内容。您可以根据需要添加更多内容。</p>
+            
+            <blockquote>
+                <p>这是一个引用块。您可以在这里引用他人的话或者突出显示某些重要内容。</p>
+            </blockquote>
+            
+            <h3>三级标题</h3>
+            
+            <p>这是三级标题下的段落内容。继续添加您的文章内容。</p>
+            
+            <ul>
+                <li>这是无序列表的第一项</li>
+                <li>这是无序列表的第二项</li>
+                <li>这是无序列表的第三项</li>
+            </ul>
+            
+            <p>继续添加更多内容...</p>
+            
+            <div class="blog-footer">
+                <p>写于 2025年6月1日</p>
+            </div>
+            
+            <div class="copyright-notice">
+                <p>欢迎引用本文观点或图片，但请注明出处并附上本文链接。</p>
+            </div>
+        </article>
+        
+        <div class="related-posts">
+            <h3>相关文章</h3>
+            <div class="related-grid">
+                <!-- 相关文章会通过JS自动添加 -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ThinkingLeaf. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/related-content.js"></script>
+    <script src="../js/tag-system.js"></script>
+</body>
+</html> 

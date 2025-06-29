@@ -1,0 +1,6 @@
+@echo off
+echo 正在更新所有博客和newsletter页面为使用模块化结构...
+node modules/related-content/updater.js
+echo.
+echo 更新完成！按任意键退出...
+pause > nul 

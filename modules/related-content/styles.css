@@ -1,0 +1,135 @@
+/**
+ * 相关内容推荐系统 - 样式
+ */
+
+/* 相关文章推荐容器 */
+.related-articles {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--card-border, rgba(0, 0, 0, 0.1));
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    animation: fadeInUp 0.5s forwards 0.2s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 标题样式 */
+.related-articles h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary, #1d1d1f);
+    line-height: 1.62;
+}
+
+/* 网格布局 */
+.related-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+/* 卡片样式 */
+.related-article-card {
+    background-color: var(--card-bg, #ffffff);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.1));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 10px var(--card-shadow, rgba(0, 0, 0, 0.05));
+    will-change: transform, box-shadow;
+}
+
+.related-article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px var(--card-shadow, rgba(0, 0, 0, 0.05));
+}
+
+/* 卡片标题 */
+.related-article-card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary, #1d1d1f);
+    line-height: 1.62;
+    transition: color 0.2s ease;
+}
+
+.related-article-card:hover h4 {
+    color: var(--accent, #0abab5);
+}
+
+/* 卡片日期 */
+.related-article-card .date-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--accent, #0abab5);
+    margin-bottom: 0.5rem;
+    padding: 0.15rem 0.5rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 6px;
+    font-weight: 500;
+    border: 1px solid rgba(10, 186, 181, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.related-article-card .date-tag::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0)
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+/* 卡片描述 */
+.related-article-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #515154);
+    margin: 0.5rem 0 0;
+    line-height: 1.62;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .related-articles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .related-article-card {
+        padding: 1.25rem;
+    }
+    
+    .related-article-card h4 {
+        font-size: 1.1rem;
+    }
+}
+
+/* 深色模式调整 */
+@media (prefers-color-scheme: dark) {
+    .related-article-card .date-tag {
+        background-color: rgba(10, 186, 181, 0.08);
+        color: var(--accent, #5cccc8);
+        border: 1px solid rgba(10, 186, 181, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+} 

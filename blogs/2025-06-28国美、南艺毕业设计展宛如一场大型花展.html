@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国美、南艺毕业设计展宛如一场大型花展 - 筑居思</title>
+    <meta name="description" content="真实的遇见，往往比网络上看到的更动人">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/blog-post.css">
+    <link rel="icon" href="../images/icon/icon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-content {
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        /* 新的瀑布流布局 */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-auto-rows: 10px; /* 减小基础行高 */
+            grid-gap: 30px; /* 增加间隙 */
+            margin: 40px 0; /* 增加上下边距 */
+        }
+        
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            min-height: 100px; /* 减小最小高度 */
+            margin-bottom: 10px; /* 增加底部边距 */
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            margin: 0;
+            display: block;
+            transition: transform 0.5s ease;
+            min-height: 100px; /* 减小最小高度 */
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .photo-item:hover::after {
+            opacity: 1;
+        }
+        
+        /* 全屏预览模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transform: scale(0.9);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            opacity: 1;
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+        
+        .modal-close:hover {
+            opacity: 1;
+        }
+        
+        .modal-prev,
+        .modal-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 15px;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-prev {
+            left: 20px;
+        }
+        
+        .modal-next {
+            right: 20px;
+        }
+        
+        .modal-prev:hover,
+        .modal-next:hover {
+            background-color: rgba(0,0,0,0.6);
+            opacity: 1;
+        }
+        
+        @media (max-width: 992px) {
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .modal-prev, .modal-next {
+                padding: 10px;
+                font-size: 24px;
+            }
+        }
+        
+        .featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            margin-bottom: 30px;
+        }
+        .blog-meta {
+            margin-bottom: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        .blog-date {
+            display: inline-block;
+            text-align: left;
+        }
+        .blog-category {
+            display: inline-block;
+            background-color: rgba(10, 186, 181, 0.15);
+            color: #2a7d78;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            border: 1px solid rgba(10, 186, 181, 0.3);
+        }
+        
+        /* 花艺徽章样式 */
+        .floral-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 0.5rem 0.8rem;
+            border-radius: 50px;
+            margin: 1rem 0;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .badge-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: var(--accent, #0abab5);
+            border-radius: 50%;
+            margin-right: 0.6rem;
+            color: white;
+        }
+        
+        .floral-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        [data-theme="dark"] .floral-badge {
+            background-color: rgba(28, 28, 30, 0.6);
+            border: 1px solid rgba(60, 60, 67, 0.3);
+        }
+        
+        /* 造物拾遗相关推荐样式 */
+        .related-exhibits {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--card-border, rgba(0,0,0,0.1));
+            width: 100%;
+        }
+        .related-exhibits h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        .related-exhibits p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+        .exhibits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            width: 100%;
+        }
+        .exhibit-card {
+            text-decoration: none;
+            color: var(--text-primary);
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        .exhibit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .exhibit-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            margin: 0;
+        }
+        .exhibit-card h4 {
+            padding: 15px;
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .exhibits-grid {
+                grid-template-columns: 1fr;
+            }
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            .main-content {
+                padding-top: 60px;
+            }
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+        
+        /* 沉浸式画廊入口样式 */
+        .immersive-gallery-entry {
+            position: relative;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 3rem 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .immersive-gallery-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .immersive-gallery-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            margin: 0;
+        }
+        
+        .immersive-gallery-entry:hover .immersive-gallery-background img {
+            transform: scale(1.05);
+        }
+        
+        .immersive-gallery-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            z-index: 2;
+        }
+        
+        .immersive-gallery-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            z-index: 3;
+            color: white;
+        }
+        
+        .immersive-gallery-content h3 {
+            font-size: 2rem;
+            margin: 0 0 1rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .immersive-gallery-content p {
+            font-size: 1.1rem;
+            margin: 0 0 1.5rem;
+            max-width: 500px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .immersive-gallery-cta {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--text-primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .immersive-gallery-cta svg {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .immersive-gallery-cta:hover {
+            background-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .immersive-gallery-cta:hover svg {
+            transform: translateX(3px);
+        }
+        
+        @media (max-width: 768px) {
+            .immersive-gallery-entry {
+                height: 280px;
+            }
+            
+            .immersive-gallery-content h3 {
+                font-size: 1.75rem;
+            }
+            
+            .immersive-gallery-content p {
+                font-size: 1rem;
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            .main-content {
+                padding-top: 60px;
+            }
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧固定导航栏 -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <h1>筑居<span>思</span></h1>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="../index.html">首页</a></li>
+            <li class="active"><a href="../blogs.html">个人博客</a></li>
+            <li><a href="../cabinet.html">造物拾遗</a></li>
+            <li><a href="../portfolio.html">个人作品集</a></li>
+        </ul>
+        <div class="theme-toggle">
+            <button id="theme-toggle-btn" aria-label="切换主题">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 移动端菜单按钮 -->
+    <button class="mobile-menu-toggle" aria-label="打开导航菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- 主要内容区域 -->
+    <div class="main-content">
+        <div class="container">
+            <main>
+                <article class="blog-content">
+                    <h1>国美、南艺毕业设计展宛如一场大型花展</h1>
+                    <div class="blog-meta">
+                        <span class="date-tag">2025年6月28日</span>
+                        <span class="blog-category">花艺设计</span>
+                        <span class="blog-category">艺术展览</span>
+                    </div>
+
+                    <p>真实的遇见，往往比网络上看到的更动人。这些都是朋友们对毕业生的美好祝福呀，真诚流淌着。</p>
+
+                    <div class="photo-grid">
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_381751081753_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_381751081753_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_391751081755_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_391751081755_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_401751081758_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_401751081758_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_411751081760_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_411751081760_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_421751081762_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_421751081762_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_431751081766_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_431751081766_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_441751081768_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_441751081768_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_451751081770_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_451751081770_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_461751081773_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_461751081773_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_471751081776_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_471751081776_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_481751081779_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_481751081779_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_491751081783_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_491751081783_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_501751081788_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_501751081788_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_511751081792_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_511751081792_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_521751081796_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_521751081796_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_531751081800_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_531751081800_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_541751081804_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_541751081804_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                        <div class="photo-item" data-src="../images/exhibits/flowers/flowers_551751081824_.pic_hd.jpg">
+                            <img src="../images/exhibits/flowers/flowers_551751081824_.pic_hd.jpg" alt="毕业设计展花卉作品">
+                        </div>
+                    </div>
+                    
+                    <!-- 图片预览模态框 -->
+                    <div class="modal">
+                        <span class="modal-close">&times;</span>
+                        <span class="modal-prev">&#10094;</span>
+                        <span class="modal-next">&#10095;</span>
+                        <img class="modal-content" id="modal-img">
+                    </div>
+
+                    <!-- 造物拾遗相关推荐 -->
+                    <div class="related-exhibits">
+                        <h3>相关造物拾遗</h3>
+                        <p>探索更多与设计、艺术相关的精选展品</p>
+                        
+                        <div class="exhibits-grid">
+                            <a href="../exhibits/exhibit-001.html" class="exhibit-card">
+                                <img src="../images/exhibits/exhibit-001-main.jpg" alt="相关展品">
+                                <h4>展品001-树枝画框</h4>
+                            </a>
+                            <a href="../exhibits/exhibit-002.html" class="exhibit-card">
+                                <img src="../images/exhibits/exhibit-002-main.jpg" alt="相关展品">
+                                <h4>展品002-红靴子与花</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="copyright-notice">
+                        <p>欢迎引用本文观点或图片，但请注明出处并附上本文链接。</p>
+                    </div>
+                </article>
+            </main>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/related-content.js"></script>
+    <script src="../js/tag-system.js"></script>
+    <script>
+        // Masonry布局实现
+        document.addEventListener('DOMContentLoaded', function() {
+            // 等待图片加载完成
+            const grid = document.querySelector('.photo-grid');
+            const items = document.querySelectorAll('.photo-item');
+            
+            // 加载所有图片
+            const loadImages = function() {
+                const promises = Array.from(items).map(item => {
+                    return new Promise((resolve) => {
+                        const img = item.querySelector('img');
+                        if (img.complete) {
+                            resolve();
+                        } else {
+                            img.addEventListener('load', resolve);
+                            img.addEventListener('error', resolve); // 即使加载失败也继续
+                        }
+                    });
+                });
+                
+                return Promise.all(promises);
+            };
+            
+            // 应用Masonry布局
+            const applyMasonry = function() {
+                items.forEach(item => {
+                    const img = item.querySelector('img');
+                    // 确保每个项目至少有100px高度
+                    const minRowSpan = 10; // 100px / 10px grid-auto-rows
+                    const imgHeight = img.getBoundingClientRect().height;
+                    const rowSpan = Math.max(minRowSpan, Math.ceil(imgHeight / 10));
+                    item.style.gridRowEnd = 'span ' + rowSpan;
+                });
+            };
+            
+            // 初始化图片预览功能
+            const initPhotoViewer = function() {
+                const modal = document.querySelector('.modal');
+                const modalImg = document.getElementById('modal-img');
+                const closeBtn = document.querySelector('.modal-close');
+                const prevBtn = document.querySelector('.modal-prev');
+                const nextBtn = document.querySelector('.modal-next');
+                let currentIndex = 0;
+                
+                // 打开模态框
+                items.forEach((item, index) => {
+                    item.addEventListener('click', function() {
+                        currentIndex = index;
+                        const imgSrc = this.getAttribute('data-src');
+                        modalImg.src = imgSrc;
+                        modal.style.display = 'flex'; // 先设置为flex
+                        // 使用setTimeout确保display属性生效后再添加active类
+                        setTimeout(() => {
+                            modal.classList.add('active');
+                            document.body.style.overflow = 'hidden'; // 防止背景滚动
+                        }, 10);
+                    });
+                });
+                
+                // 关闭模态框
+                closeBtn.addEventListener('click', function() {
+                    modal.classList.remove('active');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }, 300);
+                });
+                
+                // 点击模态框背景关闭
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeBtn.click();
+                    }
+                });
+                
+                // 修复模态框关闭后无法再次打开的问题
+                modal.addEventListener('transitionend', function(e) {
+                    if (!modal.classList.contains('active') && modal.style.display === 'none') {
+                        // 重置模态框状态，确保可以再次打开
+                        modal.style.display = '';
+                    }
+                });
+                
+                // 上一张图片
+                prevBtn.addEventListener('click', function() {
+                    currentIndex = (currentIndex - 1 + items.length) % items.length;
+                    const imgSrc = items[currentIndex].getAttribute('data-src');
+                    
+                    // 淡入淡出效果
+                    modalImg.style.opacity = '0';
+                    setTimeout(() => {
+                        modalImg.src = imgSrc;
+                        modalImg.style.opacity = '1';
+                    }, 200);
+                });
+                
+                // 下一张图片
+                nextBtn.addEventListener('click', function() {
+                    currentIndex = (currentIndex + 1) % items.length;
+                    const imgSrc = items[currentIndex].getAttribute('data-src');
+                    
+                    // 淡入淡出效果
+                    modalImg.style.opacity = '0';
+                    setTimeout(() => {
+                        modalImg.src = imgSrc;
+                        modalImg.style.opacity = '1';
+                    }, 200);
+                });
+                
+                // 键盘导航
+                document.addEventListener('keydown', function(e) {
+                    if (!modal.classList.contains('active')) return;
+                    
+                    if (e.key === 'Escape') {
+                        closeBtn.click();
+                    } else if (e.key === 'ArrowLeft') {
+                        prevBtn.click();
+                    } else if (e.key === 'ArrowRight') {
+                        nextBtn.click();
+                    }
+                });
+            };
+            
+            // 初始化
+            loadImages().then(() => {
+                applyMasonry();
+                initPhotoViewer();
+                
+                // 窗口大小改变时重新计算
+                window.addEventListener('resize', applyMasonry);
+            });
+        });
+    </script>
+</body>
+</html>

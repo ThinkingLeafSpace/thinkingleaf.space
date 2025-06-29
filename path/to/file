@@ -1,0 +1,105 @@
+.life-grid {
+    display: grid;
+    grid-template-columns: repeat(52, 1fr);
+    gap: 2px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.week {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 2px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.week:hover {
+    transform: scale(1.6);
+    z-index: 10;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+/* 修改过去和未来周的颜色 */
+.week.past {
+    background-color: #7fbde9;  /* 淡蓝色 */
+}
+
+.week.current {
+    background-color: #ff6b6b;  /* 亮红色 */
+    animation: pulse 2s infinite;
+}
+
+.week.future {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+/* 地点颜色 - 边框 */
+.location-beijing { border: 2px solid #FF9F1C; }
+.location-shanghai { border: 2px solid #2EC4B6; }
+.location-guangzhou { border: 2px solid #E71D36; }
+.location-abroad { border: 2px solid #011627; }
+.location-none { border: 1px solid #E0E0E0; }
+
+/* 活动颜色 - 背景 */
+.activity-school { background-color: #FFBF69; }
+.activity-college { background-color: #CBF3F0; }
+.activity-work { background-color: #8EECF5; }
+.activity-travel { background-color: #A5FFD6; }
+
+/* emoji标记样式 */
+.event-emoji {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8px;
+    line-height: 1;
+    text-align: center;
+}
+
+/* 十年分组样式 */
+.decade {
+    margin-bottom: 30px;
+}
+
+.decade-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* 工具提示美化 */
+.tooltip {
+    background-color: #212529;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    max-width: 250px;
+    line-height: 1.4;
+    z-index: 1000;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const lifeGrid = document.getElementById('lifeGrid');
+    const tooltip = document.getElementById('tooltip');
+    const weeksInYear = 52;
+    const yearsToShow = 100; // 显示到100岁
+    
+    // 假设出生于2000年
+    const birthYear = 2000;
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentWeekOfYear = Math.floor((currentDate - new Date(currentYear, 0, 1)) / (7 * 24 * 60 * 60 * 1000));
+    
+    // 计算已经过去的周数
+    const age = currentYear - birthYear;
+    const pastWeeks = (age * weeksInYear) + currentWeekOfYear;
+    
+    // 清空现有内容
+    lifeGrid.innerHTML = '';
+    
+    // 自动生成emoji辅助函数
+    function getAuto 

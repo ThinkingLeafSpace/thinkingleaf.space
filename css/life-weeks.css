@@ -1,0 +1,253 @@
+/* 人生周历主样式 - 完全替换文件内容 */
+.life-chart {
+    margin: 30px 0;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden; /* 禁用水平滚动 */
+}
+
+/* 主容器样式 */
+.life-container {
+    width: 100%;
+    padding: 0;
+}
+
+/* 行容器样式 */
+.life-row {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+/* 年份块样式 */
+.year-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 年份标签样式 */
+.year-label {
+    display: none;
+}
+
+/* 网格样式 - 修改为每行显示20周 */
+.life-grid {
+    display: grid !important;
+    grid-template-columns: repeat(13, 1fr) !important; /* 每行减少到13个格子 */
+    gap: 5px !important; /* 增加间隙使布局更加清晰 */
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* 周格子样式 */
+.week {
+    width: auto !important;
+    height: 28px !important;
+    min-height: 28px !important;
+    min-width: 90px !important; /* 调整最小宽度确保能容纳7个汉字 */
+    border-radius: 3px !important;
+    position: relative;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+    padding: 3px 5px !important; /* 增加内边距让文字更舒适 */
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    border-width: 1px !important;
+    box-sizing: border-box;
+}
+
+.week:hover {
+    transform: scale(1.2) !important;
+    z-index: 100;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2) !important;
+}
+
+/* 周内内容样式 */
+.week-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+}
+
+.week-emoji {
+    font-size: 14px;
+    margin-right: 5px;
+    line-height: 1.62; /* 修改为黄金分割比 */
+    flex-shrink: 0;
+}
+
+.week-text {
+    font-size: 12px !important; /* 确保最小字体为12px */
+    line-height: 1.62; /* 修改为黄金分割比 */
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis; /* 显示省略号 */
+    white-space: nowrap;
+    width: calc(100% - 25px); /* 减去emoji的空间 */
+    text-align: left;
+    margin: 0;
+    letter-spacing: -0.2px; /* 轻微调整字间距 */
+}
+
+/* 隐藏年龄标签 */
+.year-label {
+    display: none;
+}
+
+/* 年分隔线 - 用细线代替标签分隔年份 */
+.year-separator {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 8px 0;
+}
+
+/* 地点边框色 - 保留中国传统颜色 */
+.location-beijing { border: 2px solid #900302 !important; } /* 枣红色 */
+.location-shanghai { border: 2px solid #0AA344 !important; } /* 葱青色 */
+.location-guangzhou { border: 2px solid #ECA205 !important; } /* 杏黄 */
+.location-abroad { border: 2px solid #0F59A4 !important; } /* 宝蓝 */
+.location-ningde { border: 2px solid #2BAE85 !important; } /* 青碧 */
+.location-xiamen { border: 2px solid #EF7A82 !important; } /* 粉红 */
+.location-nanjing { border: 2px solid #6B75B4 !important; } /* 远山紫 */
+.location-wuyishan { border: 2px solid #7CAA98 !important; } /* 飞泉绿 */
+.location-foshan { border: 2px solid #C08861 !important; } /* 琥珀褐 */
+.location-none { border: 1px solid #DDDDDD !important; } /* 浅灰 */
+
+/* 活动颜色 - 背景 */
+.activity-school { background-color: #FFBF69; }
+.activity-college { background-color: #CBF3F0; }
+.activity-work { background-color: #8EECF5; }
+.activity-travel { background-color: #A5FFD6; }
+.activity-meditation { background-color: #A0E8AF; }
+.activity-workshop { background-color: #E4C1F9; }
+.activity-entertainment { background-color: #FFD6FF; }
+.activity-preparation { background-color: #F2C6DE; }
+.activity-internship { background-color: #8ACDD7; }
+.activity-none { background-color: transparent; }
+
+/* emoji标记样式 */
+.event-emoji {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8px;
+    line-height: 1;
+}
+
+/* 工具提示样式 */
+.tooltip {
+    position: absolute;
+    z-index: 1000;
+    background-color: #212529;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    max-width: 250px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    line-height: 1.62; /* 修改为黄金分割比 */
+}
+
+/* 图例样式 */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.legend-group {
+    margin-bottom: 15px;
+}
+
+.legend-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.62; /* 添加行高 */
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    line-height: 1.62; /* 添加行高 */
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    border-radius: 2px;
+}
+
+/* 移除季度标签相关样式 */
+.quarter-label {
+    display: none;
+}
+
+/* 添加悬停提示样式增强 */
+.week:hover .week-text {
+    text-decoration: underline dotted;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+    .life-grid {
+        grid-template-columns: repeat(13, 1fr) !important; /* 在小屏幕上减少每行的格子数 */
+    }
+}
+
+/* 美化版的悬停文本框 */
+.hover-details {
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 12px;
+    width: max-content;
+    max-width: 280px;
+    z-index: 101;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    font-size: 14px;
+    color: #333;
+}
+
+.week:hover .hover-details {
+    display: block;
+}
+
+/* 悬停框的箭头 */
+.hover-details::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+} 
