@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="筑居思 - 造物拾遗，收集与展示我的创意与收藏">
+  <title>造物拾遗 - 筑居思</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
+  
+  <style>
+    /* 网站LOGO样式 */
+    .site-logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      z-index: 100;
+    }
+    .site-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .cabinet-hero {
+      text-align: center;
+      padding: 4rem 0 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .cabinet-hero h1 {
+      margin-bottom: 1rem;
+    }
+    
+    .cabinet-hero p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .collection-category {
+      margin-bottom: 4rem;
+    }
+    
+    .collection-category h2 {
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .collection-category p {
+      margin-bottom: 2rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .collection-feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 4rem 0;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+    }
+    
+    .dark-theme .collection-feature {
+      background-color: transparent;
+      border: 1px solid var(--color-text-secondary);
+    }
+    
+    .collection-feature-image {
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    
+    .collection-feature-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    
+    .collection-feature-content {
+      text-align: center;
+      max-width: 700px;
+    }
+    
+    .collection-feature-content h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .collection-feature-content p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--color-accent-lotus-red);
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: var(--color-accent-lotus-red-hover);
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 1200px) {
+      .collections-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .collections-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .collection-feature {
+        padding: 1.5rem;
+      }
+      
+      .collection-feature-content {
+        padding: 0;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .cabinet-hero h1 {
+        font-size: 24px;
+      }
+      
+      .collection-card {
+        padding-bottom: 1rem;
+      }
+      
+      .collection-image {
+        height: 180px;
+      }
+      
+      .collection-info {
+        padding: 1rem;
+      }
+      
+      .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 网站LOGO -->
+  <a href="index.html" class="site-logo">
+    <img src="images/putiye心形菩提叶.svg" alt="筑居思 Logo">
+  </a>
+  
+  <!-- 主题切换按钮 -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="切换深浅模式">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon" style="display: none;">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <!-- 阅读进度指示器 -->
+  <div class="progress-container">
+    <div class="progress-bar" id="reading-progress"></div>
+  </div>
+
+  <div class="article-container">
+    <!-- 导航 -->
+    <nav class="breadcrumb">
+      <a href="index.html">首页</a> / <span>造物拾遗</span>
+    </nav>
+    
+    <!-- 页面标题 -->
+    <div class="cabinet-hero">
+      <h1>造物拾遗</h1>
+      <p>收集与展示我的创意与收藏</p>
+    </div>
+    
+    <!-- 我的收藏展 -->
+    <section class="collection-category">
+      <h2>我的收藏展</h2>
+      
+      <div class="collections-grid">
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-001-main.jpg" alt="树枝画框" class="collection-img">
+          </div>
+          <div class="collection-info">
+            <h4>展品001-树枝画框</h4>
+            <p>公园捡到的枯树枝，断裂纹理细腻</p>
+            <a href="exhibits/exhibit-001.html" class="card-link">查看详情 →</a>
+          </div>
+        </div>
+        
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-002-main.jpg" alt="红靴子与花" class="collection-img">
+          </div>
+          <div class="collection-info">
+            <h4>展品002-红靴子与绿植</h4>
+            <p>3D打印的红靴子，种下种子生出芽儿</p>
+            <a href="exhibits/exhibit-002.html" class="card-link">查看详情 →</a>
+          </div>
+        </div>
+        
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-003-main.jpg" alt="花艺设计" class="collection-img">
+          </div>
+          <div class="collection-info">
+            <h4>展品003-菜之花</h4>
+            <p>探索自然与艺术的边界</p>
+            <a href="exhibits/exhibit-003.html" class="card-link">查看详情 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+  </div>
+
+  <footer class="site-footer">
+    <p>© 2025 筑居思. 保留所有权利.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html> 

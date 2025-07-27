@@ -1,0 +1,119 @@
+/* 视差滚动效果 CSS */
+
+/* 视差滚动容器 */
+.parallax-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* 视差滚动元素基础样式 */
+.parallax-element {
+    position: absolute;
+    will-change: transform;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* 视差背景元素 */
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.6;
+    backface-visibility: hidden;
+}
+
+/* 菩提叶视差元素 */
+.parallax-leaf {
+    position: absolute;
+    opacity: 0.3;
+    z-index: -1;
+    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform-style: preserve-3d;
+}
+
+/* 视差叶子尺寸变化 */
+.parallax-leaf.small {
+    width: 50px;
+    height: 50px;
+}
+
+.parallax-leaf.medium {
+    width: 80px;
+    height: 80px;
+}
+
+.parallax-leaf.large {
+    width: 120px;
+    height: 120px;
+}
+
+/* 特定区域的视差效果 */
+.hero-parallax {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-parallax h2 {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hero-parallax p {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* 视差滚动内容部分 */
+.parallax-content-section {
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg-primary);
+    padding-top: 2rem;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform-style: preserve-3d;
+}
+
+/* 确保暗色模式下的兼容性 */
+[data-theme="dark"] .parallax-leaf {
+    filter: brightness(0.8);
+}
+
+/* 响应式设计调整 */
+@media (max-width: 768px) {
+    .parallax-leaf {
+        opacity: 0.2;
+    }
+    
+    .parallax-leaf.small {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .parallax-leaf.medium {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .parallax-leaf.large {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* 减少动画模式兼容性 */
+@media (prefers-reduced-motion: reduce) {
+    .parallax-element,
+    .hero-parallax h2,
+    .hero-parallax p,
+    .parallax-content-section {
+        transition: none;
+        transform: none !important;
+    }
+} 

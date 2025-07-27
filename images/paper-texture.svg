@@ -1,0 +1,33 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.03 0" in="noise" result="coloredNoise"/>
+    </filter>
+    
+    <pattern id="paper-pattern" patternUnits="userSpaceOnUse" width="200" height="200">
+      <rect width="200" height="200" fill="#F8F6F2"/>
+      <rect width="200" height="200" filter="url(#noise)"/>
+      
+      <!-- 纤维线条 - 水平 -->
+      <g opacity="0.03">
+        <line x1="0" y1="20" x2="200" y2="20" stroke="#2D2D2D" stroke-width="0.5" stroke-opacity="0.4"/>
+        <line x1="0" y1="60" x2="200" y2="60" stroke="#2D2D2D" stroke-width="0.3" stroke-opacity="0.3"/>
+        <line x1="0" y1="100" x2="200" y2="100" stroke="#2D2D2D" stroke-width="0.4" stroke-opacity="0.4"/>
+        <line x1="0" y1="140" x2="200" y2="140" stroke="#2D2D2D" stroke-width="0.3" stroke-opacity="0.3"/>
+        <line x1="0" y1="180" x2="200" y2="180" stroke="#2D2D2D" stroke-width="0.5" stroke-opacity="0.4"/>
+      </g>
+      
+      <!-- 纤维线条 - 垂直 -->
+      <g opacity="0.03">
+        <line x1="20" y1="0" x2="20" y2="200" stroke="#2D2D2D" stroke-width="0.3" stroke-opacity="0.3"/>
+        <line x1="60" y1="0" x2="60" y2="200" stroke="#2D2D2D" stroke-width="0.4" stroke-opacity="0.4"/>
+        <line x1="100" y1="0" x2="100" y2="200" stroke="#2D2D2D" stroke-width="0.3" stroke-opacity="0.3"/>
+        <line x1="140" y1="0" x2="140" y2="200" stroke="#2D2D2D" stroke-width="0.5" stroke-opacity="0.4"/>
+        <line x1="180" y1="0" x2="180" y2="200" stroke="#2D2D2D" stroke-width="0.3" stroke-opacity="0.3"/>
+      </g>
+    </pattern>
+  </defs>
+  
+  <rect width="200" height="200" fill="url(#paper-pattern)"/>
+</svg> 

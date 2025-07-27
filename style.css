@@ -1,0 +1,667 @@
+/* ---------------------------------- */
+/* 核心设计语言：CSS变量定义 (The Design Language) */
+/* 这是我们博客的"营造法式"总纲，一切设计的源头。 */
+/* ---------------------------------- */
+:root {
+  --color-bg: #F8F6F2;
+  --color-text: #2D2D2D;
+  --color-accent-lotus-red: #C84630;
+  --color-text-secondary: #666;
+  --color-border: #eee;
+  --font-family-serif: "source han serif sc", "思源宋体", "Songti SC", serif;
+  --content-width: 1400px;
+  --spacing-unit: 8px;
+}
+
+/* ---------------------------------- */
+/* 深色模式 (Dark Mode) - 庇护所的另一面 */
+/* ---------------------------------- */
+.dark-theme {
+  --color-bg: #212121; /* 深邃宇宙 */
+  --color-text: #D1C7B9; /* 温润月光 */
+  --color-text-secondary: #7E9C8D;
+  --color-accent-lotus-red: #E55A4B; /* 在黑暗中更柔和的朱红 */
+  --color-accent-lotus-red-hover: #C84630;
+  --color-border: #3A3A3A;
+}
+
+/* 系统深色模式自动适配 */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-theme) {
+    --color-bg: #212121; /* 深邃宇宙 */
+    --color-text: #D1C7B9; /* 温润月光 */
+    --color-text-secondary: #7E9C8D;
+    --color-accent-lotus-red: #E55A4B; /* 在黑暗中更柔和的朱红 */
+    --color-accent-lotus-red-hover: #C84630;
+    --color-border: #3A3A3A;
+  }
+}
+
+/* ---------------------------------- */
+/* 全局设定 (Global Reset & Setup) - 万物的基础 */
+/* ---------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-serif);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+}
+
+/* ---------------------------------- */
+/* 无障碍跳过链接 (Skip Link) - 为屏幕阅读器用户提供便捷 */
+/* ---------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-accent-lotus-red);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ---------------------------------- */
+/* 文章布局 (Article Layout) - 禅意的骨架 */
+/* ---------------------------------- */
+.article-container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 6);
+}
+
+@media (max-width: 768px) {
+  .article-container {
+    padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);
+  }
+}
+
+@media (max-width: 480px) {
+  .article-container {
+    padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
+  }
+}
+
+/* 阅读进度指示器 (Reading Progress) */
+.progress-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  z-index: 100;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--color-accent-lotus-red);
+  width: 0%;
+}
+
+/* ---------------------------------- */
+/* 文本元素 (Typography Elements) - 思想的载体 */
+/* ---------------------------------- */
+h1 {
+  font-size: 36px;
+  line-height: 1.3;
+  color: var(--color-accent-lotus-red);
+  margin-bottom: calc(var(--spacing-unit) * 4);
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 24px;
+  color: var(--color-text);
+  margin-top: calc(var(--spacing-unit) * 6);
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  font-weight: 500;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+a {
+  color: var(--color-accent-lotus-red);
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+  color: var(--color-accent-lotus-red-hover);
+}
+
+/* ---------------------------------- */
+/* 特色元素 (Special Elements) - 灵魂的细节 */
+/* ---------------------------------- */
+
+/* 1. "引首章" (The Leading Seal) - 阅读的仪式感 */
+.article-body p:first-of-type::first-letter {
+  font-family: var(--font-family-kai);
+  float: left;
+  font-size: 64px; /* 放大以突出 */
+  line-height: 1;
+  margin-right: calc(var(--spacing-unit) * 1.5);
+  margin-bottom: calc(var(--spacing-unit) * -1); /* 微调以优化环绕 */
+  color: var(--color-accent-lotus-red);
+  font-weight: bold;
+}
+
+/* 2. 引用 (Blockquote) - 思想的回响 */
+blockquote {
+  margin: calc(var(--spacing-unit) * 4) 0;
+  padding-left: calc(var(--spacing-unit) * 3);
+  border-left: 3px solid var(--color-accent-lotus-red);
+  font-family: var(--font-family-kai);
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* 3. 文章目录 (Table of Contents) */
+.table-of-contents {
+  background-color: rgba(248, 246, 242, 0.7);
+  border-left: 3px solid var(--color-accent-lotus-red);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.dark-theme .table-of-contents {
+  background-color: rgba(50, 50, 50, 0.5);
+}
+
+.table-of-contents h3 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.table-of-contents ul {
+  list-style-type: none;
+  padding-left: calc(var(--spacing-unit) * 2);
+}
+
+.table-of-contents a {
+  display: block;
+  padding: calc(var(--spacing-unit) * 0.5) 0;
+}
+
+/* 块引用样式 */
+blockquote {
+  border-left: 4px solid var(--color-accent-lotus-red);
+  padding-left: 16px;
+  margin-left: 0;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+/* 图片和图片说明 */
+figure {
+  margin: 24px 0;
+}
+
+figcaption {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-top: 8px;
+}
+
+/* 链接样式 */
+a {
+  color: var(--color-accent-lotus-red);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--color-accent-lotus-red);
+  transition: border-bottom 0.2s, color 0.3s;
+}
+
+a:hover {
+  border-bottom: 1px solid var(--color-accent-lotus-red);
+}
+
+/* ---------------------------------- */
+/* 页脚 (Footer) - 温情的注脚 */
+/* ---------------------------------- */
+.site-footer {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  text-align: center;
+  padding: 32px 16px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.footer-link {
+  color: var(--color-text-secondary);
+  margin: 0 8px;
+}
+
+/* ---------------------------------- */
+/* 无障碍增强 (Accessibility) - 为所有人建的庇护所 */
+/* ---------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px dashed var(--color-accent-lotus-red);
+  outline-offset: 4px;
+}
+
+/* ---------------------------------- */
+/* 主题切换按钮 */
+/* ---------------------------------- */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dark-theme .theme-toggle {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ---------------------------------- */
+/* 响应式设计增强 (Responsive Enhancement) */
+/* ---------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --content-width: 95%;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 28px;
+  }
+  
+  .article-body p:first-of-type::first-letter {
+    font-size: 48px;
+  }
+  
+  blockquote {
+    margin: calc(var(--spacing-unit) * 3) 0;
+    padding-left: calc(var(--spacing-unit) * 2);
+  }
+}
+
+/* ---------------------------------- */
+/* 图片优化 (Image Optimization) */
+/* ---------------------------------- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: calc(var(--spacing-unit) * 4) auto;
+}
+
+/* 延迟加载图片 */
+.lazy-image {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+}
+
+/* ---------------------------------- */
+/* 字体加载策略 (Font Loading Strategy) */
+/* ---------------------------------- */
+@font-face {
+  font-family: 'source han serif sc';
+  font-display: swap; /* 确保文本在字体加载前可见 */
+  /* 其他字体设置 */
+}
+
+@font-face {
+  font-family: 'kaiti sc';
+  font-display: swap;
+  /* 其他字体设置 */
+} 
+
+/* ---------------------------------- */
+/* 造物拾遗卡片样式 (Collection Cards) */
+/* ---------------------------------- */
+.content-section h3 {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.content-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: calc(var(--spacing-unit) * 3);
+  margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+.content-card {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.3s ease;
+  border: 1px solid var(--color-border);
+  height: 100%;
+}
+
+.dark-theme .content-card {
+  background-color: transparent;
+  border: 1px solid var(--color-text-secondary);
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .content-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-color: var(--color-accent-lotus-red);
+}
+
+.content-card h4 {
+  margin-top: 0;
+  margin-bottom: calc(var(--spacing-unit) * 1);
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.content-card .date {
+  display: block;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: calc(var(--spacing-unit) * 1);
+}
+
+.content-card p {
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+}
+
+.content-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+/* 造物拾遗专用卡片样式 */
+.collection-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+}
+
+.dark-theme .collection-card {
+  background-color: transparent;
+  border: 1px solid var(--color-text-secondary);
+}
+
+.collection-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .collection-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-color: var(--color-accent-lotus-red);
+}
+
+.collection-image {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.collection-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.collection-card:hover .collection-img {
+  transform: scale(1.05);
+}
+
+.collection-info {
+  padding: 1.5rem;
+}
+
+.collection-info h4 {
+  margin-top: 0;
+  margin-bottom: calc(var(--spacing-unit) * 1);
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.collection-info p {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  color: var(--color-text-secondary);
+  font-size: 15px;
+}
+
+.card-link {
+  color: var(--color-accent-lotus-red);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.card-link:hover {
+  color: var(--color-accent-lotus-red-hover);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .content-cards {
+    grid-template-columns: 1fr;
+  }
+} 
+
+/* ---------------------------------- */
+/* 响应式设计 (Responsive Design) - 适应不同屏幕 */
+/* ---------------------------------- */
+@media (max-width: 1400px) {
+  :root {
+    --content-width: 1200px;
+  }
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --content-width: 1000px;
+  }
+  
+  .home-layout {
+    gap: 1.5rem;
+  }
+  
+  .left-column {
+    flex: 0 0 250px;
+  }
+}
+
+@media (max-width: 1000px) {
+  :root {
+    --content-width: 90%;
+  }
+  
+  h1 {
+    font-size: 32px;
+  }
+  
+  h2 {
+    font-size: 22px;
+  }
+  
+  .home-layout {
+    flex-direction: column;
+  }
+  
+  .left-column {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  
+  .main-categories {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .category-item {
+    flex: 1 1 auto;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --content-width: 95%;
+  }
+  
+  .article-container {
+    padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  
+  .about-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .about-bio {
+    justify-content: center;
+  }
+  
+  .about-social {
+    justify-content: center;
+  }
+  
+  .content-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .collections-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .site-logo {
+    top: 10px;
+    left: 10px;
+  }
+  
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-container {
+    padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  .article-body p:first-of-type::first-letter {
+    font-size: 48px;
+  }
+  
+  blockquote {
+    margin: calc(var(--spacing-unit) * 3) 0;
+    padding-left: calc(var(--spacing-unit) * 2);
+  }
+  
+  .content-card {
+    padding: 1rem;
+  }
+  
+  .avatar-container {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .exhibit-gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .exhibit-header h1 {
+    font-size: 22px;
+  }
+  
+  .exhibit-header .tags {
+    flex-direction: column;
+    align-items: center;
+  }
+} 

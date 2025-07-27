@@ -1,0 +1,268 @@
+/* 
+ * 禅意交互设计原则
+ * 核心交互哲学: "静默邀请，而非强行打扰"
+ */
+
+/* --------------------------------------
+ * 1. 全局动效设计 - "风过荷塘，涟漪微动"
+ * -------------------------------------- */
+
+/* 全局缓动曲线与过渡效果 */
+:root {
+  --transition-standard: 500ms ease-in-out;
+  --transition-fast: 200ms ease-in-out;
+}
+
+/* 应用全局过渡效果 */
+a, button, .btn, .card, .link-card, .featured-card,
+input, textarea, select, .nav-item, .sidebar-nav a,
+.portfolio-item, .newsletter-item, .tag {
+  transition: all var(--transition-standard);
+}
+
+/* --------------------------------------
+ * 2. 链接悬停效果 - 从"炭灰"平滑过渡到"朱红"
+ * -------------------------------------- */
+a {
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: color var(--transition-standard);
+}
+
+a:hover, a:focus {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* --------------------------------------
+ * 3. 阅读进度条 - "与时间做朋友"
+ * -------------------------------------- */
+.reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: transparent;
+  z-index: 9999;
+}
+
+.reading-progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: var(--accent);
+  transition: width 0.1s ease;
+}
+
+/* --------------------------------------
+ * 4. 已读状态 - 文章链接的已读状态
+ * -------------------------------------- */
+a.visited, a:visited {
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------
+ * 5. 评论区 - 设计成"信札"样式
+ * -------------------------------------- */
+.comment-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+  border-left: 2px solid var(--text-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: var(--spacing-2);
+  border: 1px solid var(--card-border);
+}
+
+.comment-meta {
+  flex: 1;
+}
+
+.comment-author {
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.comment-date {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.comment-content {
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* 自己的评论高亮效果 */
+.comment-card.own-comment {
+  border-left-color: var(--accent);
+}
+
+.comment-card.own-comment.new {
+  animation: highlight-comment 2s ease-out forwards;
+}
+
+@keyframes highlight-comment {
+  0% { box-shadow: 0 0 0 2px var(--accent); }
+  100% { box-shadow: 0 2px 8px var(--card-shadow); }
+}
+
+/* 悬停效果 */
+.comment-card.own-comment:hover {
+  box-shadow: 0 0 12px rgba(200, 70, 48, 0.2);
+}
+
+/* --------------------------------------
+ * 6. "善意的玩笑" - 页脚随机文字
+ * -------------------------------------- */
+.footer-quote {
+  font-style: italic;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: var(--spacing-3) 0;
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------
+ * 7. 404页面 - 水墨荷花
+ * -------------------------------------- */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+}
+
+.error-image {
+  max-width: 300px;
+  margin-bottom: var(--spacing-4);
+  opacity: 0.8;
+}
+
+.error-message {
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-3);
+}
+
+.error-home-link {
+  color: var(--accent);
+  font-size: 1.1rem;
+  border: 1px solid var(--accent);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: 4px;
+  transition: all var(--transition-standard);
+}
+
+.error-home-link:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* --------------------------------------
+ * 8. 微交互 - "灵魂的耳语"
+ * -------------------------------------- */
+
+/* 按钮点击反馈 */
+button, .btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), background-color var(--transition-standard), color var(--transition-standard);
+}
+
+button:active, .btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* 元素进入视窗动画 */
+.animate-on-scroll {
+  opacity: 0.8;
+  transform: translateY(2px);
+  transition: opacity var(--transition-standard), transform var(--transition-standard);
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 文本选择样式 */
+::selection {
+  background-color: rgba(88, 116, 101, 0.3); /* 石绿色 */
+  color: var(--text-primary);
+}
+
+/* --------------------------------------
+ * 9. "老朋友"系统 - 个性化与记忆
+ * -------------------------------------- */
+
+/* 阅读进度记忆提示 */
+.reading-reminder {
+  background-color: var(--bg-secondary);
+  border-left: 2px solid var(--accent);
+  padding: var(--spacing-2) var(--spacing-3);
+  margin: var(--spacing-3) 0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reading-reminder-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.reading-reminder-link {
+  color: var(--accent);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  margin-left: var(--spacing-2);
+}
+
+/* --------------------------------------
+ * 10. Logo交互 - 极其缓慢的动效
+ * -------------------------------------- */
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-image {
+  transition: transform 3s ease-in-out;
+}
+
+.logo-container:hover .logo-image {
+  transform: rotate(1deg);
+}
+
+/* --------------------------------------
+ * 11. 图片加载效果 - 从模糊到清晰
+ * -------------------------------------- */
+.blur-load {
+  filter: blur(10px);
+  transition: filter var(--transition-standard);
+}
+
+.blur-load.loaded {
+  filter: blur(0);
+} 

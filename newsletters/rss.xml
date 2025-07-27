@@ -1,101 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>筑居思 - 精选优质设计与Newsletter资源</title>
-    <link>https://yourdomain.com/</link>
-    <description>个人导航站、精选设计资源、优质Newsletter和冥想禅修内容</description>
-    <language>zh-cn</language>
-    <lastBuildDate>Mon, 1 July 2024 12:00:00 +0800</lastBuildDate>
-    <atom:link href="https://yourdomain.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <title>思考庇护所</title>
+    <description>关于学习、思考与生活的博客</description>
+    <link>https://example.com</link>
+    <atom:link href="https://example.com/rss.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 10 Dec 2023 08:00:00 +0800</lastBuildDate>
+    <copyright>思考庇护所 © 2023</copyright>
+    <category>思考</category>
+    <category>学习</category>
+    <category>生活</category>
     
-    <!-- 首页精选内容 -->
     <item>
-      <title>个人博客 - 筑居思</title>
-      <link>https://yourdomain.com/blogs.html</link>
-      <guid>https://yourdomain.com/blogs.html</guid>
-      <pubDate>Mon, 1 July 2024 10:00:00 +0800</pubDate>
-      <description><![CDATA[
-        <h2>个人博客</h2>
-        <p>我的思考与写作集合，包含生活随笔、技术笔记和个人思考。</p>
-        <ul>
-          <li>Qianny的Notion博客</li>
-          <li>旅行日记：京都之行</li>
-          <li>关于阅读的思考</li>
-          <li>极简主义生活实践</li>
-          <li>前端开发日志</li>
-          <li>AI工具探索</li>
-        </ul>
-      ]]></description>
+      <title>No.01 寻找Study-Work-life Balence</title>
+      <description>在现代快节奏的社会中，如何平衡学习、工作和生活成为了许多人面临的挑战。本期newsletter将探讨如何在忙碌的日常中找到平衡点，让三者和谐共存。</description>
+      <link>https://example.com/newsletters/No%2001%20%E5%AF%BB%E6%89%BEStudy-Work-life%20Balence%201fe5ddc4510a42caa7bf2213916a7cd0.html</link>
+      <guid>https://example.com/newsletters/No%2001%20%E5%AF%BB%E6%89%BEStudy-Work-life%20Balence%201fe5ddc4510a42caa7bf2213916a7cd0.html</guid>
+      <pubDate>Sun, 10 Dec 2023 08:00:00 +0800</pubDate>
+      <category>平衡</category>
+      <category>学习</category>
+      <category>生活</category>
     </item>
     
     <item>
-      <title>Newsletter精选 - 筑居思</title>
-      <link>https://yourdomain.com/newsletter.html</link>
-      <guid>https://yourdomain.com/newsletter.html</guid>
-      <pubDate>Mon, 1 July 2024 09:00:00 +0800</pubDate>
-      <description><![CDATA[
-        <h2>Newsletter精选</h2>
-        <p>精选高质量的Newsletter内容，包括科技、设计、人文等领域。</p>
-        <ul>
-          <li>王川 - 科技与投资分析</li>
-          <li>太隐 - 个人博客</li>
-          <li>陈仓颉 - 科技与人文观察</li>
-          <li>happy xiao - 可乐周报</li>
-          <li>虹线 - 个人博客</li>
-          <li>纳瓦尔 - Naval Ravikant思想</li>
-        </ul>
-      ]]></description>
+      <title>一篇关于学习观的思考</title>
+      <description>关于学习观的思考，以及学习背后的心理学原理</description>
+      <link>https://example.com/index.html</link>
+      <guid>https://example.com/index.html</guid>
+      <pubDate>Sat, 02 Dec 2023 14:30:00 +0800</pubDate>
+      <category>学习</category>
+      <category>心理学</category>
+      <category>思考</category>
     </item>
     
     <item>
-      <title>设计作品集欣赏 - 筑居思</title>
-      <link>https://yourdomain.com/portfolio.html</link>
-      <guid>https://yourdomain.com/portfolio.html</guid>
-      <pubDate>Mon, 1 July 2024 08:00:00 +0800</pubDate>
-      <description><![CDATA[
-        <h2>设计作品集欣赏</h2>
-        <p>精选国内外优秀的平面设计与网页设计作品。</p>
-        <ul>
-          <li>平面设计精选</li>
-          <li>网页设计案例</li>
-          <li>设计师作品集推荐</li>
-          <li>创意灵感来源</li>
-        </ul>
-      ]]></description>
+      <title>冥想之旅：半载观想小记</title>
+      <description>在大理、在内观禅修的路上的思考与感悟</description>
+      <link>https://example.com/blogs/meditation-journey.html</link>
+      <guid>https://example.com/blogs/meditation-journey.html</guid>
+      <pubDate>Fri, 24 Nov 2023 10:15:00 +0800</pubDate>
+      <category>冥想</category>
+      <category>内观</category>
+      <category>心灵成长</category>
     </item>
     
+    <!-- 新样式和设计更新通知 -->
     <item>
-      <title>冥想禅修 - 筑居思</title>
-      <link>https://yourdomain.com/meditation.html</link>
-      <guid>https://yourdomain.com/meditation.html</guid>
-      <pubDate>Mon, 1 July 2024 07:00:00 +0800</pubDate>
-      <description><![CDATA[
-        <h2>冥想禅修</h2>
-        <p>关于冥想、禅修的个人实践与思考，包含冥想音乐、方法与经验分享。</p>
-        <ul>
-          <li>冥想方法与技巧</li>
-          <li>禅修体验分享</li>
-          <li>推荐冥想音乐</li>
-          <li>个人修习心得</li>
-        </ul>
-      ]]></description>
-    </item>
-    
-    <item>
-      <title>治愈频率音乐 - 筑居思</title>
-      <link>https://yourdomain.com/healing-frequencies.html</link>
-      <guid>https://yourdomain.com/healing-frequencies.html</guid>
-      <pubDate>Mon, 1 July 2024 06:00:00 +0800</pubDate>
-      <description><![CDATA[
-        <h2>治愈频率音乐</h2>
-        <p>各类治愈频率音乐及其对应的效果解析，帮助放松、冥想和提升能量。</p>
-        <ul>
-          <li>索尔菲吉奥频率</li>
-          <li>432Hz音乐</li>
-          <li>528Hz爱的频率</li>
-          <li>冥想音乐推荐</li>
-        </ul>
-      ]]></description>
+      <title>网站样式更新：统一设计语言</title>
+      <description>我们更新了网站的设计，采用了统一的设计语言，提升了阅读体验和可访问性。现在所有页面都使用了更加简洁、优雅的设计风格，并添加了阅读进度指示器和目录功能。</description>
+      <link>https://example.com/index.html</link>
+      <guid>https://example.com/updates/style-update-2023</guid>
+      <pubDate>Tue, 12 Dec 2023 09:00:00 +0800</pubDate>
+      <category>网站更新</category>
+      <category>设计</category>
     </item>
   </channel>
 </rss> 

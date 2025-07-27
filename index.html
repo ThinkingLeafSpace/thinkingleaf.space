@@ -1,196 +1,566 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>筑居思 - 精选优质设计与Newsletter资源</title>
-    <meta name="description" content="精选设计、newsletter、与个人博客资源导航">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="images/icon (3).png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="回归生活本源的思考与创造">
+  <title>筑居思 - 回归生活本源的思考与创造</title>
+  <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
+  
+  <!-- 关键CSS内联，提高首屏渲染速度 -->
+  <style>
+    :root {
+      --color-bg: #F8F6F2;
+      --color-text: #2D2D2D;
+      --color-accent-lotus-red: #C84630;
+      --color-text-secondary: #666;
+      --color-border: #eee;
+      --font-family-serif: "source han serif sc", "思源宋体", "Songti SC", serif;
+      --content-width: 1400px;
+      --spacing-unit: 8px;
+    }
+
+    /* 深色模式变量 */
+    .dark-theme {
+      --color-bg: #212121;
+      --color-text: #D1C7B9;
+      --color-text-secondary: #7E9C8D;
+      --color-accent-lotus-red: #E55A4B;
+      --color-border: #3A3A3A;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-family-serif);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-size: 16px;
+      line-height: 1.8;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    
+    /* 网站LOGO样式 */
+    .site-logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      z-index: 100;
+    }
+    .site-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .article-container {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 2);
+    }
+    h1 {
+      font-size: 36px;
+      line-height: 1.3;
+      color: var(--color-accent-lotus-red);
+    }
+    /* 两栏布局 */
+    .home-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .left-column {
+      flex: 0 0 300px;
+    }
+    .right-column {
+      flex: 1;
+      min-width: 300px;
+    }
+    /* 左侧栏目样式 */
+    .main-categories {
+      position: sticky;
+      top: 2rem;
+    }
+    .category-item {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-left: 3px solid var(--color-accent-lotus-red);
+      transition: all 0.3s ease;
+    }
+    .category-item:hover {
+      background-color: rgba(200, 70, 48, 0.05);
+      transform: translateX(5px);
+    }
+    .category-item h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .category-item a {
+      text-decoration: none;
+      color: var(--color-text);
+      display: block;
+    }
+    /* 右侧内容样式 */
+    .about-section {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
+      transition: background-color 0.4s ease;
+    }
+    .dark-theme .about-section {
+      background-color: rgba(50, 50, 50, 0.5);
+    }
+    .avatar-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-color: var(--color-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border);
+    }
+    .avatar-img {
+      width: 90%;
+      height: 90%;
+      object-fit: contain;
+    }
+    .about-content {
+      flex: 1;
+    }
+    .about-content h2 {
+      margin-top: 0;
+      color: var(--color-accent-lotus-red);
+    }
+    .about-bio {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .bio-item {
+      background-color: rgba(200, 70, 48, 0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: background-color 0.4s ease;
+    }
+    .dark-theme .bio-item {
+      background-color: rgba(229, 90, 75, 0.2);
+    }
+    .about-social {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .social-icon {
+      color: var(--color-text);
+      transition: color 0.3s ease;
+    }
+    .social-icon:hover {
+      color: var(--color-accent-lotus-red);
+    }
+    /* 内容盒子样式 */
+    .content-section {
+      margin-bottom: 2rem;
+    }
+    .content-section h3 {
+      color: var(--color-accent-lotus-red);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 0.5rem;
+    }
+    .content-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .content-card {
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
+      border: 1px solid var(--color-border);
+    }
+    .dark-theme .content-card {
+      background-color: transparent;
+      border: 1px solid var(--color-text-secondary);
+    }
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .dark-theme .content-card:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      border-color: var(--color-accent-lotus-red);
+    }
+    .content-card h4 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+    .content-card .date {
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .content-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+    .content-card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    /* 页脚样式 */
+    .site-footer {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      text-align: center;
+      padding: 32px 16px;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-secondary);
+      font-size: 14px;
+    }
+    /* 阅读进度指示器 */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 100;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--color-accent-lotus-red);
+      width: 0%;
+    }
+    /* 主题切换按钮 */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .dark-theme .theme-toggle {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .dark-theme .theme-toggle:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    /* 响应式设计 */
+    @media (max-width: 1000px) {
+      .home-layout {
+        flex-direction: column;
+      }
+      .left-column {
+        flex: 0 0 auto;
+        width: 100%;
+      }
+      .main-categories {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .category-item {
+        flex: 1 1 auto;
+        min-width: 200px;
+        margin-bottom: 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .content-cards {
+        grid-template-columns: 1fr;
+      }
+      .about-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .about-bio {
+        justify-content: center;
+      }
+      .about-social {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+      .avatar-container {
+        width: 100px;
+        height: 100px;
+      }
+      .content-card {
+        padding: 1rem;
+      }
+    }
+  </style>
+  
+  <!-- 预加载关键资源 -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="script.js" as="script">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- 主要样式表，非阻塞加载 -->
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kaiti+SC:wght@700&family=Source+Han+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/icon/icon.svg" type="image/svg+xml">
 </head>
 <body>
-    <!-- 左侧固定导航栏 -->
-    <div class="sidebar">
-        <div class="sidebar-logo">
-            <h1>筑居<span>思</span></h1>
-        </div>
-        <ul class="sidebar-nav">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="blogs.html">个人博客</a></li>
-            <li><a href="newsletter.html">Newsletter 导航</a></li>
-            <li><a href="portfolio.html">个人作品集</a></li>
-        </ul>
-        <div class="theme-toggle">
-            <button id="theme-toggle-btn" aria-label="切换主题">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            </button>
-        </div>
+  <!-- 无障碍跳过链接 -->
+  <a href="#main-content" class="skip-link">跳到主要内容</a>
+
+  <!-- 网站LOGO -->
+  <a href="index.html" class="site-logo">
+    <img src="images/putiye心形菩提叶.svg" alt="筑居思 Logo">
+  </a>
+
+  <!-- 主题切换按钮 -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="切换深浅模式">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon" style="display: none;">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <!-- 阅读进度指示器 -->
+  <div class="progress-container">
+    <div class="progress-bar" id="reading-progress"></div>
+  </div>
+
+  <div class="article-container" id="main-content">
+    <header>
+      <h1>筑居<span style="color: var(--color-accent-lotus-red);">思</span> - 回归生活本源的思考与创造</h1>
+      <p>筑造丨居住丨思考 | Creating Living Thinking</p>
+    </header>
+    
+    <div class="home-layout">
+      <!-- 左侧栏目 -->
+      <div class="left-column">
+        <nav class="main-categories">
+          <div class="category-item">
+            <a href="blogs.html">
+              <h3>个人博客</h3>
+              <p>我的思考与写作</p>
+            </a>
+          </div>
+          <div class="category-item">
+            <a href="cabinet.html">
+              <h3>造物拾遗</h3>
+              <p>生活中的创意收集</p>
+            </a>
+          </div>
+          <div class="category-item">
+            <a href="portfolio.html">
+              <h3>个人作品集</h3>
+              <p>设计与创作展示</p>
+            </a>
+          </div>
+        </nav>
+      </div>
+      
+      <!-- 右侧内容 -->
+      <div class="right-column">
+        <!-- 个人介绍 -->
+        <section class="about-section">
+          <div class="avatar-container">
+            <img src="images/putiye心形菩提叶.svg" alt="心形菩提叶" class="avatar-img">
+          </div>
+          <div class="about-content">
+            <h2>关于我-Qianny</h2>
+            <div class="about-bio">
+              <span class="bio-item">❣️光通信行业大数据B端UI设计师</span>
+              <span class="bio-item">👀人文社科/旅行展览</span>
+              <span class="bio-item">��🏻to be geek</span>
+              <span class="bio-item">禅修践行者</span>
+              <span class="bio-item">美学维纳斯</span>
+            </div>
+            <div class="about-social">
+              <a href="https://github.com/ArchQian" aria-label="GitHub" class="social-icon" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa" aria-label="即刻" class="social-icon" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+              </a>
+              <a href="https://www.zcool.com.cn/u/27619561" aria-label="站酷" class="social-icon" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              <a href="./rss.xml" aria-label="RSS订阅" class="social-icon" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+              </a>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 个人博客最新内容 -->
+        <section class="content-section">
+          <h3>个人博客 - 最新文章</h3>
+          <div class="content-cards">
+            <div class="content-card">
+              <a href="blogs/meditation-journey.html">
+                <h4>半载观想小记：在大理、在内观禅修的路上</h4>
+                <span class="date">2023-11-24</span>
+                <p>禅修之旅的思考与感悟，探索内在的宁静与觉知</p>
+              </a>
+            </div>
+            <div class="content-card">
+              <a href="blogs/life-in-weeks.html">
+                <h4>人生周历：我的生命地图</h4>
+                <span class="date">2023-10-15</span>
+                <p>可视化展示我人生的每一周，了解时间的流逝与珍贵</p>
+              </a>
+            </div>
+            <div class="content-card">
+              <a href="blogs/creativity-thoughts.html">
+                <h4>我是如何看待创造的</h4>
+                <span class="date">2023-09-22</span>
+                <p>关于创造的本质、意义与如何提升创造力</p>
+              </a>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 造物拾遗最新内容 -->
+        <section class="content-section">
+          <h3>造物拾遗 - 最新收藏</h3>
+          <div class="content-cards">
+            <div class="content-card">
+              <a href="exhibits/exhibit-001.html">
+                <h4>展品001-树枝画框</h4>
+                <span class="date">2023-12-15</span>
+                <p>公园捡到的枯树枝，断裂纹理细腻</p>
+              </a>
+            </div>
+            <div class="content-card">
+              <a href="exhibits/exhibit-002.html">
+                <h4>展品002-红靴子与花</h4>
+                <span class="date">2023-11-20</span>
+                <p>3D打印的红靴子，种下种子生出芽儿</p>
+              </a>
+            </div>
+            <div class="content-card">
+              <a href="exhibits/exhibit-003.html">
+                <h4>展品003-花艺设计</h4>
+                <span class="date">2023-10-10</span>
+                <p>国美、南艺毕业设计展的花艺作品</p>
+              </a>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 个人作品集最新内容 -->
+        <section class="content-section">
+          <h3>个人作品集 - 最新作品</h3>
+          <div class="content-cards">
+            <div class="content-card">
+              <a href="portfolio.html#uxdesign">
+                <h4>用户体验设计系统</h4>
+                <span class="date">2023-12-01</span>
+                <p>UI设计、设计系统、Figma</p>
+              </a>
+            </div>
+            <div class="content-card">
+              <a href="portfolio.html#branding">
+                <h4>初创企业品牌标识设计</h4>
+                <span class="date">2023-11-15</span>
+                <p>品牌设计、Logo、视觉识别</p>
+              </a>
+            </div>
+            <div class="content-card">
+              <a href="portfolio.html#webdesign">
+                <h4>个人博客网站设计与开发</h4>
+                <span class="date">2023-10-20</span>
+                <p>Web设计、前端开发、响应式</p>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
+  </div>
 
-    <!-- 移动端菜单按钮 -->
-    <button class="mobile-menu-toggle" aria-label="打开导航菜单">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+  <footer class="site-footer">
+    <p id="footer-greeting">愿你在此找到片刻的安宁与灵感。</p>
+    <p>© 2025 筑居思. 保留所有权利.</p>
+  </footer>
 
-    <!-- 主要内容区域 -->
-    <div class="main-content">
-        <div class="container">
-            <main>
-                <section class="hero">
-                    <h2>唤醒平生中的须弥芥子</h2>
-                    <p>筑造丨居住丨思考</p>
-                    <p>Creating  Living  Thinking</p>
-                </section>
-
-                <!-- 个人自我介绍栏 -->
-                <section class="about-me">
-                    <div class="about-container">
-                        <div class="about-image">
-                            <!-- 使用用户指定的头像 -->
-                            <div class="avatar-container">
-                                <img src="images/main-icon.jpg"  class="avatar-img">
-                            </div>
-                        </div>
-                        <div class="about-content">
-                            <h3>关于我-Qianny</h3>
-                            <p class="about-bio">
-                                <span class="bio-item">❣️光通信行业大数据B端UI设计师</span>
-                                <span class="bio-item">👀人文社科/旅行展览</span>
-                                <span class="bio-item">🕺🏻to be geek</span>
-                                <span class="bio-item">禅修践行者</span>
-                                <span class="bio-item">美学维纳斯</span>
-                            </p>
-                            <div class="about-social">
-                                <a href="https://github.com/ArchQian" aria-label="GitHub" class="social-icon" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                </a>
-                                <a href="https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa" aria-label="即刻" class="social-icon" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
-                                </a>
-                                <a href="https://www.zcool.com.cn/u/27619561" aria-label="站酷" class="social-icon" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                                </a>
-                                <a href="./rss.xml" aria-label="RSS订阅" class="social-icon" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 三栏卡片布局的主要分类 -->
-                <section class="featured-categories">
-                    <div class="featured-grid">
-                        <!-- 个人博客卡片 -->
-                        <div class="featured-card" id="featured-blogs">
-                            <div class="featured-header">
-                                <h3>个人博客</h3>
-                                <a href="blogs.html" class="view-more">查看更多</a>
-                            </div>
-                            <div class="featured-content">
-                                <a href="blogs/life-in-weeks.html" class="link-card">
-                                    <div class="link-content">
-                                        <h5>人生周历：我的生命地图</h5>
-                                        <span class="date-tag">2025-05-25</span>
-                                        <p>可视化展示我人生的每一周，了解时间的流逝与珍贵</p>
-                                    </div>
-                                </a>
-                                <a href="blogs/creativity-thoughts.html" class="link-card">
-                                    <div class="link-content">
-                                        <h5>我是如何看待创造的</h5>
-                                        <span class="date-tag">2025-05-02</span>
-                                        <p>关于创造的本质、意义与如何提升创造力</p>
-                                    </div>
-                                </a>
-                                <a href="blogs/design-experiment.html" class="link-card">
-                                    <div class="link-content">
-                                        <h5>或许设计实验就是容易失败，对吗？</h5>
-                                        <span class="date-tag">2025-04-14</span>
-                                        <p>2025年，参与何志森老师mapping工作坊的思考</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Newsletter卡片 -->
-                        <div class="featured-card" id="featured-newsletter">
-                            <div class="featured-header">
-                                <h3>Newsletter</h3>
-                                <a href="newsletter.html" class="view-more">查看更多</a>
-                            </div>
-                            <div class="featured-content">
-                                <a href="一个链接" class="link-card" target="_blank">
-                                    <div class="link-content">
-                                        <h5>No.07 如何面对重大人生决定</h5>
-                                        <span class="date-tag">2023-01-15</span>
-                                        <p>我的方法论</p>
-                                    </div>
-                                </a>
-                                <a href="一个链接" class="link-card" target="_blank">
-                                    <div class="link-content">
-                                        <h5>No.06 一直游到海水变蓝</h5>
-                                        <span class="date-tag">2023-01-15</span>
-                                        <p> </p>
-                                    </div>
-                                </a>
-                                <a href="一个链接" class="link-card" target="_blank">
-                                    <div class="link-content">
-                                        <h5>No.05 本周好文分享丨停下来休息一下</h5>
-                                        <span class="date-tag">2022-11-15</span>
-                                        <p></p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- 个人作品集卡片 -->
-                        <div class="featured-card" id="featured-portfolio">
-                            <div class="featured-header">
-                                <h3>个人作品集</h3>
-                                <a href="portfolio.html" class="view-more">查看更多</a>
-                            </div>
-                            <div class="featured-content">
-                                <a href="#" class="link-card">
-                                    <div class="link-content">
-                                        <h5>画廊一：用户体验设计系统</h5>
-                                        <span class="date-tag">2024-08-01</span>
-                                        <p>UI设计、设计系统、Figma</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="link-card">
-                                    <div class="link-content">
-                                        <h5>画廊二：初创企业品牌标识设计</h5>
-                                        <span class="date-tag">2024-07-15</span>
-                                        <p>品牌设计、Logo、视觉识别</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="link-card">
-                                    <div class="link-content">
-                                        <h5>画廊三：个人博客网站设计与开发</h5>
-                                        <span class="date-tag">2024-06-20</span>
-                                        <p>Web设计、前端开发、响应式</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <footer>
-                <div class="footer-content">
-                    <p>© 2025 筑居思. 保留所有权利.</p>
-                </div>
-            </footer>
-        </div>
-    </div>
-
-    <script src="js/main.js"></script>
+  <script src="script.js" defer></script>
+  <script src="js/main.js"></script>
+  <script>
+    // 主题切换功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const sunIcon = document.querySelector('.sun-icon');
+      const moonIcon = document.querySelector('.moon-icon');
+      
+      // 检查本地存储中的主题设置
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      } else {
+        document.body.classList.remove('dark-theme');
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      }
+      
+      // 切换主题
+      themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-theme');
+        
+        // 切换图标
+        if (document.body.classList.contains('dark-theme')) {
+          sunIcon.style.display = 'none';
+          moonIcon.style.display = 'block';
+          localStorage.setItem('theme', 'dark');
+        } else {
+          sunIcon.style.display = 'block';
+          moonIcon.style.display = 'none';
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    });
+  </script>
 </body>
-</html> 
+</html>

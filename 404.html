@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到 - 404</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/zen-interactions.css">
+    <style>
+        /* 404页面特定样式 */
+        body {
+            background-color: var(--bg-primary);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .lotus-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto var(--spacing-4);
+            opacity: 0;
+            animation: fade-in 1.5s ease-in-out forwards;
+        }
+        
+        .lotus-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 0.8; transform: translateY(0); }
+        }
+        
+        .ink-drop {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        .ink-drop.animate {
+            animation: ink-drop 4s ease-out forwards;
+        }
+        
+        @keyframes ink-drop {
+            0% {
+                transform: translate(0, -20px) scale(1);
+                opacity: 0.9;
+                border-radius: 50%;
+            }
+            20% {
+                opacity: 0.8;
+                transform: translate(0, 0) scale(2);
+            }
+            100% {
+                transform: translate(0, 0) scale(50);
+                opacity: 0;
+                border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="error-page">
+            <div class="lotus-container">
+                <img src="images/lotus-ink.svg" alt="水墨荷花" class="lotus-image">
+                <div class="ink-drop"></div>
+            </div>
+            <h1 class="error-message">此池无鱼，不如归去。</h1>
+            <a href="index.html" class="error-home-link">返回首页</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const inkDrop = document.querySelector('.ink-drop');
+                inkDrop.style.top = '50%';
+                inkDrop.style.left = '50%';
+                inkDrop.classList.add('animate');
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

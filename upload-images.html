@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>造物拾遗图片上传</title>
+  <style>
+    body {
+      font-family: "source han serif sc", "思源宋体", "Songti SC", serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #C84630;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    .upload-section {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .file-input {
+      margin: 15px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .note {
+      background-color: #f8f8f8;
+      padding: 15px;
+      border-left: 4px solid #C84630;
+      margin: 20px 0;
+    }
+    .instructions {
+      margin-bottom: 30px;
+    }
+    .path {
+      font-family: monospace;
+      background-color: #f0f0f0;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>造物拾遗图片上传指南</h1>
+  
+  <div class="instructions">
+    <p>由于无法直接从GitHub下载图片，请按照以下步骤手动上传图片：</p>
+    <ol>
+      <li>从GitHub仓库 <a href="https://github.com/ThinkingLeafSpace/thinkingleaf.space/tree/gh-pages/images/exhibits" target="_blank">https://github.com/ThinkingLeafSpace/thinkingleaf.space/tree/gh-pages/images/exhibits</a> 下载所需图片</li>
+      <li>使用下方表单将图片上传到正确的位置</li>
+      <li>确保图片名称与路径匹配</li>
+    </ol>
+  </div>
+  
+  <div class="note">
+    <p><strong>注意：</strong>请确保创建了以下文件夹结构：</p>
+    <ul>
+      <li class="path">images/exhibits/exhibit-001/</li>
+      <li class="path">images/exhibits/exhibit-002/</li>
+      <li class="path">images/exhibits/flowers/</li>
+    </ul>
+  </div>
+  
+  <div class="upload-section">
+    <h2>展品001 - 树枝画框</h2>
+    <div class="file-input">
+      <label for="exhibit-001-main">主图 (main.jpg):</label>
+      <input type="file" id="exhibit-001-main" accept="image/*">
+      <p>上传到: <span class="path">images/exhibits/exhibit-001/main.jpg</span></p>
+    </div>
+    <div class="file-input">
+      <label for="exhibit-001-detail-1">细节图1 (detail-1.jpg):</label>
+      <input type="file" id="exhibit-001-detail-1" accept="image/*">
+      <p>上传到: <span class="path">images/exhibits/exhibit-001/detail-1.jpg</span></p>
+    </div>
+    <div class="file-input">
+      <label for="exhibit-001-detail-2">细节图2 (detail-2.jpg):</label>
+      <input type="file" id="exhibit-001-detail-2" accept="image/*">
+      <p>上传到: <span class="path">images/exhibits/exhibit-001/detail-2.jpg</span></p>
+    </div>
+  </div>
+  
+  <div class="upload-section">
+    <h2>展品002 - 红靴子与绿植</h2>
+    <div class="file-input">
+      <label for="exhibit-002-main">主图 (main.jpg):</label>
+      <input type="file" id="exhibit-002-main" accept="image/*">
+      <p>上传到: <span class="path">images/exhibits/exhibit-002/main.jpg</span></p>
+    </div>
+    <div class="file-input">
+      <label for="exhibit-002-detail-1">细节图1 (detail-1.jpg):</label>
+      <input type="file" id="exhibit-002-detail-1" accept="image/*">
+      <p>上传到: <span class="path">images/exhibits/exhibit-002/detail-1.jpg</span></p>
+    </div>
+    <div class="file-input">
+      <label for="exhibit-002-detail-2">细节图2 (detail-2.jpg):</label>
+      <input type="file" id="exhibit-002-detail-2" accept="image/*">
+      <p>上传到: <span class="path">images/exhibits/exhibit-002/detail-2.jpg</span></p>
+    </div>
+  </div>
+  
+  <div class="upload-section">
+    <h2>展品003 - 菜之花</h2>
+    <div class="file-input">
+      <label for="exhibit-003-main">主图 (exhibit-003-main.jpg):</label>
+      <input type="file" id="exhibit-003-main" accept="image/*">
+      <p>上传到: <span class="path">images/exhibits/flowers/exhibit-003-main.jpg</span></p>
+    </div>
+    <div class="file-input">
+      <label for="exhibit-003-detail-1">细节图1 (exhibit-003-detail-1.jpg):</label>
+      <input type="file" id="exhibit-003-detail-1" accept="image/*">
+      <p>上传到: <span class="path">images/exhibits/flowers/exhibit-003-detail-1.jpg</span></p>
+    </div>
+    <div class="file-input">
+      <label for="exhibit-003-detail-2">细节图2 (exhibit-003-detail-2.jpg):</label>
+      <input type="file" id="exhibit-003-detail-2" accept="image/*">
+      <p>上传到: <span class="path">images/exhibits/flowers/exhibit-003-detail-2.jpg</span></p>
+    </div>
+  </div>
+  
+  <div class="note">
+    <p><strong>提示：</strong>上传完成后，请确认图片路径与HTML文件中的路径一致。如果不一致，请修改HTML文件中的图片路径。</p>
+  </div>
+</body>
+</html> 

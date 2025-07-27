@@ -1,0 +1,122 @@
+/* ---------------------------------- */
+/* 菩提叶动画样式 - 从顶部斜吹到右下角 */
+/* ---------------------------------- */
+
+/* 菩提叶容器 */
+.bodhi-leaf-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none; /* 确保不会干扰用户交互 */
+    z-index: 1; /* 确保在内容之上 */
+}
+
+/* 菩提叶SVG样式 */
+.bodhi-leaf {
+    position: absolute;
+    top: -80px; /* 初始位置在视窗外，稍微调高 */
+    left: 10%;
+    width: 150px; /* 增加宽度，适应心形 */
+    height: 150px; /* 调整高度与宽度相等，保持心形比例 */
+    opacity: 0.7; /* 增加透明度，使其更明显 */
+    transform: rotate(15deg); /* 初始旋转角度 */
+    transform-origin: center;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+}
+
+/* 菩提叶路径样式 */
+.bodhi-leaf-path {
+    stroke: #C84630; /* 朱红色 - 核心情绪色 */
+    stroke-width: 2;
+    fill: transparent;
+    stroke-dasharray: 800; /* 调整为心形路径的长度 */
+    stroke-dashoffset: 800; /* 初始状态完全隐藏 */
+    transition: stroke-dashoffset 0.5s ease-out;
+}
+
+/* 菩提叶脉络样式 */
+.bodhi-leaf-vein {
+    stroke: #587465; /* 石绿色 - 沉静辅助色 */
+    stroke-width: 1;
+    fill: transparent;
+    stroke-dasharray: 300; /* 调整为叶脉路径的长度 */
+    stroke-dashoffset: 300; /* 初始状态完全隐藏 */
+    transition: stroke-dashoffset 0.5s ease-out;
+}
+
+/* 滚动动画类 - 这些类将通过JavaScript动态添加 */
+.animate-leaf {
+    animation: floatLeaf 15s ease-in-out forwards;
+}
+
+.draw-leaf-path {
+    stroke-dashoffset: 0 !important;
+    transition: stroke-dashoffset 2s ease-out;
+}
+
+.draw-leaf-vein {
+    stroke-dashoffset: 0 !important;
+    transition: stroke-dashoffset 2.5s ease-out;
+}
+
+/* 菩提叶飘动动画 - 调整为心形叶子的飘动路径 */
+@keyframes floatLeaf {
+    0% {
+        top: -80px;
+        left: 10%;
+        transform: rotate(15deg) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    30% {
+        transform: rotate(-5deg) scale(0.9);
+    }
+    50% {
+        transform: rotate(5deg) scale(1);
+        top: 30%;
+        left: 40%;
+    }
+    70% {
+        transform: rotate(-3deg) scale(0.95);
+    }
+    100% {
+        top: 80%;
+        left: 80%;
+        transform: rotate(8deg) scale(0.9);
+        opacity: 0.5;
+    }
+}
+
+/* 夜间模式适配 */
+[data-theme="dark"] .bodhi-leaf-path {
+    stroke: #C84630; /* 朱红色在暗色模式下保持一致 */
+}
+
+[data-theme="dark"] .bodhi-leaf-vein {
+    stroke: #90A49B; /* 暗色模式下稍微亮一点的石绿色 */
+}
+
+[data-theme="dark"] .bodhi-leaf {
+    opacity: 0.6;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+    .bodhi-leaf {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .bodhi-leaf-path,
+    .bodhi-leaf-vein {
+        stroke-dasharray: 0;
+        stroke-dashoffset: 0;
+        transition: none !important;
+    }
+} 
