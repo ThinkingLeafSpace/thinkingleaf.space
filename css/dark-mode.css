@@ -1,0 +1,148 @@
+/* ---------------------------------- */
+/* 深色模式增强样式 (Dark Mode Enhancements) */
+/* 为网站全局深色模式提供额外的样式支持 */
+/* ---------------------------------- */
+
+/* 表格样式适配 */
+.dark-theme table {
+  border-color: var(--table-border);
+}
+
+.dark-theme th, .dark-theme td {
+  border-bottom-color: var(--table-border);
+}
+
+.dark-theme th {
+  background-color: rgba(50, 50, 50, 0.7);
+}
+
+.dark-theme tr:hover {
+  background-color: var(--table-row-hover);
+}
+
+/* 代码块样式适配 */
+.dark-theme pre {
+  background-color: var(--code-bg);
+  border-color: var(--color-border);
+}
+
+.dark-theme code {
+  color: var(--color-text);
+}
+
+/* 图片和媒体适配 */
+.dark-theme img {
+  filter: brightness(0.9);
+}
+
+/* 表单元素适配 */
+.dark-theme input, .dark-theme textarea, .dark-theme select {
+  background-color: rgba(30, 30, 30, 0.7);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.dark-theme input:focus, .dark-theme textarea:focus, .dark-theme select:focus {
+  border-color: var(--color-accent-lotus-red);
+  outline-color: var(--color-accent-lotus-red);
+}
+
+.dark-theme input::placeholder, .dark-theme textarea::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* 导航栏适配 */
+.dark-theme .navbar {
+  background-color: rgba(33, 33, 33, 0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 按钮适配 */
+.dark-theme button, .dark-theme .btn {
+  background-color: rgba(50, 50, 50, 0.7);
+  color: var(--color-text);
+}
+
+.dark-theme button:hover, .dark-theme .btn:hover {
+  background-color: var(--color-accent-lotus-red);
+  color: white;
+}
+
+/* 页脚适配 */
+.dark-theme .site-footer {
+  border-top-color: var(--color-border);
+}
+
+/* 搜索框适配 */
+.dark-theme .search-container input[type="text"] {
+  background-color: rgba(30, 30, 30, 0.7);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.dark-theme .search-container input[type="text"]:focus {
+  border-color: var(--color-accent-lotus-red);
+}
+
+/* 弹窗适配 */
+.dark-theme .modal-content {
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+.dark-theme .modal-header {
+  border-bottom-color: var(--color-border);
+}
+
+.dark-theme .modal-footer {
+  border-top-color: var(--color-border);
+}
+
+/* 链接适配 */
+.dark-theme a {
+  color: var(--color-accent-lotus-red);
+}
+
+.dark-theme a:hover {
+  color: var(--button-hover);
+}
+
+/* 特殊元素适配 */
+.dark-theme blockquote {
+  background-color: var(--quote-bg);
+}
+
+.dark-theme .notice, .dark-theme .alert {
+  background-color: rgba(50, 50, 50, 0.7);
+  border-color: var(--color-border);
+}
+
+/* 图标适配 */
+.dark-theme .icon {
+  filter: brightness(0.9);
+}
+
+/* 滚动条适配 */
+.dark-theme::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.dark-theme::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.7);
+}
+
+.dark-theme::-webkit-scrollbar-thumb {
+  background: var(--color-text-secondary);
+  border-radius: 6px;
+}
+
+.dark-theme::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-lotus-red);
+}
+
+/* 选中文本样式 */
+.dark-theme ::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}

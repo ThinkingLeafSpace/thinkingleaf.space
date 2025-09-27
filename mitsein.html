@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="一次共创的邀请 - 筑居思">
+  <title>一次共创的邀请 - 筑居思</title>
+  <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
+  
+  <!-- 关键CSS内联，提高首屏渲染速度 -->
+  <style>
+    :root {
+      --color-bg: #F8F6F2;
+      --color-text: #2D2D2D;
+      --color-accent-lotus-red: #C84630;
+      --color-text-secondary: #666;
+      --color-border: #eee;
+      --font-family-serif: "source han serif sc", "思源宋体", "Songti SC", serif;
+      --content-width: 1400px;
+      --spacing-unit: 8px;
+    }
+
+    /* 深色模式变量 */
+    .dark-theme {
+      --color-bg: #212121;
+      --color-text: #D1C7B9;
+      --color-text-secondary: #7E9C8D;
+      --color-accent-lotus-red: #E55A4B;
+      --color-border: #3A3A3A;
+    }
+  </style>
+  
+  <!-- 预加载关键资源 -->
+  <link rel="preload" href="css/styles.css" as="style">
+  <link rel="preload" href="script.js" as="script">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- 主要样式表，非阻塞加载 -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ui-principles.css">
+  <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kaiti+SC:wght@700&family=Source+Han+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
+
+  <!-- 合作页面特定样式 -->
+  <style>
+    /* 合作页面专用样式 */
+    .collaboration-page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* 微信复制区域样式 */
+    .wechat-container {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 30px;
+      border: 1px solid var(--color-border);
+      text-align: center;
+    }
+    
+    .dark-theme .wechat-container {
+      background-color: rgba(50, 50, 50, 0.3);
+    }
+    
+    .wechat-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .wechat-info, .wechat-qrcode {
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .wechat-text {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--color-text);
+    }
+    
+    .qrcode-img {
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      background-color: white;
+      padding: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .qrcode-img:hover {
+      transform: scale(1.02);
+    }
+    
+    #wechat-id {
+      font-weight: bold;
+      color: var(--color-accent-lotus-red);
+      padding: 3px 8px;
+      background-color: rgba(200, 70, 48, 0.1);
+      border-radius: 4px;
+    }
+    
+    .copy-tip {
+      margin-top: 15px;
+      font-size: 14px;
+      color: var(--color-accent-lotus-red);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    /* 复制成功动画效果 */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .pulse {
+      animation: pulse 0.5s ease-in-out;
+    }
+    
+    /* 微信ID可点击样式 */
+    #wechat-id {
+      font-weight: bold;
+      color: var(--color-accent-lotus-red);
+      padding: 3px 8px;
+      background-color: rgba(200, 70, 48, 0.1);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    #wechat-id:hover {
+      background-color: rgba(200, 70, 48, 0.2);
+    }
+    
+    .page-header {
+      text-align: center;
+      margin-bottom: calc(var(--spacing-unit) * 8);
+    }
+    
+    .page-header h1 {
+      font-size: 42px;
+      color: var(--color-accent-lotus-red);
+      margin-bottom: calc(var(--spacing-unit) * 2);
+    }
+    
+    .intro-section, .manifesto-section, .seeking-section, .contact-section {
+      margin-bottom: calc(var(--spacing-unit) * 10);
+    }
+    
+    .intro-section p, .manifesto-section p, .seeking-section p, .contact-section p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: calc(var(--spacing-unit) * 3);
+    }
+    
+    .seeking-section ul {
+      padding: 0;
+      list-style-type: none;
+    }
+    
+    .seeking-section li {
+      margin-bottom: calc(var(--spacing-unit) * 5);
+      padding-left: calc(var(--spacing-unit) * 3);
+      position: relative;
+    }
+    
+    .seeking-section li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent-lotus-red);
+      font-size: 24px;
+    }
+    
+    .seeking-section h3 {
+      font-size: 22px;
+      margin-bottom: calc(var(--spacing-unit) * 2);
+      color: var(--color-accent-lotus-red);
+    }
+    
+    blockquote {
+      font-size: 24px;
+      text-align: center;
+      margin: calc(var(--spacing-unit) * 8) 0;
+      padding: 0;
+      border-left: none;
+      color: var(--color-accent-lotus-red);
+      font-weight: 500;
+    }
+    
+    /* 返回按钮样式 */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 50px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      background-color: var(--color-bg);
+      color: var(--color-accent-lotus-red);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .back-button:hover {
+      background-color: var(--color-accent-lotus-red);
+      color: white;
+    }
+    
+    .back-button svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+    }
+    
+    /* 深色模式下的特定样式调整 */
+    .dark-theme {
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+    
+    /* 滚动渐进出现效果 */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      visibility: hidden;
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, visibility;
+    }
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    
+    .dark-theme h1, 
+    .dark-theme h2, 
+    .dark-theme h3 {
+      color: var(--color-accent-lotus-red);
+    }
+    
+    .dark-theme .email-button {
+      background-color: var(--color-accent-lotus-red);
+    }
+    
+    .dark-theme .email-button:hover {
+      background-color: #b03a27;
+    }
+    
+    .dark-theme blockquote {
+      color: var(--color-accent-lotus-red);
+    }
+    
+    .dark-theme .page-footer {
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-secondary);
+    }
+    
+    .dark-theme .qrcode-img {
+      border-color: var(--color-border);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* 已删除重复的主题切换样式，使用全局CSS */
+    
+    .final-statement {
+      margin: calc(var(--spacing-unit) * 5) 0;
+    }
+    
+    .email-button {
+      display: inline-block;
+      background-color: var(--color-accent-lotus-red);
+      color: white !important;
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none !important;
+      font-weight: 500;
+      border: none !important;
+      margin: calc(var(--spacing-unit) * 4) 0;
+      transition: background-color 0.3s;
+    }
+    
+    .email-button:hover {
+      background-color: #b03a27;
+    }
+    
+    .page-footer {
+      border-top: 1px solid var(--color-border);
+      padding-top: calc(var(--spacing-unit) * 4);
+      margin-top: calc(var(--spacing-unit) * 8);
+      color: var(--color-text-secondary);
+      text-align: center;
+    }
+    
+    .poem-footer p {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 32px;
+      }
+      
+      .intro-section p, .manifesto-section p, .seeking-section p, .contact-section p {
+        font-size: 16px;
+      }
+      
+      blockquote {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 无障碍跳过链接 -->
+  <a href="#main-content" class="skip-link">跳到主要内容</a>
+
+  <!-- 网站LOGO，缩小尺寸 -->
+  <div class="site-logo" style="height: 18px; width: 18px; position: fixed; top: 20px; left: 20px;">
+    <img src="images/putiye心形菩提叶.svg" alt="筑居思 Logo" style="height: 100%; width: 100%;">
+  </div>
+  
+  <!-- 单独的返回按钮 -->
+  <a href="index.html" class="back-button" aria-label="返回首页">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5"></path>
+      <path d="M12 19l-7-7 7-7"></path>
+    </svg>
+    <span>返回首页</span>
+  </a>
+
+  <!-- 主题切换按钮 -->
+  <div class="theme-toggle">
+    <button id="theme-toggle-btn" aria-label="切换主题">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+  </div>
+
+  <!-- 阅读进度指示器 -->
+  <div class="progress-container">
+    <div class="progress-bar" id="reading-progress"></div>
+  </div>
+
+  <div class="article-container" id="main-content">
+    <main class="page-content">
+      <article class="collaboration-page">
+    
+        <header class="page-header">
+          <h1>一次共创的邀请</h1>
+        </header>
+    
+        <section class="intro-section fade-in-section">
+          <p>朋友，你好。</p>
+          <p>如果你能找到这片我称之为"林中空地"的地方，我想，我们或许是相似的人。你大概也曾在某个深夜，反复追问自己：在这喧嚣之中，我们该如何安放一个渴望"本真"的灵魂？</p>
+          <p>这个空间，就是我为了回答这个问题，为自己，也为你搭建的场域。</p>
+        </section>
+    
+        <section class="manifesto-section fade-in-section">
+          <h2>我是谁？一个价值的"炼金术士"与思想的"建筑师"</h2>
+          <p>我有一种近乎固执的信念：每个深耕于自己生命中的人，其价值早已存在，只是被日常的尘埃所遮蔽。我的手艺，便是通过一种近乎考古式的倾听与对话，将那些无形的、深藏于内的思想、经验与才华，小心翼翼地拂去尘土，让它们重新发出光芒。</p>
+          <p>同时，我也是一位"思想的建筑师"。我不满足于简单的"呈现"，而是致力于为那些被发掘出的深刻价值，营造一个可以安然"栖居"的线上空间。我希望它有风骨，有留白，有秩序，更有温度。它不是一个冰冷的网站，而是一座能安放主人灵魂的"精神殿堂"。</p>
+          <blockquote>"力图做一个对自己有深深敬意的人"</blockquote>
+          <p>我所做的一切，都源于一种深刻的责任感，并渴望将这股能量，传递给更多值得被看见的灵魂。</p>
+        </section>
+    
+        <section class="seeking-section fade-in-section">
+          <h2>我在寻找怎样的"共在者"(Mitsein)？</h2>
+          <p>我深知独行之快，亦渴望众行之远。这并非一份"需求清单"，而是一张我为未来画下的"星图"，标注着几种我渴望与之交汇的轨道。如果你恰好在其中，或许一次相遇，便能点燃一片星云。</p>
+          <ul>
+            <li class="fade-in-section">
+              <h3>"灵魂的考古学家"</h3>
+              <p>如果你也善于通过提问和倾听，去挖掘他人生命中那些被遗忘的宝藏；如果你相信每个人的故事都值得被深度打捞与呈现，那么我们或许可以成为"价值挖掘"的最佳拍档。我来营造空间，你则为空间注入最动人的故事。</p>
+            </li>
+            <li class="fade-in-section">
+              <h3>"视觉的营造者"</h3>
+              <p>如果你是一位相信"设计即诗学"的视觉创造者，能用光影、秩序和美感，为深刻的思想赋予可被感知的形态；如果你追求的不是"好看"，而是"真切"，那么我们的相遇，或许能将一个无形的思想体系，变成一座可被瞻仰的纪念碑。</p>
+            </li>
+            <li class="fade-in-section">
+              <h3>"技艺的修行者"</h3>
+              <p>如果你是一位手艺人、一位独立匠人、一位在自己的领域里"以手抵心"的创造者；如果你也相信，真正的价值，蕴藏于日复一日的打磨与专注之中，那么我们的交流，本身就是对这个浮躁时代最好的回应。</p>
+            </li>
+            <li class="fade-in-section">
+              <h3>"思想的同行者"</h3>
+              <p>如果你是一位哲学的思辨者、一位特定领域的研究员、一位对世界同样抱有巨大好奇心和善意的探索者，那么我们的对话，将成为彼此"思想压舱石"，确保在远航的路上，不偏离"本真"的航道。</p>
+            </li>
+          </ul>
+        </section>
+    
+        <section class="contact-section fade-in-section">
+          <h2>如何开始一次对话？</h2>
+          <p>最好的方式，是添加我的微信进行交流。</p>
+          <p>可以分享你对这个空间某篇文章的回响，可以是你正在探索的一个困惑，也可以是你觉得"我们或许可以一起做点什么"的一个模糊火花。</p>
+          <p class="final-statement"><strong>因为我相信，一次真诚的、袒露思考的交流，本身就已是一次最美好的合作。</strong></p>
+          <div class="wechat-container">
+            <div class="wechat-content">
+              <div class="wechat-info">
+                <p class="wechat-text">微信号：<span id="wechat-id">ColorfulALQian</span></p>
+                <button id="copy-wechat" class="email-button">复制微信号</button>
+                <p class="copy-tip" id="copy-tip">微信号已复制，欢迎添加好友</p>
+              </div>
+              <div class="wechat-qrcode">
+                <img src="images/wechat_code.png" alt="微信二维码" class="qrcode-img" id="wechat-qrcode">
+              </div>
+            </div>
+          </div>
+        </section>
+    
+        <footer class="page-footer poem-footer fade-in-section">
+          <p>在这技术将一切"祛魅"的时代</p>
+          <p>我们仍需要固执地守护一些东西</p>
+          <p>守护我们触摸灵魂时感受到的滚烫</p>
+          <p>守护我们重新找到童年时好奇心的瞬间</p>
+          <p>祝你，在这里，能找到你的回响</p>
+        </footer>
+    
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p id="footer-greeting">愿你在此找到片刻的安宁与灵感。</p>
+    <nav class="footer-nav">
+      <a href="index.html" class="footer-link">首页</a>
+      <a href="blogs.html" class="footer-link">博客</a>
+      <a href="cabinet.html" class="footer-link">造物拾遗</a>
+      <a href="portfolio.html" class="footer-link">作品集</a>
+      <a href="mitsein.html" class="footer-link">共创邀请</a>
+    </nav>
+    <p>© 2025 筑居思. 保留所有权利.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="js/main.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      // 设置阅读进度指示器
+      const progressBar = document.getElementById('reading-progress');
+      window.addEventListener('scroll', function() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+      });
+      
+      // 滚动渐进出现效果
+      const faders = document.querySelectorAll('.fade-in-section');
+      
+      // 初始设置 - 页面加载时第一个部分可见
+      setTimeout(() => {
+        const firstSection = document.querySelector('.intro-section');
+        if (firstSection) {
+          firstSection.classList.add('is-visible');
+        }
+      }, 400);
+      
+      // 添加滚动监听
+      const appearOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -100px 0px"
+      };
+      
+      const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            return;
+          } else {
+            entry.target.classList.add('is-visible');
+            // 重要：向上滚动时不要移除可见性
+            // appearOnScroll.unobserve(entry.target);
+          }
+        });
+      }, appearOptions);
+      
+      faders.forEach(fader => {
+        appearOnScroll.observe(fader);
+      });
+      
+      // 微信号复制功能
+      const copyButton = document.getElementById('copy-wechat');
+      const copyTip = document.getElementById('copy-tip');
+      const wechatIdElement = document.getElementById('wechat-id');
+      const wechatId = wechatIdElement.innerText;
+      
+      // 复制函数
+      function copyWechatId(showFeedback = true) {
+        navigator.clipboard.writeText(wechatId).then(function() {
+          if (showFeedback) {
+            // 显示复制成功提示
+            copyTip.style.opacity = '1';
+            
+            // 添加按钮动画效果
+            copyButton.classList.add('pulse');
+            setTimeout(function() {
+              copyButton.classList.remove('pulse');
+            }, 500);
+            
+            // 2秒后隐藏提示
+            setTimeout(function() {
+              copyTip.style.opacity = '0';
+            }, 2000);
+          }
+        })
+        .catch(function(err) {
+          console.error('复制失败: ', err);
+          if (showFeedback) {
+            alert('复制失败，请手动复制微信号');
+          }
+        });
+      }
+      
+      // 点击复制按钮
+      copyButton.addEventListener('click', function() {
+        copyWechatId(true);
+      });
+      
+      // 点击微信号也可复制
+      wechatIdElement.addEventListener('click', function() {
+        copyWechatId(true);
+      });
+      
+      // 悬停在微信号上自动复制（无反馈）
+      wechatIdElement.addEventListener('mouseenter', function() {
+        copyWechatId(false);
+      });
+    });
+  </script>
+</body>
+</html>

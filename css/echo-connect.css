@@ -1,0 +1,265 @@
+/* ---------------------------------- */
+/* 文章交互响应区域 (Echo Area) - 与读者建立连接 */
+/* ---------------------------------- */
+.echo-area {
+  margin: 48px 0;
+  padding: 24px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  transition: background-color 0.4s ease;
+}
+
+.dark-theme .echo-area {
+  background-color: rgba(50, 50, 50, 0.5);
+}
+
+.echo-text {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  color: var(--color-text);
+}
+
+.echo-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.echo-button-wrapper {
+  position: relative;
+}
+
+.echo-button {
+  background-color: var(--color-accent-lotus-red);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: var(--font-family-serif);
+}
+
+.echo-button:hover {
+  background-color: var(--color-accent-lotus-red-hover);
+  transform: translateY(-2px);
+}
+
+.echo-button:active {
+  transform: translateY(0);
+}
+
+/* 微信二维码弹出框 */
+.wechat-qr-popup {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+  width: 200px;
+  z-index: 100;
+  border: 1px solid var(--color-border);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dark-theme .wechat-qr-popup {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-text-secondary);
+}
+
+.wechat-qr-popup:before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: var(--color-border) transparent transparent transparent;
+}
+
+.dark-theme .wechat-qr-popup:before {
+  border-color: var(--color-text-secondary) transparent transparent transparent;
+}
+
+.wechat-qr-popup img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 0 12px 0;
+  border: 1px solid var(--color-border);
+}
+
+.popup-main-text {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.copy-wechat-id {
+  width: 100%;
+  padding: 8px;
+  background-color: rgba(200, 70, 48, 0.1);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.dark-theme .copy-wechat-id {
+  background-color: rgba(229, 90, 75, 0.2);
+}
+
+.copy-wechat-id:hover {
+  background-color: rgba(200, 70, 48, 0.2);
+}
+
+.dark-theme .copy-wechat-id:hover {
+  background-color: rgba(229, 90, 75, 0.3);
+}
+
+.copy-tip {
+  color: var(--color-accent-lotus-red);
+  font-size: 12px;
+}
+
+/* 支持弹窗样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  background-color: var(--color-bg);
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  max-width: 500px;
+  width: 90%;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  text-align: center;
+  color: var(--color-accent-lotus-red);
+}
+
+.qr-codes {
+  display: flex;
+  justify-content: space-around;
+  margin: 24px 0;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.qr-code-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-code-item img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 0 8px 0;
+  border: 1px solid var(--color-border);
+}
+
+.qr-code-item p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.modal-footer-text {
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .echo-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .qr-codes {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .modal-content {
+    padding: 24px 16px;
+  }
+}

@@ -23,6 +23,18 @@
   --color-accent-lotus-red: #E55A4B; /* 在黑暗中更柔和的朱红 */
   --color-accent-lotus-red-hover: #C84630;
   --color-border: #3A3A3A;
+  
+  /* 深色模式下的其他特性覆盖 */
+  --card-bg: rgba(30, 30, 30, 0.5);
+  --hover-shadow: rgba(0, 0, 0, 0.3);
+  --avatar-border: #3A3A3A;
+  --code-bg: #2d2d2d;
+  --button-hover: #E55A4B;
+  --table-border: #444;
+  --table-row-hover: rgba(50, 50, 50, 0.7);
+  --quote-bg: rgba(62, 62, 62, 0.3);
+  --selection-bg: rgba(229, 90, 75, 0.3);
+  --selection-text: #f5f5f5;
 }
 
 /* 系统深色模式自动适配 */
@@ -34,6 +46,18 @@
     --color-accent-lotus-red: #E55A4B; /* 在黑暗中更柔和的朱红 */
     --color-accent-lotus-red-hover: #C84630;
     --color-border: #3A3A3A;
+    
+    /* 深色模式下的其他特性覆盖 */
+    --card-bg: rgba(30, 30, 30, 0.5);
+    --hover-shadow: rgba(0, 0, 0, 0.3);
+    --avatar-border: #3A3A3A;
+    --code-bg: #2d2d2d;
+    --button-hover: #E55A4B;
+    --table-border: #444;
+    --table-row-hover: rgba(50, 50, 50, 0.7);
+    --quote-bg: rgba(62, 62, 62, 0.3);
+    --selection-bg: rgba(229, 90, 75, 0.3);
+    --selection-text: #f5f5f5;
   }
 }
 
@@ -178,10 +202,12 @@ blockquote {
   border-left: 3px solid var(--color-accent-lotus-red);
   padding: 16px;
   margin-bottom: 24px;
+  transition: background-color 0.4s ease;
 }
 
 .dark-theme .table-of-contents {
-  background-color: rgba(50, 50, 50, 0.5);
+  background-color: var(--card-bg, rgba(50, 50, 50, 0.5));
+  border-left-color: var(--color-accent-lotus-red);
 }
 
 .table-of-contents h3 {
@@ -245,9 +271,24 @@ a:hover {
   font-size: 14px;
 }
 
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
 .footer-link {
   color: var(--color-text-secondary);
-  margin: 0 8px;
+  margin: 0 12px;
+  text-decoration: none;
+  border-bottom: none;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: var(--color-accent-lotus-red);
+  border-bottom: none;
 }
 
 /* ---------------------------------- */
@@ -516,6 +557,36 @@ img {
     grid-template-columns: 1fr;
   }
 } 
+
+/* ---------------------------------- */
+/* 合作邀请页面样式 */
+/* ---------------------------------- */
+.invitation-link-area {
+  margin-top: calc(var(--spacing-unit) * 4);
+  padding-top: calc(var(--spacing-unit) * 2);
+  border-top: 1px solid var(--color-border);
+}
+
+.invitation-link-area p {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  font-size: 15px;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--color-accent-lotus-red);
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none !important;
+  font-weight: 500;
+  border: none !important;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #b03a27;
+}
 
 /* ---------------------------------- */
 /* 响应式设计 (Responsive Design) - 适应不同屏幕 */

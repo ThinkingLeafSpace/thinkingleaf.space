@@ -331,6 +331,33 @@ footer {
     font-size: 0.9rem;
 }
 
+#footer-greeting {
+    color: var(--accent);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-2);
+    font-weight: 500;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    margin: 0 12px;
+    text-decoration: none;
+    transition: color 0.3s;
+    border-bottom: none;
+}
+
+.footer-link:hover {
+    color: var(--accent);
+    border-bottom: none;
+}
+
 /* 社交链接 */
 .social-links {
     display: flex;
@@ -346,16 +373,75 @@ footer {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: var(--bg-secondary);
-    color: var(--text-secondary);
+    background-color: transparent;
+    color: var(--accent);
     transition: all 0.3s ease;
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--accent);
+    text-decoration: none;
+}
+
+.social-icon svg {
+    color: var(--accent);
+    stroke: var(--accent);
 }
 
 .social-icon:hover {
     background-color: var(--accent);
     color: var(--bg-primary);
     transform: translateY(-2px);
+    border-bottom: none;
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+#theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.dark-theme #theme-toggle-btn {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme #theme-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle .sun-icon {
+    display: block;
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+}
+
+.dark-theme .theme-toggle .sun-icon {
+    display: none;
+}
+
+.dark-theme .theme-toggle .moon-icon {
+    display: block;
 }
 
 /* 移动端适配 */

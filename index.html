@@ -325,42 +325,48 @@
   </style>
   
   <!-- 预加载关键资源 -->
-  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="css/styles.css" as="style">
   <link rel="preload" href="script.js" as="script">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <!-- 主要样式表，非阻塞加载 -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ui-principles.css">
+  <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kaiti+SC:wght@700&family=Source+Han+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="images/icon/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
 </head>
 <body>
   <!-- 无障碍跳过链接 -->
   <a href="#main-content" class="skip-link">跳到主要内容</a>
 
-  <!-- 网站LOGO -->
-  <a href="index.html" class="site-logo">
-    <img src="images/putiye心形菩提叶.svg" alt="筑居思 Logo">
-  </a>
+  <!-- 左侧固定导航栏 -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <h1>筑居<span>思</span></h1>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="blogs.html">个人博客</a></li>
+      <li><a href="cabinet.html">造物拾遗</a></li>
+      <li><a href="portfolio.html">个人作品集</a></li>
+    </ul>
+    <div class="theme-toggle">
+      <button id="theme-toggle-btn" aria-label="切换主题">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </div>
 
-  <!-- 主题切换按钮 -->
-  <button class="theme-toggle" id="theme-toggle" aria-label="切换深浅模式">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon" style="display: none;">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
+  <!-- 移动端菜单按钮 -->
+  <button class="mobile-menu-toggle" aria-label="打开导航菜单">
+    <span></span>
+    <span></span>
+    <span></span>
   </button>
 
   <!-- 阅读进度指示器 -->
@@ -368,39 +374,16 @@
     <div class="progress-bar" id="reading-progress"></div>
   </div>
 
-  <div class="article-container" id="main-content">
-    <header>
-      <h1>筑居<span style="color: var(--color-accent-lotus-red);">思</span> - 回归生活本源的思考与创造</h1>
-      <p>筑造丨居住丨思考 | Creating Living Thinking</p>
-    </header>
-    
-    <div class="home-layout">
-      <!-- 左侧栏目 -->
-      <div class="left-column">
-        <nav class="main-categories">
-          <div class="category-item">
-            <a href="blogs.html">
-              <h3>个人博客</h3>
-              <p>我的思考与写作</p>
-            </a>
-          </div>
-          <div class="category-item">
-            <a href="cabinet.html">
-              <h3>造物拾遗</h3>
-              <p>生活中的创意收集</p>
-            </a>
-          </div>
-          <div class="category-item">
-            <a href="portfolio.html">
-              <h3>个人作品集</h3>
-              <p>设计与创作展示</p>
-            </a>
-          </div>
-        </nav>
-      </div>
-      
-      <!-- 右侧内容 -->
-      <div class="right-column">
+  <div class="main-content" id="main-content">
+    <div class="container">
+      <main>
+        <section class="hero">
+          <h2>筑居<span style="color: var(--accent);">思</span></h2>
+          <p>回归生活本源的思考与创造 | Creating Living Thinking</p>
+        </section>
+        
+        <div class="home-layout">
+          <!-- 右侧内容 -->
         <!-- 个人介绍 -->
         <section class="about-section">
           <div class="avatar-container">
@@ -411,7 +394,6 @@
             <div class="about-bio">
               <span class="bio-item">❣️光通信行业大数据B端UI设计师</span>
               <span class="bio-item">👀人文社科/旅行展览</span>
-              <span class="bio-item">��🏻to be geek</span>
               <span class="bio-item">禅修践行者</span>
               <span class="bio-item">美学维纳斯</span>
             </div>
@@ -428,6 +410,10 @@
               <a href="./rss.xml" aria-label="RSS订阅" class="social-icon" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
               </a>
+            </div>
+            <div class="invitation-link-area">
+              <p>如果我的故事或思考让你感到一丝熟悉，并好奇我们之间是否会产生更有趣的化学反应，我为你准备了一封更正式的邀请。</p>
+              <a href="mitsein.html" class="cta-button">阅读「一次共创的邀请」</a>
             </div>
           </div>
         </section>
@@ -515,52 +501,42 @@
             </div>
           </div>
         </section>
-      </div>
+        </div>
+      </main>
+
+      <footer>
+        <div class="footer-content">
+          <p id="footer-greeting">愿你在此找到片刻的安宁与灵感。</p>
+          <nav class="footer-nav">
+            <a href="index.html" class="footer-link">首页</a>
+            <a href="blogs.html" class="footer-link">博客</a>
+            <a href="cabinet.html" class="footer-link">造物拾遗</a>
+            <a href="portfolio.html" class="footer-link">作品集</a>
+            <a href="mitsein.html" class="footer-link">共创邀请</a>
+          </nav>
+          <p>© 2025 筑居思. 保留所有权利.</p>
+          <div class="social-links">
+            <a href="https://github.com/ArchQian" aria-label="GitHub" class="social-icon" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa" aria-label="即刻" class="social-icon" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+            </a>
+            <a href="https://www.zcool.com.cn/u/27619561" aria-label="站酷" class="social-icon" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="./rss.xml" aria-label="RSS订阅" class="social-icon" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
 
-  <footer class="site-footer">
-    <p id="footer-greeting">愿你在此找到片刻的安宁与灵感。</p>
-    <p>© 2025 筑居思. 保留所有权利.</p>
-  </footer>
-
-  <script src="script.js" defer></script>
   <script src="js/main.js"></script>
-  <script>
-    // 主题切换功能
-    document.addEventListener('DOMContentLoaded', function() {
-      const themeToggle = document.getElementById('theme-toggle');
-      const sunIcon = document.querySelector('.sun-icon');
-      const moonIcon = document.querySelector('.moon-icon');
-      
-      // 检查本地存储中的主题设置
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
-        sunIcon.style.display = 'none';
-        moonIcon.style.display = 'block';
-      } else {
-        document.body.classList.remove('dark-theme');
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
-      }
-      
-      // 切换主题
-      themeToggle.addEventListener('click', function() {
-        document.body.classList.toggle('dark-theme');
-        
-        // 切换图标
-        if (document.body.classList.contains('dark-theme')) {
-          sunIcon.style.display = 'none';
-          moonIcon.style.display = 'block';
-          localStorage.setItem('theme', 'dark');
-        } else {
-          sunIcon.style.display = 'block';
-          moonIcon.style.display = 'none';
-          localStorage.setItem('theme', 'light');
-        }
-      });
-    });
-  </script>
+  <script src="js/ui-enhancements.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/theme-switcher.js"></script>
 </body>
 </html>
