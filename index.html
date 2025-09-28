@@ -177,8 +177,15 @@
     }
     .content-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr); /* 固定为3列 */
       gap: 1.5rem;
+    }
+    
+    /* 不同分辨率下的响应式调整 */
+    @media (max-width: 1200px) {
+      .content-cards {
+        grid-template-columns: repeat(2, 1fr); /* 中等屏幕2列 */
+      }
     }
     .content-card {
       background-color: rgba(255, 255, 255, 0.5);
@@ -295,7 +302,7 @@
     
     @media (max-width: 768px) {
       .content-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* 小屏幕单列 */
       }
       .about-section {
         flex-direction: column;
@@ -335,6 +342,8 @@
   <link rel="stylesheet" href="css/ui-principles.css">
   <link rel="stylesheet" href="css/search.css">
   <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/lazy-loading.css">
+  <link rel="stylesheet" href="css/lazy-loading.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kaiti+SC:wght@700&family=Source+Han+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
@@ -387,7 +396,7 @@
         <!-- 个人介绍 -->
         <section class="about-section">
           <div class="avatar-container">
-            <img src="images/putiye心形菩提叶.svg" alt="心形菩提叶" class="avatar-img">
+            <img loading="lazy" src="images/putiye心形菩提叶.svg" alt="心形菩提叶" class="avatar-img" data-src="images/putiye心形菩提叶.svg">
           </div>
           <div class="about-content">
             <h2>关于我-Qianny</h2>
@@ -538,5 +547,7 @@
   <script src="js/ui-enhancements.js"></script>
   <script src="js/search.js"></script>
   <script src="js/theme-switcher.js"></script>
+  <script src="js/lazy-loading.js"></script>
+  <script src="js/lazy-loading.js"></script>
 </body>
 </html>

@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="css/ui-principles.css">
   <link rel="stylesheet" href="css/search.css">
   <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/lazy-loading.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kaiti+SC:wght@700&family=Source+Han+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
@@ -338,7 +339,7 @@
 
   <!-- 网站LOGO，缩小尺寸 -->
   <div class="site-logo" style="height: 18px; width: 18px; position: fixed; top: 20px; left: 20px;">
-    <img src="images/putiye心形菩提叶.svg" alt="筑居思 Logo" style="height: 100%; width: 100%;">
+    <img loading="lazy" src="images/putiye心形菩提叶.svg" alt="筑居思 Logo" style="height: 100%; width: 100%;" data-src="images/putiye心形菩提叶.svg">
   </div>
   
   <!-- 单独的返回按钮 -->
@@ -421,7 +422,7 @@
                 <p class="copy-tip" id="copy-tip">微信号已复制，欢迎添加好友</p>
               </div>
               <div class="wechat-qrcode">
-                <img src="images/wechat_code.png" alt="微信二维码" class="qrcode-img" id="wechat-qrcode">
+                <img loading="lazy" src="images/wechat_code.png" alt="微信二维码" class="qrcode-img" id="wechat-qrcode" data-src="images/wechat_code.png">
               </div>
             </div>
           </div>
@@ -454,6 +455,7 @@
   <script src="script.js" defer></script>
   <script src="js/main.js"></script>
   <script src="js/theme-switcher.js"></script>
+  <script src="js/lazy-loading.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
 
