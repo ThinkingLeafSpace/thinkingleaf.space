@@ -1,0 +1,20 @@
+{
+  "obsidian_vault": "/Users/qianny/Nutstore Files/Qianny-obsidian/个人网站",
+  "obsidian_attachments": [
+    "/Users/qianny/Nutstore Files/Qianny-obsidian/个人网站/attachments"
+  ],
+  "site_images_dir": "images",
+  "blog_template": "standard",
+  "image_path_mappings": {
+    "说明": "配置Obsidian图片路径到网站路径的映射",
+    "规则": [
+      "如果图片在Markdown文件同目录，会自动查找",
+      "如果图片在attachments目录，会被复制到images/blog",
+      "可以添加自定义路径映射"
+    ],
+    "示例": {
+      "attachments/": "images/blog/",
+      "assets/images/": "images/blog/"
+    }
+  }
+}
