@@ -6,12 +6,26 @@
 """
 
 import re
+import json
 from pathlib import Path
 from datetime import datetime
 
 SITE_ROOT = Path(__file__).parent.parent
 BLOGS_DIR = SITE_ROOT / 'blogs'
 BLOGS_HTML = SITE_ROOT / 'blogs.html'
+DATES_CONFIG = SITE_ROOT / 'blog_dates.json'
+
+
+def load_date_mappings():
+    """加载日期映射配置"""
+    if DATES_CONFIG.exists():
+        try:
+            with open(DATES_CONFIG, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+                return config.get('dates', {})
+        except:
+            return {}
+    return {}
 
 
 def extract_date_from_filename(filename):
@@ -28,8 +42,13 @@ def extract_blog_info(html_file):
     """从文件名和HTML内容中提取博客信息"""
     filename = html_file.name
     
-    # 从文件名最前面提取日期
-    date_str = extract_date_from_filename(filename)
+    # 优先从日期映射配置中获取真实日期
+    date_mappings = load_date_mappings()
+    date_str = date_mappings.get(filename, None)
+    
+    # 如果配置中没有，从文件名最前面提取日期
+    if not date_str:
+        date_str = extract_date_from_filename(filename)
     
     # 如果文件名没有日期，尝试从HTML内容提取（兼容旧文件）
     if not date_str:

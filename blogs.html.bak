@@ -10,7 +10,7 @@
     <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* 定义字体备用方案 */
         @font-face {
@@ -76,89 +76,74 @@
                             <div class="subcategory">
                                 <h4>生活随笔</h4>
                                 <div class="links-grid">
-                                    <a href="blogs/life-in-weeks.html" class="link-card">
+                                    <a href="blogs/2025-09-24-blog-template-with-connect.html" class="link-card">
                                         <div class="link-content">
-                                            <h5>人生周历：我的生命地图</h5>
-                                            <span class="date-tag">2023-05-25</span>
-                                            <p>可视化展示我人生的每一周，时间快速流逝着</p>
+                                            <h5>博客文章标题</h5>
+                                            <span class="date-tag">2025-09-24</span>
+                                            <p>筑居思博客文章模板 - 含连接与支持功能</p>
                                         </div>
                                     </a>
-                                    <a href="blogs/creativity-thoughts.html" class="link-card">
-                                        <div class="link-content">
-                                            <h5>我是如何看待创造的</h5>
-                                            <span class="date-tag">2023-05-02</span>
-                                            <p>关于创造的本质、意义与如何提升创造力的思考</p>
-                                        </div>
-                                    </a>
-                                    <a href="blogs/design-experiment.html" class="link-card">
+                                    <a href="blogs/2025-04-15-design-experiment.html" class="link-card">
                                         <div class="link-content">
                                             <h5>或许设计实验就是容易失败，对吗？</h5>
-                                            <span class="date-tag">2023-04-14</span>
-                                            <p>2023年，在南京七家湾社区参与何志森老师的mapping工作坊的思考</p>
+                                            <span class="date-tag">2025-04-15</span>
+                                            <p>记2025.04.11-2025.04.13，在南京七家湾社区，参与何志森老师的mapping工作坊</p>
                                         </div>
                                     </a>
-                                    <a href="blogs/talking-to-19-yo-self.html" class="link-card">
-                                        <div class="link-content">
-                                            <h5>23岁的最后一天，和19岁的自己对话</h5>
-                                            <span class="date-tag">2022-11-30</span>
-                                            <p>收到过去的来信，与19岁的自己对话的感悟</p>
-                                        </div>
-                                    </a>
-                                    <a href="blogs/meditation-journey.html" class="link-card">
-                                        <div class="link-content">
-                                            <h5>半载观想小记：在大理、在内观禅修的路上</h5>
-                                            <span class="date-tag">2022-07-04</span>
-                                            <p>2022年，一段禅修之旅的思考与感悟</p>
-                                        </div>
-                                    </a>
-                                    <a href="blogs/24-things.html" class="link-card">
+                                    <a href="blogs/2024-11-30-24岁学会的24件事.html" class="link-card">
                                         <div class="link-content">
                                             <h5>24岁学会的24件事</h5>
-                                            <span class="date-tag">2022-03-12</span>
+                                            <span class="date-tag">2024-11-30</span>
+                                            <p></p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2024-11-13-talking-to-19-yo-self.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>23岁的最后一天，和19岁的自己对话</h5>
+                                            <span class="date-tag">2024-11-13</span>
+                                            <p>回到过去，与19岁的自己对话的心得感悟</p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2024-11-10-24-things.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>24岁学会的24件事</h5>
+                                            <span class="date-tag">2024-11-10</span>
                                             <p>关于生活、工作与个人成长的年度思考总结</p>
                                         </div>
                                     </a>
-                                    <a href="blogs/22-years-old.html" class="link-card">
+                                    <a href="blogs/2024-07-06-meditation-journey.html" class="link-card">
                                         <div class="link-content">
-                                            <h5>22岁时的内在平静法宝</h5>
-                                            <span class="date-tag">2022-09-01</span>
-                                            <p>今天没那么内在平静？尝试下做这些吧！（我的22岁消除烦恼法宝！）</p>
+                                            <h5>半载观想小记：在大理、在内观禅修的路上</h5>
+                                            <span class="date-tag">2023-11-24</span>
+                                            <p>2024年，一段禅修之旅的思考与感悟</p>
                                         </div>
                                     </a>
-                                    <a href="blogs/life-management-system-99-things.html" class="link-card">
+                                    <a href="blogs/2025-05-03-creativity-thoughts.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>我是如何看待创造的</h5>
+                                            <span class="date-tag">2023-09-22</span>
+                                            <p>关于创造的思考与感悟</p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2022-09-01-22-years-old.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>22岁</h5>
+                                            <span class="date-tag">2022-09-01</span>
+                                            <p>今天没那么内在平静？尝试下做这些吧！（我的22岁消除烦恼法典！）</p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2022-08-24-life-management-system-99-things.html" class="link-card">
                                         <div class="link-content">
                                             <h5>人生管理系统-让我开心的99件小事</h5>
                                             <span class="date-tag">2022-08-24</span>
                                             <p>探索生活中的小确幸，发现让自己开心的99件小事</p>
                                         </div>
                                     </a>
-                                </div>
-                            </div>
-                            
-                            <div class="subcategory">
-                                <h4>技术笔记</h4>
-                                <div class="links-grid">
-                                    <a href="#" class="link-card" target="_blank">
-                                        <div class="link-content">
-                                            <h5>B端大屏设计调研</h5>
-                                            <span class="date-tag">2023-07-30</span>
-                                            <p>对比不同公司产品的差异性</p>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="link-card" target="_blank">
-                                        <div class="link-content">
-                                            <h5>AI工具探索</h5>
-                                            <span class="date-tag">2023-06-15</span>
-                                            <p>设计师如何高效利用AI辅助创作</p>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="link-card" target="_blank">
-                                        <div class="link-content">
-                                            <h5>静态网站搭建指南</h5>
-                                            <span class="date-tag">2023-05-02</span>
-                                            <p>从设计到部署的完整流程</p>
-                                        </div>
-                                    </a>
+                                
+                                
+                                
+                                
+                                
                                 </div>
                             </div>
                         </div>
@@ -238,14 +223,9 @@
         </div>
     </div>
 
-    <script src="js/theme-switcher.js"></script>
-  <script src="js/lazy-loading.js"></script>
-  <script src="js/main.js"></script>
-    <script src="js/theme-switcher.js"></script>
-  <script src="js/lazy-loading.js"></script>
-  <script src="js/netease-music-player.js"></script>
-    <script src="js/theme-switcher.js"></script>
-  <script src="js/lazy-loading.js"></script>
-  <script src="js/ui-enhancements.js"></script>
+    <script src="js/theme-switcher.js" defer></script>
+    <script src="js/lazy-loading.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/ui-enhancements.js" defer></script>
 </body>
 </html> 

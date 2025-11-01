@@ -1,0 +1,9 @@
+{
+  "说明": "博客文章的真实发布日期映射",
+  "规则": "文件名 -> 真实发布日期 (YYYY-MM-DD)",
+  "dates": {
+    "2024-07-06-meditation-journey.html": "2023-11-24",
+    "2025-05-03-creativity-thoughts.html": "2023-09-22"
+  }
+}
+
