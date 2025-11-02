@@ -7,20 +7,20 @@ mkdir -p images/exhibits/flowers
 
 # 下载展品001的图片
 echo "正在下载展品001的图片..."
-curl -L -o images/exhibits/exhibit-001/main.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-001-main.jpg
-curl -L -o images/exhibits/exhibit-001/detail-1.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-001-detail-1.jpg
-curl -L -o images/exhibits/exhibit-001/detail-2.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-001-detail-2.jpg
+curl -L -o images/exhibits/exhibit-001/main.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/master/images/exhibits/exhibit-001-main.jpg
+curl -L -o images/exhibits/exhibit-001/detail-1.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/master/images/exhibits/exhibit-001-detail-1.jpg
+curl -L -o images/exhibits/exhibit-001/detail-2.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/master/images/exhibits/exhibit-001-detail-2.jpg
 
 # 下载展品002的图片
 echo "正在下载展品002的图片..."
-curl -L -o images/exhibits/exhibit-002/main.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-002-main.jpg
-curl -L -o images/exhibits/exhibit-002/detail-1.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-002-detail-1.jpg
-curl -L -o images/exhibits/exhibit-002/detail-2.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-002-detail-2.jpg
+curl -L -o images/exhibits/exhibit-002/main.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/master/images/exhibits/exhibit-002-main.jpg
+curl -L -o images/exhibits/exhibit-002/detail-1.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/master/images/exhibits/exhibit-002-detail-1.jpg
+curl -L -o images/exhibits/exhibit-002/detail-2.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/master/images/exhibits/exhibit-002-detail-2.jpg
 
 # 下载展品003的图片（花艺）
 echo "正在下载展品003的图片..."
-curl -L -o images/exhibits/flowers/exhibit-003-main.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/flowers/exhibit-003-main.jpg
-curl -L -o images/exhibits/flowers/exhibit-003-detail-1.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/flowers/exhibit-003-detail-1.jpg
-curl -L -o images/exhibits/flowers/exhibit-003-detail-2.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/flowers/exhibit-003-detail-2.jpg
+curl -L -o images/exhibits/flowers/exhibit-003-main.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/master/images/exhibits/flowers/exhibit-003-main.jpg
+curl -L -o images/exhibits/flowers/exhibit-003-detail-1.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/master/images/exhibits/flowers/exhibit-003-detail-1.jpg
+curl -L -o images/exhibits/flowers/exhibit-003-detail-2.jpg https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/master/images/exhibits/flowers/exhibit-003-detail-2.jpg
 
 echo "图片下载完成！" 
