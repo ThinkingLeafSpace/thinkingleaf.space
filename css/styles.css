@@ -17,7 +17,7 @@
     --sidebar-bg: var(--bg-secondary);
 }
 
-[data-theme="dark"] {
+.dark-theme {
     /* 暗色调配色方案 */
     --bg-primary: #222221;
     --bg-secondary: #2B2E2C;
@@ -69,6 +69,10 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
     display: flex;
     min-height: 100vh;
+    -webkit-user-select: text; /* 确保文字可被选择 */
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 .container {
@@ -76,6 +80,43 @@ body {
     margin: 0 auto;
     padding: 0 var(--spacing-3);
     width: 100%;
+}
+
+/* 首页专用容器宽度 - 在大屏幕上充分利用空间 */
+body.index-page .container {
+    max-width: 1200px; /* 1080p及以上屏幕充分利用宽度 */
+}
+
+body.index-page .hero {
+    max-width: 900px; /* 首页英雄区与container宽度协调 */
+}
+
+/* 响应式调整 */
+@media (max-width: 1400px) {
+    body.index-page .container {
+        max-width: 1000px;
+    }
+    body.index-page .hero {
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 1200px) {
+    body.index-page .container {
+        max-width: 900px;
+    }
+    body.index-page .hero {
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 1000px) {
+    body.index-page .container {
+        max-width: 720px; /* 恢复标准宽度 */
+    }
+    body.index-page .hero {
+        max-width: 720px; /* 恢复标准宽度 */
+    }
 }
 
 /* 调整标题样式 */
@@ -161,6 +202,23 @@ button, .btn {
     margin-left: var(--sidebar-width);
     width: calc(100% - var(--sidebar-width));
     overflow-x: hidden;
+    opacity: 0;
+    animation: fadeInContent 0.8s ease forwards;
+}
+
+/* 子页面顶部留白 - 排除首页 */
+body:not(.index-page) .main-content {
+    padding-top: var(--spacing-6);
+}
+
+/* 页面加载时所有内容的淡入动画 */
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* 英雄区样式 */
@@ -314,7 +372,6 @@ blockquote {
 
 /* 页脚样式 */
 footer {
-    background-color: var(--footer-bg);
     padding: var(--spacing-4) 0;
     margin-top: var(--spacing-6);
     text-align: center;
@@ -323,7 +380,9 @@ footer {
 .footer-content {
     max-width: 720px;
     margin: 0 auto;
-    padding: 0 var(--spacing-3);
+    padding: var(--spacing-4) var(--spacing-3);
+    background-color: var(--footer-bg);
+    border-radius: 8px;
 }
 
 .footer-content p {
@@ -383,13 +442,19 @@ footer {
 .social-icon svg {
     color: var(--accent);
     stroke: var(--accent);
+    transition: stroke 0.3s ease, color 0.3s ease;
 }
 
 .social-icon:hover {
     background-color: var(--accent);
-    color: var(--bg-primary);
+    color: white;
     transform: translateY(-2px);
     border-bottom: none;
+}
+
+.social-icon:hover svg {
+    color: white;
+    stroke: white;
 }
 
 /* 主题切换按钮 */
@@ -493,6 +558,11 @@ footer {
     .main-content {
         margin-left: 0;
         width: 100%;
+    }
+    
+    /* 移动端子页面顶部留白 */
+    body:not(.index-page) .main-content {
+        padding-top: var(--spacing-4);
     }
     
     .mobile-menu-toggle {
@@ -790,8 +860,9 @@ header {
     border-radius: 8px;
     font-weight: 500;
     text-decoration: none;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     font-size: 0.9rem;
+    border: 2px solid transparent;
 }
 
 .btn:hover {
@@ -801,20 +872,41 @@ header {
 .btn-primary {
     background-color: var(--accent);
     color: white;
+    border: 2px solid transparent;
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-hover);
+    background-color: white;
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
 .btn-secondary {
     background-color: var(--bg-tertiary);
     color: var(--text-secondary);
+    border: 2px solid transparent;
 }
 
 .btn-secondary:hover {
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
+    background-color: white;
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* 作品集页面的按钮 hover 效果 - 使用米白色背景 */
+.portfolio-actions .btn-primary:hover,
+.portfolio-actions .btn-secondary:hover {
+    background-color: var(--bg-primary);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* 暗色主题下的按钮 hover 效果 */
+.dark-theme .btn-primary:hover,
+.dark-theme .btn-secondary:hover {
+    background-color: var(--bg-primary);
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
 /* Large Screens - Portfolio Layout */
@@ -1023,6 +1115,195 @@ header {
 
 @media (max-width: 768px) {
     .newsletter-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 展品页面样式补充 */
+.categories {
+    margin-bottom: var(--spacing-6);
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-4);
+    padding-bottom: var(--spacing-2);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.category-header h3 {
+    margin-bottom: 0;
+    color: var(--accent);
+}
+
+.category-count {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.cabinet-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-4);
+}
+
+.exhibit-item-link {
+    display: block;
+    text-decoration: none;
+}
+
+.exhibit-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    height: 300px;
+}
+
+.exhibit-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.exhibit-item:hover {
+    transform: translateY(-5px);
+}
+
+.exhibit-item:hover img {
+    transform: scale(1.05);
+}
+
+.exhibit-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-3);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.subcategories {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+}
+
+.subcategory h4 {
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-3);
+    color: var(--accent);
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-3);
+}
+
+.link-card {
+    text-decoration: none;
+    display: block;
+}
+
+.link-content h5 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.link-card:hover .link-content h5 {
+    color: var(--accent);
+}
+
+.link-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.immersive-gallery-entry {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.exhibit-item:hover .immersive-gallery-entry {
+    opacity: 1;
+}
+
+.immersive-gallery-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.immersive-gallery-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(10px);
+}
+
+.immersive-gallery-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: var(--spacing-4);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    max-width: 300px;
+}
+
+.immersive-gallery-content h3 {
+    color: white;
+    margin-bottom: var(--spacing-2);
+}
+
+.immersive-gallery-content p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--spacing-3);
+}
+
+.immersive-gallery-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    color: var(--accent);
+    background: white;
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.immersive-gallery-cta:hover {
+    background: var(--accent);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .cabinet-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .links-grid {
         grid-template-columns: 1fr;
     }
 } 

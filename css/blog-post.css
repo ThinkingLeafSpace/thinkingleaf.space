@@ -70,6 +70,32 @@
     opacity: 0.8;
 }
 
+/* 尾注链接样式 - 符合无障碍标准（蓝色hover） */
+.post-content .footnote-link,
+.post-content a.footnote-link {
+    color: #0066cc;
+    text-decoration: underline;
+    border-bottom: none;
+}
+
+.post-content .footnote-link:hover,
+.post-content a.footnote-link:hover {
+    color: #0052a3;
+    text-decoration: underline;
+    opacity: 1;
+}
+
+/* 深色模式下的尾注链接 */
+.dark-theme .post-content .footnote-link,
+.dark-theme .post-content a.footnote-link {
+    color: #4da6ff;
+}
+
+.dark-theme .post-content .footnote-link:hover,
+.dark-theme .post-content a.footnote-link:hover {
+    color: #66b3ff;
+}
+
 .blog-body .highlight, .post-content .highlight {
     background-color: rgba(66, 153, 225, 0.15);
     padding: 0.1rem 0.3rem;
@@ -154,14 +180,15 @@
 }
 
 /* 博客页面的特殊元素 */
-.blog-aside {
-    background-color: var(--bg-accent);
+.blog-aside, aside {
+    background-color: var(--bg-secondary);
     padding: 1.5rem;
     border-radius: 8px;
     margin: 2rem 0;
+    border-left: 3px solid var(--accent);
 }
 
-.blog-aside p:last-child {
+.blog-aside p:last-child, aside p:last-child {
     margin-bottom: 0;
 }
 

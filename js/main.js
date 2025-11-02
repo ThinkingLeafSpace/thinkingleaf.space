@@ -41,9 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-    } else {
-        // 如果页面上没有主题切换按钮，则创建一个
-        createThemeToggleButton();
     }
     
     // 添加平滑滚动效果
@@ -130,105 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 创建主题切换按钮的函数
-    function createThemeToggleButton() {
-        // 如果页面上已经有主题切换按钮，则不创建
-        if (document.getElementById('theme-toggle')) return;
-        
-        // 创建主题切换按钮
-        const themeToggle = document.createElement('button');
-        themeToggle.id = 'theme-toggle';
-        themeToggle.className = 'theme-toggle';
-        themeToggle.setAttribute('aria-label', '切换深浅模式');
-        
-        // 创建太阳图标
-        const sunIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        sunIcon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-        sunIcon.setAttribute('width', '20');
-        sunIcon.setAttribute('height', '20');
-        sunIcon.setAttribute('viewBox', '0 0 24 24');
-        sunIcon.setAttribute('fill', 'none');
-        sunIcon.setAttribute('stroke', 'currentColor');
-        sunIcon.setAttribute('stroke-width', '2');
-        sunIcon.setAttribute('stroke-linecap', 'round');
-        sunIcon.setAttribute('stroke-linejoin', 'round');
-        sunIcon.classList.add('sun-icon');
-        
-        // 添加太阳图标的路径
-        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        circle.setAttribute('cx', '12');
-        circle.setAttribute('cy', '12');
-        circle.setAttribute('r', '5');
-        sunIcon.appendChild(circle);
-        
-        const lines = [
-            { x1: '12', y1: '1', x2: '12', y2: '3' },
-            { x1: '12', y1: '21', x2: '12', y2: '23' },
-            { x1: '4.22', y1: '4.22', x2: '5.64', y2: '5.64' },
-            { x1: '18.36', y1: '18.36', x2: '19.78', y2: '19.78' },
-            { x1: '1', y1: '12', x2: '3', y2: '12' },
-            { x1: '21', y1: '12', x2: '23', y2: '12' },
-            { x1: '4.22', y1: '19.78', x2: '5.64', y2: '18.36' },
-            { x1: '18.36', y1: '5.64', x2: '19.78', y2: '4.22' }
-        ];
-        
-        lines.forEach(lineAttrs => {
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            Object.entries(lineAttrs).forEach(([attr, value]) => {
-                line.setAttribute(attr, value);
-            });
-            sunIcon.appendChild(line);
-        });
-        
-        // 创建月亮图标
-        const moonIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        moonIcon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-        moonIcon.setAttribute('width', '20');
-        moonIcon.setAttribute('height', '20');
-        moonIcon.setAttribute('viewBox', '0 0 24 24');
-        moonIcon.setAttribute('fill', 'none');
-        moonIcon.setAttribute('stroke', 'currentColor');
-        moonIcon.setAttribute('stroke-width', '2');
-        moonIcon.setAttribute('stroke-linecap', 'round');
-        moonIcon.setAttribute('stroke-linejoin', 'round');
-        moonIcon.classList.add('moon-icon');
-        moonIcon.style.display = 'none';
-        
-        // 添加月亮图标的路径
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttribute('d', 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z');
-        moonIcon.appendChild(path);
-        
-        // 将图标添加到按钮
-        themeToggle.appendChild(sunIcon);
-        themeToggle.appendChild(moonIcon);
-        
-        // 将按钮添加到页面
-        document.body.appendChild(themeToggle);
-        
-        // 检查本地存储中的主题设置
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-theme');
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
-        }
-        
-        // 添加切换主题的事件监听器
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-theme');
-            
-            if (document.body.classList.contains('dark-theme')) {
-                sunIcon.style.display = 'none';
-                moonIcon.style.display = 'block';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                sunIcon.style.display = 'block';
-                moonIcon.style.display = 'none';
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    }
 
     // ========== newsletter 轮播逻辑 ==========
     document.querySelectorAll('.newsletter-carousel').forEach(container => {
@@ -247,4 +145,172 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // ========== 首页博客自动添加描述 ==========
+    // 只在首页执行此功能
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+        loadBlogDescriptions();
+    }
+
+    /**
+     * 从博客页面加载描述并填充到首页
+     */
+    async function loadBlogDescriptions() {
+        // 找到"个人博客 - 最新文章"部分
+        const allSections = document.querySelectorAll('.content-section');
+        let blogSectionElement = null;
+        
+        for (const section of allSections) {
+            const h3 = section.querySelector('h3');
+            if (h3 && h3.textContent.includes('个人博客 - 最新文章')) {
+                blogSectionElement = section;
+                break;
+            }
+        }
+
+        if (!blogSectionElement) return;
+
+        const cards = blogSectionElement.querySelectorAll('.content-card');
+        
+        // 为每个博客卡片加载描述
+        for (const card of cards) {
+            const link = card.querySelector('a');
+            if (!link) continue;
+
+            const href = link.getAttribute('href');
+            if (!href) continue;
+
+            const descElement = card.querySelector('p');
+            if (!descElement || descElement.textContent.trim() !== '') {
+                // 如果已经有内容，跳过
+                continue;
+            }
+
+            try {
+                const description = await fetchBlogDescription(href);
+                if (description) {
+                    // 截取前10个字符（10字以内），确保不超过10个字符
+                    let shortDesc = description.substring(0, 10);
+                    // 如果截取后刚好10个字符，保持原样；如果少于10个字符，也保持原样
+                    descElement.textContent = shortDesc;
+                }
+            } catch (error) {
+                console.error(`加载博客描述失败: ${href}`, error);
+            }
+        }
+    }
+
+    /**
+     * 从博客页面获取描述信息
+     */
+    async function fetchBlogDescription(url) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) return null;
+
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            // 尝试获取meta description
+            const metaDesc = doc.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                const content = metaDesc.getAttribute('content');
+                if (content && content.trim()) {
+                    // 清理内容，去除多余的空格和分隔符
+                    let desc = content.trim();
+                    // 如果有分隔符（如|），取第一部分
+                    if (desc.includes('|')) {
+                        desc = desc.split('|')[0].trim();
+                    }
+                    return desc;
+                }
+            }
+
+            // 如果meta description不存在，尝试从og:description获取
+            const ogDesc = doc.querySelector('meta[property="og:description"]');
+            if (ogDesc) {
+                const content = ogDesc.getAttribute('content');
+                if (content && content.trim()) {
+                    return content.trim();
+                }
+            }
+
+            return null;
+        } catch (error) {
+            console.error(`获取博客描述失败: ${url}`, error);
+            return null;
+        }
+    }
+
+    // ========== 自动转换尾注中的链接 ==========
+    // 将博客文章尾注中的纯文本URL转换为可点击链接
+    convertFootnotesLinks();
+    
+    /**
+     * 转换博客文章中的尾注链接
+     */
+    function convertFootnotesLinks() {
+        // 只在博客文章页面执行
+        const postContent = document.querySelector('.post-content');
+        if (!postContent) return;
+        
+        // 匹配尾注格式：以 [^数字]: 开头的段落
+        const footnotePattern = /^\[\^\d+\]:/;
+        // URL匹配：匹配 http:// 或 https:// 开头的完整URL
+        const urlPattern = /(https?:\/\/[^\s\)，。；：！？<>"']+)/g;
+        
+        // 查找所有可能是尾注的段落
+        const paragraphs = postContent.querySelectorAll('p');
+        
+        paragraphs.forEach(p => {
+            const text = p.textContent.trim();
+            
+            // 检查是否是尾注格式
+            if (footnotePattern.test(text)) {
+                // 检查是否已经包含链接
+                if (p.querySelector('a')) {
+                    return; // 已经有链接，跳过
+                }
+                
+                // 检查是否包含URL
+                const matches = text.match(urlPattern);
+                if (matches && matches.length > 0) {
+                    let html = p.innerHTML;
+                    
+                    // 将每个URL转换为链接
+                    matches.forEach(url => {
+                        // 清理URL（移除末尾可能的标点）
+                        let cleanUrl = url;
+                        const trailingPunctuation = /[，。；：！？\)\]\s]+$/;
+                        let punctuation = '';
+                        
+                        // 检查URL末尾是否有标点符号
+                        if (trailingPunctuation.test(url)) {
+                            const match = url.match(trailingPunctuation);
+                            if (match) {
+                                punctuation = match[0];
+                                cleanUrl = url.replace(trailingPunctuation, '');
+                            }
+                        }
+                        
+                        // 判断是否为外部链接
+                        try {
+                            const urlObj = new URL(cleanUrl);
+                            const isExternal = urlObj.hostname !== window.location.hostname;
+                            const linkTag = `<a href="${cleanUrl}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="footnote-link">${cleanUrl}</a>`;
+                            
+                            // 替换原始文本中的URL（保留标点）
+                            html = html.replace(url, linkTag + punctuation);
+                        } catch (e) {
+                            // URL格式错误，跳过
+                            console.warn('Invalid URL format:', cleanUrl);
+                        }
+                    });
+                    
+                    p.innerHTML = html;
+                }
+            }
+        });
+    }
 }); 

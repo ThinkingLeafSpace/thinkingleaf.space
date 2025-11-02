@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人博客 - 筑居思</title>
-    <meta name="description" content="筑居思的个人博客，分享建筑、设计与生活的思考">
+    <meta name="description" content="筑居思的个人博客 - 分享设计思考、生活随笔、禅修感悟与技术笔记">
+    <meta name="keywords" content="个人博客, 设计思考, 生活随笔, 禅修, 内观, Vipassana, UI设计, 前端开发, 筑居思">
+    <meta name="author" content="Qianny">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thinkingleaf.space/blogs.html">
+    <meta property="og:title" content="个人博客 - 筑居思">
+    <meta property="og:description" content="分享设计思考、生活随笔、禅修感悟与技术笔记">
+    <meta property="og:image" content="https://thinkingleaf.space/images/putiye心形菩提叶.svg">
+    <meta property="og:site_name" content="筑居思">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://thinkingleaf.space/blogs.html">
+    <meta name="twitter:title" content="个人博客 - 筑居思">
+    <meta name="twitter:description" content="分享设计思考、生活随笔、禅修感悟与技术笔记">
+    <meta name="twitter:image" content="https://thinkingleaf.space/images/putiye心形菩提叶.svg">
+    
+    <link rel="canonical" href="https://thinkingleaf.space/blogs.html">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/ui-principles.css">
+    <link rel="stylesheet" href="css/lazy-loading.css">
+    <link rel="stylesheet" href="css/link-preview.css">
     <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,41 +89,31 @@
                 <div class="categories">
                     <section id="blogs" class="category">
                         <div class="category-header">
-                            <h3>个人博客</h3>
-                            <span class="category-count">精选文章与思考</span>
                         </div>
                         
                         <div class="subcategories">
                             
                             <div class="subcategory">
-                                <h4>生活随笔</h4>
                                 <div class="links-grid">
-                                    <a href="blogs/2025-11-02-5202年了为什么我还是推荐用RSS订阅内容.html" class="link-card">
-                                        <div class="link-content">
-                                            <h5>5202年了！为什么我还是推荐用RSS订阅内容</h5>
-                                            <span class="date-tag">2025-11-02</span>
-                                            <p></p>
-                                        </div>
-                                    </a>
-                                    <a href="blogs/2025-10-26-在禅堂里我遇见了所有人记第二次内观禅修的结缘.html" class="link-card">
+                                    <a href="blogs/2025-10-26-在禅堂里我遇见了所有人记第二次内观禅修的结缘.html" class="link-card" data-lazy-section>
                                         <div class="link-content">
                                             <h5>在禅堂里，我遇见了所有人——记第二次内观禅修的结缘</h5>
                                             <span class="date-tag">2025-10-26</span>
                                             <p></p>
                                         </div>
                                     </a>
-                                    <a href="blogs/2025-09-24-blog-template-with-connect.html" class="link-card">
+                                    <a href="blogs/2025-08-28-2025年了为什么我还是推荐用RSS订阅内容.html" class="link-card">
                                         <div class="link-content">
-                                            <h5>博客文章标题</h5>
-                                            <span class="date-tag">2025-09-24</span>
-                                            <p>筑居思博客文章模板 - 含连接与支持功能</p>
+                                            <h5>2025年了！为什么我还是推荐用RSS订阅内容</h5>
+                                            <span class="date-tag">2025-08-28</span>
+                                            <p></p>
                                         </div>
                                     </a>
-                                    <a href="blogs/2025-04-15-design-experiment.html" class="link-card">
+                                    <a href="blogs/2025-04-17-或许设计实验就是容易失败对吗.html" class="link-card">
                                         <div class="link-content">
                                             <h5>或许设计实验就是容易失败，对吗？</h5>
-                                            <span class="date-tag">2025-04-15</span>
-                                            <p>记2025.04.11-2025.04.13，在南京七家湾社区，参与何志森老师的mapping工作坊</p>
+                                            <span class="date-tag">2025-04-17</span>
+                                            <p>记2025.04.11-2025.04.13，在南京七家湾社区，参与何志森老师的mapping工作坊，南京城市快修工作坊 之 胶带作为一种行动的策略。</p>
                                         </div>
                                     </a>
                                     <a href="blogs/2024-11-30-24岁学会的24件事.html" class="link-card">
@@ -111,48 +123,126 @@
                                             <p></p>
                                         </div>
                                     </a>
-                                    <a href="blogs/2024-11-13-talking-to-19-yo-self.html" class="link-card">
-                                        <div class="link-content">
-                                            <h5>23岁的最后一天，和19岁的自己对话</h5>
-                                            <span class="date-tag">2024-11-13</span>
-                                            <p>回到过去，与19岁的自己对话的心得感悟</p>
-                                        </div>
-                                    </a>
-                                    <a href="blogs/2024-11-10-24-things.html" class="link-card">
-                                        <div class="link-content">
-                                            <h5>24岁学会的24件事</h5>
-                                            <span class="date-tag">2024-11-10</span>
-                                            <p>关于生活、工作与个人成长的年度思考总结</p>
-                                        </div>
-                                    </a>
-                                    <a href="blogs/2024-07-06-meditation-journey.html" class="link-card">
+                                    <a href="blogs/2024-07-06-半载观想小记在大理在内观禅修的路上.html" class="link-card">
                                         <div class="link-content">
                                             <h5>半载观想小记：在大理、在内观禅修的路上</h5>
-                                            <span class="date-tag">2023-11-24</span>
-                                            <p>2024年，一段禅修之旅的思考与感悟</p>
+                                            <span class="date-tag">2024-07-06</span>
+                                            <p></p>
                                         </div>
                                     </a>
                                     <a href="blogs/2025-05-03-creativity-thoughts.html" class="link-card">
                                         <div class="link-content">
-                                            <h5>我是如何看待创造的</h5>
+                                            <h5>创造性思维</h5>
                                             <span class="date-tag">2023-09-22</span>
                                             <p>关于创造的思考与感悟</p>
                                         </div>
                                     </a>
-                                    <a href="blogs/2022-09-01-22-years-old.html" class="link-card">
+                                    <a href="blogs/2023-01-15-一直游到海水变蓝.html" class="link-card">
                                         <div class="link-content">
-                                            <h5>写在22岁</h5>
-                                            <span class="date-tag">2022-09-01</span>
-                                            <p>今天没那么内在平静？尝试下做这些吧！（我的22岁消除烦恼法典！）</p>
+                                            <h5>一直游到海水变蓝</h5>
+                                            <span class="date-tag">2023-01-15</span>
+                                            <p></p>
                                         </div>
                                     </a>
-                                    <a href="blogs/2022-08-24-life-management-system-99-things.html" class="link-card">
+                                    <a href="blogs/2022-11-26-如何面对重大人生决定.html" class="link-card">
                                         <div class="link-content">
-                                            <h5>人生管理系统-让我开心的99件小事</h5>
-                                            <span class="date-tag">2022-08-24</span>
-                                            <p>探索生活中的小确幸，发现让自己开心的99件小事</p>
+                                            <h5>如何面对重大人生决定</h5>
+                                            <span class="date-tag">2022-11-26</span>
+                                            <p></p>
                                         </div>
                                     </a>
+                                    <a href="blogs/2022-11-15-好文分享丨停下来休息一下.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>好文分享丨停下来休息一下</h5>
+                                            <span class="date-tag">2022-11-15</span>
+                                            <p>本周好文分享丨停下来休息一下</p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2022-11-08-好久不见最近在外太空种下了小花.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>好久不见，最近在外太空种下了小花</h5>
+                                            <span class="date-tag">2022-11-08</span>
+                                            <p>欢迎你来挑选一朵~</p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2022-10-02-永远不要停止想象.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>永远不要停止想象！</h5>
+                                            <span class="date-tag">2022-10-02</span>
+                                            <p></p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2022-09-17-重新觉察自我.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>重新觉察自我</h5>
+                                            <span class="date-tag">2022-09-17</span>
+                                            <p></p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2022-09-03-听山风.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>听山风</h5>
+                                            <span class="date-tag">2022-09-03</span>
+                                            <p></p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2022-08-27-寻找Study-Work-life-Balence.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>寻找Study-Work-life Balence</h5>
+                                            <span class="date-tag">2022-08-27</span>
+                                            <p></p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2022-08-21-读书观.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>读书观</h5>
+                                            <span class="date-tag">2022-08-21</span>
+                                            <p>董宇辉分享有感</p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2022-07-22-如果在夏夜一个旅人.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>如果，在夏夜，一个旅人</h5>
+                                            <span class="date-tag">2022-07-22</span>
+                                            <p>发刊词 丨夏日星光 / 绝非突发奇想 / 如愿如愿 / 一蓑烟雨任平生</p>
+                                        </div>
+                                    </a>
+                                    <a href="blogs/2019-06-10-talking-to-19-yo-self.html" class="link-card">
+                                        <div class="link-content">
+                                            <h5>写在19岁</h5>
+                                            <span class="date-tag">2019-06-10</span>
+                                            <p>回到过去，与19岁的自己对话的心得感悟</p>
+                                        </div>
+                                    </a>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 
                                 
                                 
@@ -208,28 +298,42 @@
                 <section class="newsletter-section">
                     <div class="section-header">
                         <h3>Newsletter推荐</h3>
-                        <a href="./rss.xml" class="view-more">RSS订阅</a>
                     </div>
                     <div class="newsletter-content">
                         <div class="newsletter-item">
-                            <h4>精选高质量Newsletter</h4>
-                            <p>包括科技、设计、人文等领域的优质内容</p>
-                            <ul class="newsletter-recommendations">
-                                <li><a href="#" class="newsletter-link">王川 - 科技与投资分析</a></li>
-                                <li><a href="#" class="newsletter-link">太隐 - 个人博客</a></li>
-                                <li><a href="#" class="newsletter-link">陈仓颉 - 科技与人文观察</a></li>
-                                <li><a href="#" class="newsletter-link">happy xiao - 可乐周报</a></li>
-                                <li><a href="#" class="newsletter-link">虹线 - 个人博客</a></li>
-                                <li><a href="#" class="newsletter-link">纳瓦尔 - Naval Ravikant思想</a></li>
-                            </ul>
+                            <h4>王川</h4>
+                            <p>科技与投资分析</p>
+                        </div>
+                        <div class="newsletter-item">
+                            <h4>太隐</h4>
+                            <p>个人博客</p>
+                        </div>
+                        <div class="newsletter-item">
+                            <h4>陈仓颉</h4>
+                            <p>科技与人文观察</p>
+                        </div>
+                        <div class="newsletter-item">
+                            <h4>happy xiao</h4>
+                            <p>可乐周报</p>
+                        </div>
+                        <div class="newsletter-item">
+                            <h4>虹线</h4>
+                            <p>个人博客</p>
+                        </div>
+                        <div class="newsletter-item">
+                            <h4>纳瓦尔</h4>
+                            <p>Naval Ravikant思想</p>
                         </div>
                     </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: var(--spacing-3); text-align: center;">
+                        包括科技、设计、人文等领域的优质内容
+                    </p>
                 </section>
             </main>
 
             <footer>
                 <div class="footer-content">
-                    <p>© 2023 筑居思. 保留所有权利.</p>
+                    <p>© 2025 筑居思. 保留所有权利.</p>
                     <div class="social-links">
                         <a href="https://github.com/ArchQian" aria-label="GitHub" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
@@ -253,5 +357,6 @@
     <script src="js/lazy-loading.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/ui-enhancements.js" defer></script>
+    <script src="js/link-preview.js" defer></script>
 </body>
 </html> 

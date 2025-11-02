@@ -234,36 +234,7 @@ hr {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
-/* 展品项目悬停效果 */
-.exhibit-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
-
-.exhibit-item:hover {
-    transform: translateY(-5px);
-}
-
-.exhibit-item img {
-    transition: transform 0.5s ease;
-}
-
-.exhibit-item:hover img {
-    transform: scale(1.05);
-}
-
-.exhibit-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    color: white;
-    font-weight: 500;
-}
+/* 展品项目悬停效果 - 已移至 styles.css */
 
 /* 响应式调整 */
 @media (max-width: 768px) {

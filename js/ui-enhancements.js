@@ -98,28 +98,31 @@ function applyImageMasks() {
  * 应用渐入动画效果
  */
 function applyFadeInEffects() {
-    // 获取所有需要添加渐入效果的元素
-    const fadeElements = document.querySelectorAll('.card, .post-item, .exhibit-item, .hero');
+    // 页面加载时，让整个内容区域淡入（已经通过CSS实现）
+    // 这里保留滚动时的渐入效果，用于其他页面的卡片元素
+    const fadeElements = document.querySelectorAll('.card, .post-item, .exhibit-item');
     
-    // 创建Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // 当元素进入视口时
-            if (entry.isIntersecting) {
-                // 添加渐入类
-                entry.target.classList.add('fade-in');
-                // 停止观察该元素
-                observer.unobserve(entry.target);
-            }
+    // 如果存在这些元素，使用Intersection Observer实现滚动渐入
+    if (fadeElements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // 当元素进入视口时
+                if (entry.isIntersecting) {
+                    // 添加渐入类
+                    entry.target.classList.add('fade-in');
+                    // 停止观察该元素
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 // 当元素有10%进入视口时触发
         });
-    }, {
-        threshold: 0.1 // 当元素有10%进入视口时触发
-    });
-    
-    // 观察所有元素
-    fadeElements.forEach(element => {
-        observer.observe(element);
-    });
+        
+        // 观察所有元素
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
 }
 
 /**

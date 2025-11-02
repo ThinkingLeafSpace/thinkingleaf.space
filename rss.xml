@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>筑居思 - 精选优质设计与Newsletter资源</title>
-    <link>https://yourdomain.com/</link>
-    <description>个人导航站、精选设计资源、优质Newsletter和冥想禅修内容</description>
+    <title>筑居思 - 回归生活本源的思考与创造</title>
+    <link>https://thinkingleaf.space/</link>
+    <description>光通信行业大数据B端UI设计师、禅修践行者的个人博客，分享设计思考、生活随笔与内心感悟</description>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 1 July 2024 12:00:00 +0800</lastBuildDate>
-    <atom:link href="https://yourdomain.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Mon, 15 Jan 2025 12:00:00 +0800</lastBuildDate>
+    <atom:link href="https://thinkingleaf.space/rss.xml" rel="self" type="application/rss+xml"/>
+    <copyright>筑居思 © 2025</copyright>
     
     <!-- 首页精选内容 -->
     <item>
       <title>个人博客 - 筑居思</title>
-      <link>https://yourdomain.com/blogs.html</link>
-      <guid>https://yourdomain.com/blogs.html</guid>
+      <link>https://thinkingleaf.space/blogs.html</link>
+      <guid>https://thinkingleaf.space/blogs.html</guid>
       <pubDate>Mon, 1 July 2024 10:00:00 +0800</pubDate>
       <description><![CDATA[
         <h2>个人博客</h2>
@@ -30,8 +31,8 @@
     
     <item>
       <title>Newsletter精选 - 筑居思</title>
-      <link>https://yourdomain.com/newsletter.html</link>
-      <guid>https://yourdomain.com/newsletter.html</guid>
+      <link>https://thinkingleaf.space/newsletter.html</link>
+      <guid>https://thinkingleaf.space/newsletter.html</guid>
       <pubDate>Mon, 1 July 2024 09:00:00 +0800</pubDate>
       <description><![CDATA[
         <h2>Newsletter精选</h2>
@@ -49,8 +50,8 @@
     
     <item>
       <title>设计作品集欣赏 - 筑居思</title>
-      <link>https://yourdomain.com/portfolio.html</link>
-      <guid>https://yourdomain.com/portfolio.html</guid>
+      <link>https://thinkingleaf.space/portfolio.html</link>
+      <guid>https://thinkingleaf.space/portfolio.html</guid>
       <pubDate>Mon, 1 July 2024 08:00:00 +0800</pubDate>
       <description><![CDATA[
         <h2>设计作品集欣赏</h2>
@@ -66,8 +67,8 @@
     
     <item>
       <title>冥想禅修 - 筑居思</title>
-      <link>https://yourdomain.com/meditation.html</link>
-      <guid>https://yourdomain.com/meditation.html</guid>
+      <link>https://thinkingleaf.space/meditation.html</link>
+      <guid>https://thinkingleaf.space/meditation.html</guid>
       <pubDate>Mon, 1 July 2024 07:00:00 +0800</pubDate>
       <description><![CDATA[
         <h2>冥想禅修</h2>
@@ -83,8 +84,8 @@
     
     <item>
       <title>治愈频率音乐 - 筑居思</title>
-      <link>https://yourdomain.com/healing-frequencies.html</link>
-      <guid>https://yourdomain.com/healing-frequencies.html</guid>
+      <link>https://thinkingleaf.space/healing-frequencies.html</link>
+      <guid>https://thinkingleaf.space/healing-frequencies.html</guid>
       <pubDate>Mon, 1 July 2024 06:00:00 +0800</pubDate>
       <description><![CDATA[
         <h2>治愈频率音乐</h2>

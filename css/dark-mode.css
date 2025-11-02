@@ -1,148 +1,404 @@
 /* ---------------------------------- */
 /* 深色模式增强样式 (Dark Mode Enhancements) */
 /* 为网站全局深色模式提供额外的样式支持 */
+/* 使用 .dark-theme 类名应用深色主题 */
 /* ---------------------------------- */
 
-/* 表格样式适配 */
-.dark-theme table {
-  border-color: var(--table-border);
+/* ========== 基础元素适配 ========== */
+
+/* Body 背景色过渡 */
+.dark-theme body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
 }
 
-.dark-theme th, .dark-theme td {
-  border-bottom-color: var(--table-border);
+/* 侧边栏适配 */
+.dark-theme .sidebar {
+    background-color: var(--sidebar-bg);
+    border-right-color: var(--card-border);
+}
+
+.dark-theme .sidebar-nav a:hover,
+.dark-theme .sidebar-nav a.active {
+    background-color: var(--bg-primary);
+    color: var(--accent);
+}
+
+/* 主内容区域 */
+.dark-theme .main-content {
+    background-color: var(--bg-primary);
+}
+
+/* 卡片样式适配 */
+.dark-theme .category,
+.dark-theme .featured-card,
+.dark-theme .link-card,
+.dark-theme .card,
+.dark-theme .content-card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    box-shadow: 0 4px 12px var(--card-shadow);
+}
+
+.dark-theme .category:hover,
+.dark-theme .featured-card:hover,
+.dark-theme .link-card:hover,
+.dark-theme .card:hover {
+    box-shadow: 0 8px 24px var(--card-shadow);
+}
+
+/* 关于我部分 */
+.dark-theme .about-me,
+.dark-theme .about-section {
+    background-color: var(--bg-secondary);
+}
+
+.dark-theme .avatar-container {
+    border-color: var(--card-border);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* 英雄区 */
+.dark-theme .hero h2 {
+    color: var(--accent);
+}
+
+.dark-theme .hero p {
+    color: var(--text-secondary);
+}
+
+/* 引用样式 */
+.dark-theme blockquote {
+    background-color: var(--bg-secondary);
+    border-left-color: var(--accent);
+    color: var(--text-secondary);
+}
+
+/* 标题样式 */
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6 {
+    color: var(--accent);
+}
+
+/* ========== 表格样式适配 ========== */
+.dark-theme table {
+    border-color: var(--card-border);
+}
+
+.dark-theme th,
+.dark-theme td {
+    border-bottom-color: var(--card-border);
 }
 
 .dark-theme th {
-  background-color: rgba(50, 50, 50, 0.7);
+    background-color: rgba(50, 50, 50, 0.7);
+    color: var(--text-primary);
 }
 
 .dark-theme tr:hover {
-  background-color: var(--table-row-hover);
+    background-color: rgba(60, 60, 60, 0.5);
 }
 
-/* 代码块样式适配 */
+/* ========== 代码块样式适配 ========== */
 .dark-theme pre {
-  background-color: var(--code-bg);
-  border-color: var(--color-border);
+    background-color: var(--bg-secondary);
+    border-color: var(--card-border);
+    color: var(--text-primary);
 }
 
 .dark-theme code {
-  color: var(--color-text);
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
 }
 
-/* 图片和媒体适配 */
+.dark-theme pre code {
+    background-color: transparent;
+}
+
+/* ========== 图片和媒体适配 ========== */
 .dark-theme img {
-  filter: brightness(0.9);
+    filter: brightness(0.9);
+    opacity: 0.95;
 }
 
-/* 表单元素适配 */
-.dark-theme input, .dark-theme textarea, .dark-theme select {
-  background-color: rgba(30, 30, 30, 0.7);
-  color: var(--color-text);
-  border-color: var(--color-border);
+.dark-theme .avatar-img {
+    filter: brightness(1);
+    opacity: 1;
 }
 
-.dark-theme input:focus, .dark-theme textarea:focus, .dark-theme select:focus {
-  border-color: var(--color-accent-lotus-red);
-  outline-color: var(--color-accent-lotus-red);
+/* ========== 表单元素适配 ========== */
+.dark-theme input,
+.dark-theme textarea,
+.dark-theme select {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--card-border);
 }
 
-.dark-theme input::placeholder, .dark-theme textarea::placeholder {
-  color: var(--color-text-secondary);
+.dark-theme input:focus,
+.dark-theme textarea:focus,
+.dark-theme select:focus {
+    border-color: var(--accent);
+    outline-color: var(--accent);
+    background-color: var(--bg-primary);
 }
 
-/* 导航栏适配 */
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+/* ========== 导航栏适配 ========== */
 .dark-theme .navbar {
-  background-color: rgba(33, 33, 33, 0.95);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background-color: var(--header-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-bottom-color: var(--card-border);
 }
 
-/* 按钮适配 */
-.dark-theme button, .dark-theme .btn {
-  background-color: rgba(50, 50, 50, 0.7);
-  color: var(--color-text);
+/* ========== 按钮适配 ========== */
+.dark-theme button,
+.dark-theme .btn {
+    background-color: rgba(50, 50, 50, 0.7);
+    color: var(--text-primary);
+    border-color: var(--card-border);
 }
 
-.dark-theme button:hover, .dark-theme .btn:hover {
-  background-color: var(--color-accent-lotus-red);
-  color: white;
+.dark-theme button:hover,
+.dark-theme .btn:hover {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
 }
 
-/* 页脚适配 */
-.dark-theme .site-footer {
-  border-top-color: var(--color-border);
+.dark-theme .btn-primary {
+    background-color: var(--accent);
+    color: white;
 }
 
-/* 搜索框适配 */
-.dark-theme .search-container input[type="text"] {
-  background-color: rgba(30, 30, 30, 0.7);
-  color: var(--color-text);
-  border-color: var(--color-border);
+.dark-theme .btn-primary:hover {
+    background-color: var(--accent-hover);
+    color: white;
 }
 
-.dark-theme .search-container input[type="text"]:focus {
-  border-color: var(--color-accent-lotus-red);
+.dark-theme .btn-secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-color: var(--card-border);
 }
 
-/* 弹窗适配 */
-.dark-theme .modal-content {
-  background-color: var(--color-bg);
-  border-color: var(--color-border);
+.dark-theme .btn-secondary:hover {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
 }
 
-.dark-theme .modal-header {
-  border-bottom-color: var(--color-border);
+/* ========== 页脚适配 ========== */
+.dark-theme .site-footer,
+.dark-theme footer {
+    background-color: var(--footer-bg);
+    border-top-color: var(--card-border);
+    color: var(--text-secondary);
 }
 
-.dark-theme .modal-footer {
-  border-top-color: var(--color-border);
+.dark-theme .footer-link {
+    color: var(--text-secondary);
 }
 
-/* 链接适配 */
+.dark-theme .footer-link:hover {
+    color: var(--accent);
+}
+
+/* ========== 搜索框适配 ========== */
+.dark-theme .search-container input[type="text"],
+.dark-theme .search-input {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--card-border);
+}
+
+.dark-theme .search-container input[type="text"]:focus,
+.dark-theme .search-input:focus {
+    border-color: var(--accent);
+    background-color: var(--bg-primary);
+}
+
+/* ========== 链接适配 ========== */
 .dark-theme a {
-  color: var(--color-accent-lotus-red);
+    color: var(--accent);
 }
 
 .dark-theme a:hover {
-  color: var(--button-hover);
+    color: var(--accent-hover);
 }
 
-/* 特殊元素适配 */
-.dark-theme blockquote {
-  background-color: var(--quote-bg);
+.dark-theme .sidebar-nav a {
+    color: var(--text-secondary);
 }
 
-.dark-theme .notice, .dark-theme .alert {
-  background-color: rgba(50, 50, 50, 0.7);
-  border-color: var(--color-border);
+.dark-theme .sidebar-nav a:hover,
+.dark-theme .sidebar-nav a.active {
+    color: var(--accent);
 }
 
-/* 图标适配 */
+/* ========== 弹窗适配 ========== */
+.dark-theme .modal-content,
+.dark-theme .modal {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-primary);
+}
+
+.dark-theme .modal-header {
+    border-bottom-color: var(--card-border);
+}
+
+.dark-theme .modal-footer {
+    border-top-color: var(--card-border);
+}
+
+.dark-theme .modal-close {
+    color: var(--text-secondary);
+}
+
+.dark-theme .modal-close:hover {
+    color: var(--accent);
+}
+
+/* ========== 特殊元素适配 ========== */
+.dark-theme .notice,
+.dark-theme .alert {
+    background-color: rgba(50, 50, 50, 0.7);
+    border-color: var(--card-border);
+    color: var(--text-primary);
+}
+
+.dark-theme .notice-success {
+    background-color: rgba(34, 139, 34, 0.2);
+    border-color: rgba(34, 139, 34, 0.5);
+}
+
+.dark-theme .notice-warning {
+    background-color: rgba(255, 165, 0, 0.2);
+    border-color: rgba(255, 165, 0, 0.5);
+}
+
+.dark-theme .notice-error {
+    background-color: rgba(220, 20, 60, 0.2);
+    border-color: rgba(220, 20, 60, 0.5);
+}
+
+/* ========== 图标适配 ========== */
 .dark-theme .icon {
-  filter: brightness(0.9);
+    filter: brightness(0.9);
+    opacity: 0.9;
 }
 
-/* 滚动条适配 */
+.dark-theme .social-icon {
+    border-color: var(--card-border);
+    color: var(--text-secondary);
+}
+
+.dark-theme .social-icon:hover {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+/* ========== 滚动条适配 ========== */
 .dark-theme::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+    width: 12px;
+    height: 12px;
 }
 
 .dark-theme::-webkit-scrollbar-track {
-  background: rgba(30, 30, 30, 0.7);
+    background: var(--bg-secondary);
 }
 
 .dark-theme::-webkit-scrollbar-thumb {
-  background: var(--color-text-secondary);
-  border-radius: 6px;
+    background: var(--text-tertiary);
+    border-radius: 6px;
 }
 
 .dark-theme::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-lotus-red);
+    background: var(--accent);
 }
 
-/* 选中文本样式 */
+/* ========== 选中文本样式 ========== */
 .dark-theme ::selection {
-  background-color: var(--selection-bg);
-  color: var(--selection-text);
+    background-color: var(--accent);
+    color: white;
+}
+
+.dark-theme ::-moz-selection {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* ========== 进度条适配 ========== */
+.dark-theme .progress-bar {
+    background-color: var(--accent);
+}
+
+.dark-theme .progress-container {
+    background-color: transparent;
+}
+
+/* ========== 移动端菜单适配 ========== */
+.dark-theme .mobile-menu-toggle {
+    background-color: var(--bg-secondary);
+    border-color: var(--card-border);
+    color: var(--text-primary);
+}
+
+.dark-theme .mobile-menu-toggle:hover {
+    background-color: var(--bg-primary);
+}
+
+.dark-theme .mobile-menu-toggle span {
+    background-color: var(--text-primary);
+}
+
+/* ========== 内容卡片适配 ========== */
+.dark-theme .content-card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+}
+
+.dark-theme .content-card-title {
+    color: var(--accent);
+}
+
+.dark-theme .content-card-meta {
+    color: var(--text-secondary);
+}
+
+.dark-theme .content-card-description {
+    color: var(--text-primary);
+}
+
+/* ========== 分类和标签适配 ========== */
+.dark-theme .category-item,
+.dark-theme .tag {
+    background-color: var(--bg-secondary);
+    border-color: var(--card-border);
+    color: var(--text-secondary);
+}
+
+.dark-theme .category-item:hover,
+.dark-theme .tag:hover {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* ========== 过渡动画 ========== */
+.dark-theme * {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
 }

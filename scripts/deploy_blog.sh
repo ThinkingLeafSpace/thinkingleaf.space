@@ -69,6 +69,17 @@ if [ ! -f "$MARKDOWN_FILE" ]; then
     exit 1
 fi
 
+# 可选：验证Markdown格式
+if [ -f "$SCRIPT_DIR/validate_blog.py" ]; then
+    echo -e "${BLUE}0. 验证Markdown格式...${NC}"
+    if ! python3 "$SCRIPT_DIR/validate_blog.py" "$MARKDOWN_FILE" 2>&1; then
+        echo -e "${YELLOW}⚠️  验证发现问题，但继续尝试转换...${NC}"
+        echo -e "${YELLOW}   如果转换失败，请修复问题后重试${NC}\n"
+    else
+        echo -e "${GREEN}✓ 格式验证通过${NC}\n"
+    fi
+fi
+
 echo -e "${BLUE}1. 转换Markdown为HTML...${NC}"
 
 # 转换Markdown

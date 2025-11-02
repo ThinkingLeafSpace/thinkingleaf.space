@@ -191,6 +191,34 @@ class MarkdownConverter:
                 if copy_needed:
                     shutil.copy2(found_path, target_path)
                     print(f"  ✓ 已复制图片: {found_path.name} -> {relative_path}")
+                    
+                    # 检查是否需要重命名（包含中文或特殊字符）
+                    if self._needs_rename(safe_filename):
+                        # 导入重命名模块（延迟导入避免循环依赖）
+                        try:
+                            import sys
+                            rename_script_dir = Path(__file__).parent
+                            if str(rename_script_dir) not in sys.path:
+                                sys.path.insert(0, str(rename_script_dir))
+                            from rename_images import generate_english_filename, load_mapping, save_mapping
+                            
+                            mapping = load_mapping()
+                            new_filename = generate_english_filename(safe_filename, mapping)
+                            
+                            # 如果生成的新文件名不同，进行重命名
+                            if new_filename != safe_filename:
+                                new_target = target_dir / new_filename
+                                if not new_target.exists():
+                                    target_path.rename(new_target)
+                                    # 保存映射
+                                    mapping[safe_filename] = new_filename
+                                    save_mapping(mapping, silent=True)
+                                    safe_filename = new_filename
+                                    relative_path = f"../images/blog/{safe_filename}"
+                                    print(f"  ✓ 已重命名图片: {target_path.name} -> {new_filename}")
+                        except Exception as e:
+                            # 如果重命名失败，继续使用原文件名
+                            print(f"  ⚠️  重命名失败（继续使用原文件名）: {e}")
                 
                 return f'![{alt_text}]({relative_path})'
             else:
@@ -203,6 +231,19 @@ class MarkdownConverter:
                     return f'![{alt_text}](../images/blog/{img_path})'
         
         return replace_image
+    
+    def _needs_rename(self, filename):
+        """检查文件名是否需要重命名"""
+        import re
+        from urllib.parse import unquote
+        
+        # 检查是否有中文或特殊字符
+        if re.search(r'[^\x00-\x7F]', filename):
+            return True
+        # 检查是否有空格、括号等
+        if re.search(r'[\s()（）%]', filename):
+            return True
+        return False
     
     def process_images(self, content, markdown_path):
         """处理Markdown中的图片链接"""
@@ -248,11 +289,48 @@ class MarkdownConverter:
         
         # 获取元数据
         title = front_matter.get('title', markdown_path.stem)
-        date_str = front_matter.get('date', datetime.now().strftime('%Y-%m-%d'))
+        
+        # 处理日期字段：支持 Obsidian 模板变量和实际日期
+        date_value = front_matter.get('date', '')
+        date_str = None
+        
+        if not date_value:
+            # 如果日期为空，使用当前日期
+            date_str = datetime.now().strftime('%Y-%m-%d')
+        elif isinstance(date_value, dict):
+            # 如果解析成了字典（YAML 格式错误），使用当前日期
+            date_str = datetime.now().strftime('%Y-%m-%d')
+        else:
+            # 转换为字符串并去除引号
+            date_str = str(date_value).strip().strip('"').strip("'")
+            # 检查是否是 Obsidian 模板变量
+            if '{{date' in date_str or date_str == '':
+                # 如果是模板变量或空字符串，使用当前日期
+                date_str = datetime.now().strftime('%Y-%m-%d')
+            else:
+                # 验证日期格式
+                try:
+                    datetime.strptime(date_str, '%Y-%m-%d')
+                except ValueError:
+                    # 如果格式不正确，使用当前日期
+                    date_str = datetime.now().strftime('%Y-%m-%d')
+        
         description = front_matter.get('description', front_matter.get('excerpt', ''))
-        category = front_matter.get('category', front_matter.get('categories', ['博客']))
+        if description is None or isinstance(description, dict) or (isinstance(description, str) and description.strip() == ''):
+            description = ''
+        else:
+            description = str(description).strip()
+        
+        category = front_matter.get('category', front_matter.get('categories', '博客'))
+        # 将category转换为列表格式
         if isinstance(category, list):
-            category = category[0] if category else '博客'
+            categories = [str(c).strip() for c in category if c] if category else ['博客']
+        elif isinstance(category, dict):
+            categories = ['博客']
+        elif category:
+            categories = [str(category).strip()]
+        else:
+            categories = ['博客']
         
         # 处理图片路径
         content = self.process_images(content, markdown_path)
@@ -279,7 +357,7 @@ class MarkdownConverter:
         
         # 使用标准模板生成完整HTML
         html_output = self.generate_html_template(
-            title, date_str, description, html_content
+            title, date_str, description, html_content, categories
         )
         
         # 写入文件
@@ -290,16 +368,17 @@ class MarkdownConverter:
         print(f"✓ 已转换: {markdown_path.name} -> {output_file.name}")
         print(f"  标题: {title}")
         print(f"  日期: {date_str}")
+        print(f"  标签: {', '.join(categories)}")
         
         return {
             'title': title,
             'date': date_str,
             'description': description,
             'filename': output_file.name,
-            'category': category
+            'category': categories
         }
     
-    def generate_html_template(self, title, date, description, content):
+    def generate_html_template(self, title, date, description, content, categories=None):
         """生成HTML模板"""
         # 格式化日期
         try:
@@ -307,6 +386,15 @@ class MarkdownConverter:
             date_formatted = f"{date_obj.year}年{date_obj.month}月{date_obj.day}日"
         except:
             date_formatted = date
+        
+        # 生成标签HTML
+        if categories:
+            tags_html = '<div class="blog-tags">\n'
+            for cat in categories:
+                tags_html += f'                        <span class="tag">{cat}</span>\n'
+            tags_html += '                    </div>'
+        else:
+            tags_html = ''
         
         template = f'''<!DOCTYPE html>
 <html lang="zh-CN">
@@ -359,6 +447,7 @@ class MarkdownConverter:
                         <div class="post-meta">
                             <time datetime="{date}">{date_formatted}</time>
                         </div>
+{tags_html}
                     </header>
 
                     <div class="post-content">

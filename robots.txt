@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# 禁止访问系统文件和配置文件
+Disallow: /scripts/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /*.md
+Disallow: /*.json
+Disallow: /404.html
+
+# 允许访问主要资源
+Allow: /index.html
+Allow: /blogs.html
+Allow: /portfolio.html
+Allow: /cabinet.html
+Allow: /blogs/
+Allow: /exhibits/
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# 网站地图
+Sitemap: https://thinkingleaf.space/sitemap.xml
+
+# 爬虫延迟（可选）
+Crawl-delay: 1
+

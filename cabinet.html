@@ -3,10 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="筑居思 - 造物拾遗，收集与展示我的创意与收藏">
+  <meta name="description" content="造物拾遗 - 收集与展示我的创意与收藏、展品作品">
+  <meta name="keywords" content="造物拾遗, 创意收藏, 展品, 艺术作品, 筑居思">
+  <meta name="author" content="Qianny">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thinkingleaf.space/cabinet.html">
+  <meta property="og:title" content="造物拾遗 - 筑居思">
+  <meta property="og:description" content="收集与展示我的创意与收藏、展品作品">
+  <meta property="og:image" content="https://thinkingleaf.space/images/putiye心形菩提叶.svg">
+  <meta property="og:site_name" content="筑居思">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://thinkingleaf.space/cabinet.html">
+  <meta name="twitter:title" content="造物拾遗 - 筑居思">
+  <meta name="twitter:description" content="收集与展示我的创意与收藏、展品作品">
+  <meta name="twitter:image" content="https://thinkingleaf.space/images/putiye心形菩提叶.svg">
+  
+  <link rel="canonical" href="https://thinkingleaf.space/cabinet.html">
   <title>造物拾遗 - 筑居思</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/ui-principles.css">
+    <link rel="stylesheet" href="css/lazy-loading.css">
+    <link rel="stylesheet" href="css/link-preview.css">
   <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
   
   <style>
@@ -41,11 +63,165 @@
       color: var(--color-text-secondary);
     }
     
-    .collections-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    /* 轮播容器样式 */
+    .cabinet-carousel-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    
+    .cabinet-carousel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 2rem;
-      margin-bottom: 4rem;
+      min-height: 600px;
+    }
+    
+    .carousel-item {
+      position: absolute;
+      width: 100%;
+      max-width: 500px;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .carousel-item.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+      z-index: 10;
+    }
+    
+    .carousel-item.prev,
+    .carousel-item.next {
+      opacity: 0.3;
+      transform: translateY(-20px) scale(0.9);
+      z-index: 2;
+    }
+    
+    /* 导航区域 */
+    .carousel-nav-area {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 150px;
+      z-index: 100;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .carousel-nav-top {
+      top: 0;
+    }
+    
+    .carousel-nav-bottom {
+      bottom: 0;
+    }
+    
+    .carousel-nav-area:hover {
+      background-color: rgba(200, 70, 48, 0.05);
+    }
+    
+    /* 卡片样式 */
+    .collection-card {
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .dark-theme .collection-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-text-secondary);
+    }
+    
+    .carousel-item.active .collection-card {
+      box-shadow: 0 8px 30px rgba(200, 70, 48, 0.15);
+      border-color: var(--color-accent-lotus-red);
+    }
+    
+    .collection-image {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      position: relative;
+      border-radius: 8px;
+    }
+    
+    .collection-image img,
+    .collection-img {
+      max-width: 80%;
+      width: auto;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 4px;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .carousel-item.active .collection-image img {
+      transform: scale(1);
+    }
+    
+    .carousel-item .collection-image img {
+      transform: scale(0.9);
+    }
+    
+    /* 白色叠加层（非主图内容） */
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.2);
+      z-index: 1;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    
+    .collection-info {
+      text-align: center;
+    }
+    
+    .collection-info h4 {
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+    
+    .carousel-item.active .collection-info h4 {
+      color: var(--color-accent-lotus-red);
+    }
+    
+    .collection-info p {
+      color: var(--color-text-secondary);
+      margin-bottom: 1rem;
+    }
+    
+    .card-link {
+      display: inline-block;
+      color: var(--color-accent-lotus-red);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    .card-link:hover {
+      background-color: rgba(200, 70, 48, 0.1);
     }
     
     .collection-category {
@@ -119,15 +295,18 @@
     }
     
     /* 响应式调整 */
-    @media (max-width: 1200px) {
-      .collections-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      }
-    }
-    
     @media (max-width: 768px) {
-      .collections-grid {
-        grid-template-columns: 1fr;
+      .cabinet-carousel {
+        min-height: 500px;
+      }
+      
+      .carousel-item {
+        max-width: 90%;
+        padding: 1.5rem;
+      }
+      
+      .carousel-nav-area {
+        height: 100px;
       }
       
       .collection-feature {
@@ -144,16 +323,18 @@
         font-size: 24px;
       }
       
-      .collection-card {
-        padding-bottom: 1rem;
+      .cabinet-carousel {
+        min-height: 450px;
       }
       
-      .collection-image {
-        height: 180px;
-      }
-      
-      .collection-info {
+      .carousel-item {
+        max-width: 95%;
         padding: 1rem;
+      }
+      
+      .collection-image img,
+      .collection-img {
+        max-width: 85%;
       }
       
       .btn {
@@ -205,44 +386,74 @@
         
         <!-- 我的收藏展 -->
         <section class="collection-category">
-          <div class="category-header">
-            <h3>我的收藏展</h3>
-            <span class="category-count">精选展品</span>
-          </div>
-          
-          <div class="collections-grid">
-            <div class="collection-card">
-              <div class="collection-image">
-                <img loading="lazy" src="images/placeholder-image.jpg" alt="树枝画框" class="collection-img" data-src="https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-001-main.jpg">
+          <div class="cabinet-carousel-container">
+            <div class="carousel-nav-area carousel-nav-top" data-direction="prev"></div>
+            
+            <div class="cabinet-carousel" id="cabinet-carousel">
+              <!-- 展品001 -->
+              <div class="collection-card carousel-item" data-index="0" data-href="exhibits/exhibit-001.html">
+                <div class="collection-image">
+                  <img loading="lazy" src="images/exhibits/exhibit-001/main.jpg" alt="树枝画框" class="collection-img" data-src="images/exhibits/exhibit-001/main.jpg">
+                </div>
+                <div class="collection-info">
+                  <h4>展品001-树枝画框</h4>
+                  <p>公园捡到的枯树枝，断裂纹理细腻</p>
+                  <a href="exhibits/exhibit-001.html" class="card-link">查看详情 →</a>
+                </div>
               </div>
-              <div class="collection-info">
-                <h4>展品001-树枝画框</h4>
-                <p>公园捡到的枯树枝，断裂纹理细腻</p>
-                <a href="exhibits/exhibit-001.html" class="card-link">查看详情 →</a>
+              
+              <!-- 展品002 -->
+              <div class="collection-card carousel-item" data-index="1" data-href="exhibits/exhibit-002.html">
+                <div class="collection-image">
+                  <img loading="lazy" src="images/exhibit-002-main.jpg" alt="红靴子与花" class="collection-img" data-src="images/exhibit-002-main.jpg">
+                </div>
+                <div class="collection-info">
+                  <h4>展品002-红靴子与绿植</h4>
+                  <p>3D打印的红靴子，种下种子生出芽儿</p>
+                  <a href="exhibits/exhibit-002.html" class="card-link">查看详情 →</a>
+                </div>
+              </div>
+              
+              <!-- 展品003 -->
+              <div class="collection-card carousel-item" data-index="2" data-href="exhibits/exhibit-003.html">
+                <div class="collection-image">
+                  <img loading="lazy" src="images/exhibit-003-main.jpg" alt="花艺设计" class="collection-img" data-src="images/exhibit-003-main.jpg">
+                </div>
+                <div class="collection-info">
+                  <h4>展品003-菜之花</h4>
+                  <p>探索自然与艺术的边界</p>
+                  <a href="exhibits/exhibit-003.html" class="card-link">查看详情 →</a>
+                </div>
+              </div>
+              
+              <!-- 展品001细节图 -->
+              <div class="collection-card carousel-item" data-index="3" data-href="exhibits/exhibit-001.html">
+                <div class="collection-image">
+                  <div class="image-overlay"></div>
+                  <img loading="lazy" src="images/exhibits/exhibit-001/detail-1.jpg" alt="树枝画框细节" class="collection-img" data-src="images/exhibits/exhibit-001/detail-1.jpg">
+                </div>
+                <div class="collection-info">
+                  <h4>展品001-树枝画框（细节）</h4>
+                  <p>断裂纹理的细腻展现</p>
+                  <a href="exhibits/exhibit-001.html" class="card-link">查看详情 →</a>
+                </div>
+              </div>
+              
+              <!-- 展品002细节图 -->
+              <div class="collection-card carousel-item" data-index="4" data-href="exhibits/exhibit-002.html">
+                <div class="collection-image">
+                  <div class="image-overlay"></div>
+                  <img loading="lazy" src="images/exhibits/exhibit-002/detail-2.jpg" alt="红靴子与绿植细节" class="collection-img" data-src="images/exhibits/exhibit-002/detail-2.jpg">
+                </div>
+                <div class="collection-info">
+                  <h4>展品002-红靴子与绿植（细节）</h4>
+                  <p>绿植生长的细节展现</p>
+                  <a href="exhibits/exhibit-002.html" class="card-link">查看详情 →</a>
+                </div>
               </div>
             </div>
             
-            <div class="collection-card">
-              <div class="collection-image">
-                <img loading="lazy" src="images/placeholder-image.jpg" alt="红靴子与花" class="collection-img" data-src="https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-002-main.jpg">
-              </div>
-              <div class="collection-info">
-                <h4>展品002-红靴子与绿植</h4>
-                <p>3D打印的红靴子，种下种子生出芽儿</p>
-                <a href="exhibits/exhibit-002.html" class="card-link">查看详情 →</a>
-              </div>
-            </div>
-            
-            <div class="collection-card">
-              <div class="collection-image">
-                <img loading="lazy" src="images/placeholder-image.jpg" alt="花艺设计" class="collection-img" data-src="https://raw.githubusercontent.com/ThinkingLeafSpace/thinkingleaf.space/gh-pages/images/exhibits/exhibit-003-main.jpg">
-              </div>
-              <div class="collection-info">
-                <h4>展品003-菜之花</h4>
-                <p>探索自然与艺术的边界</p>
-                <a href="exhibits/exhibit-003.html" class="card-link">查看详情 →</a>
-              </div>
-            </div>
+            <div class="carousel-nav-area carousel-nav-bottom" data-direction="next"></div>
           </div>
         </section>
       </main>
@@ -273,5 +484,151 @@
   <script src="js/lazy-loading.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/ui-enhancements.js" defer></script>
+  <script src="js/link-preview.js" defer></script>
+  <script>
+    // 造物拾遗轮播功能
+    (function() {
+      const carousel = document.getElementById('cabinet-carousel');
+      if (!carousel) return;
+      
+      const items = carousel.querySelectorAll('.carousel-item');
+      const navTop = document.querySelector('.carousel-nav-top');
+      const navBottom = document.querySelector('.carousel-nav-bottom');
+      
+      if (items.length === 0) return;
+      
+      let currentIndex = 0;
+      let isTransitioning = false;
+      let hoverTimeout = null;
+      
+      // 初始化：显示第一个项目
+      function initCarousel() {
+        items.forEach((item, index) => {
+          item.classList.remove('active', 'prev', 'next');
+          if (index === currentIndex) {
+            item.classList.add('active');
+          }
+        });
+      }
+      
+      // 更新轮播显示
+      function updateCarousel() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        items.forEach((item, index) => {
+          item.classList.remove('active', 'prev', 'next');
+        });
+        
+        // 设置当前项
+        if (items[currentIndex]) {
+          items[currentIndex].classList.add('active');
+        }
+        
+        // 设置前一项（如果有）
+        const prevIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+        if (items[prevIndex]) {
+          items[prevIndex].classList.add('prev');
+        }
+        
+        // 设置后一项（如果有）
+        const nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+        if (items[nextIndex]) {
+          items[nextIndex].classList.add('next');
+        }
+        
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 300);
+      }
+      
+      // 切换到下一个
+      function nextItem() {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel();
+      }
+      
+      // 切换到上一个
+      function prevItem() {
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+        updateCarousel();
+      }
+      
+      // 导航区域hover事件
+      function setupNavHover(navElement, direction) {
+        let hoverActive = false;
+        
+        navElement.addEventListener('mouseenter', () => {
+          hoverActive = true;
+          if (hoverTimeout) clearTimeout(hoverTimeout);
+          
+          const switchItem = () => {
+            if (hoverActive && !isTransitioning) {
+              if (direction === 'next') {
+                nextItem();
+              } else {
+                prevItem();
+              }
+              hoverTimeout = setTimeout(switchItem, 800); // 每800ms切换一次
+            }
+          };
+          
+          // 延迟一下再开始切换，给用户一点反应时间
+          hoverTimeout = setTimeout(switchItem, 300);
+        });
+        
+        navElement.addEventListener('mouseleave', () => {
+          hoverActive = false;
+          if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+            hoverTimeout = null;
+          }
+        });
+      }
+      
+      // 点击卡片跳转到详情页
+      items.forEach((item) => {
+        const link = item.querySelector('.card-link');
+        if (link) {
+          item.addEventListener('click', (e) => {
+            // 如果点击的不是链接本身，则跳转
+            if (e.target !== link && !link.contains(e.target)) {
+              const href = item.getAttribute('data-href');
+              if (href) {
+                window.location.href = href;
+              }
+            }
+          });
+          
+          // 添加hover效果，让卡片看起来可点击
+          item.style.cursor = 'pointer';
+        }
+      });
+      
+      // 设置导航区域
+      if (navTop) {
+        setupNavHover(navTop, 'prev');
+      }
+      
+      if (navBottom) {
+        setupNavHover(navBottom, 'next');
+      }
+      
+      // 初始化
+      initCarousel();
+      updateCarousel();
+      
+      // 键盘支持（可选）
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          nextItem();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          prevItem();
+        }
+      });
+    })();
+  </script>
 </body>
 </html> 

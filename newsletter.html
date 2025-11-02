@@ -7,8 +7,8 @@
     <meta name="description" content="我的创意作品与收藏展示空间">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/ui-principles.css">
-    <link rel="stylesheet" href="css/float-music-icon.css">
-    <link rel="icon" href="images/icon (3).png" type="image/png">
+    <link rel="stylesheet" href="css/lazy-loading.css">
+    <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;500" rel="stylesheet">
@@ -38,7 +38,7 @@
         <ul class="sidebar-nav">
             <li><a href="index.html">首页</a></li>
             <li><a href="blogs.html">个人博客</a></li>
-            <li><a href="newsletter.html">造物拾遗</a></li>
+            <li><a href="cabinet.html">造物拾遗</a></li>
             <li><a href="portfolio.html">个人作品集</a></li>
         </ul>
         <div class="theme-toggle">
@@ -76,7 +76,7 @@
                             <!-- 展品001 -->
                             <a href="exhibits/exhibit-001.html" class="exhibit-item-link">
                                 <div class="exhibit-item" data-exhibit-id="001">
-                                    <img loading="lazy" src="images/exhibits/exhibit-001-main.jpg" alt="树枝画框" data-src="images/exhibits/exhibit-001-main.jpg" alt="树枝画框">
+                                    <img loading="lazy" src="images/exhibits/exhibit-001/main.jpg" alt="树枝画框" data-src="images/exhibits/exhibit-001/main.jpg">
                                     <div class="exhibit-title">展品001-树枝画框</div>
                                 </div>
                             </a>
@@ -84,7 +84,7 @@
                             <!-- 展品002 -->
                             <a href="exhibits/exhibit-002.html" class="exhibit-item-link">
                                 <div class="exhibit-item" data-exhibit-id="002">
-                                    <img loading="lazy" src="images/exhibits/exhibit-002-main.jpg" alt="红靴子与花" data-src="images/exhibits/exhibit-002-main.jpg" alt="红靴子与花">
+                                    <img loading="lazy" src="images/exhibit-002-main.jpg" alt="红靴子与花" data-src="images/exhibit-002-main.jpg">
                                     <div class="exhibit-title">展品002-红靴子与绿植</div>
                                 </div>
                             </a>
@@ -92,11 +92,11 @@
                             <!-- 展品003 -->
                             <a href="exhibits/exhibit-003.html" class="exhibit-item-link">
                                 <div class="exhibit-item" data-exhibit-id="003">
-                                    <img loading="lazy" src="images/exhibits/flowers/exhibit-003-main.jpg" alt="花艺设计" data-src="images/exhibits/flowers/exhibit-003-main.jpg" alt="花艺设计">
+                                    <img loading="lazy" src="images/exhibit-003-main.jpg" alt="花艺设计" data-src="images/exhibit-003-main.jpg">
                                     <div class="exhibit-title">展品003-菜之花</div>
                                     <div class="immersive-gallery-entry">
                                         <div class="immersive-gallery-background">
-                                            <img loading="lazy" src="images/exhibits/flowers/exhibit-003-main.jpg" alt="花艺背景" data-src="images/exhibits/flowers/exhibit-003-main.jpg" alt="花艺背景">
+                                            <img loading="lazy" src="images/exhibit-003-main.jpg" alt="花艺背景" data-src="images/exhibit-003-main.jpg">
                                         </div>
                                         <div class="immersive-gallery-content">
                                             <h3>花艺设计记录</h3>
@@ -116,7 +116,7 @@
 
             <footer>
                 <div class="footer-content">
-                    <p>© 2023 筑居思. 保留所有权利.</p>
+                    <p>© 2025 筑居思. 保留所有权利.</p>
                     <div class="social-links">
                         <a href="https://github.com/ArchQian" aria-label="GitHub" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
@@ -136,12 +136,10 @@
         </div>
     </div>
 
-    <script src="js/theme-switcher.js"></script>
-  <script src="js/lazy-loading.js"></script>
-  <script src="js/main.js"></script>
-    <script src="js/theme-switcher.js"></script>
-  <script src="js/lazy-loading.js"></script>
-  <script src="js/netease-music-player.js"></script>
+    <script src="js/theme-switcher.js" defer></script>
+    <script src="js/lazy-loading.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/ui-enhancements.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 阻止展品链接的点击事件冒泡，以便点击展品时直接跳转到详情页

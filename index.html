@@ -3,9 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="回归生活本源的思考与创造">
+  <meta name="description" content="筑居思 - 回归生活本源的思考与创造 | 设计学 × 心理学 × 哲学 | 多元思维、第一性原理 | 内观禅修践行者">
+  <meta name="keywords" content="筑居思, Qianny, UI设计, 设计学, 心理学, 哲学, 多元思维, 第一性原理, 禅修, 内观, Vipassana, 正念冥想, 认知科学, 知识管理, 设计思维, 创造性思维, 个人博客">
+  <meta name="author" content="Qianny">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="zh-CN">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thinkingleaf.space/">
+  <meta property="og:title" content="筑居思 - 回归生活本源的思考与创造">
+  <meta property="og:description" content="设计学 × 心理学 × 哲学 | 多元思维与第一性原理 | 内观禅修践行者">
+  <meta property="og:image" content="https://thinkingleaf.space/images/putiye心形菩提叶.svg">
+  <meta property="og:site_name" content="筑居思">
+  <meta property="og:locale" content="zh_CN">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://thinkingleaf.space/">
+  <meta name="twitter:title" content="筑居思 - 回归生活本源的思考与创造">
+  <meta name="twitter:description" content="设计学 × 心理学 × 哲学 | 多元思维与第一性原理 | 内观禅修践行者">
+  <meta name="twitter:image" content="https://thinkingleaf.space/images/putiye心形菩提叶.svg">
+  
+  <!-- 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Qianny",
+    "alternateName": "筑居思",
+    "url": "https://thinkingleaf.space",
+    "jobTitle": "光通信行业大数据B端UI设计师",
+    "description": "回归生活本源的思考与创造 | 禅修践行者",
+    "sameAs": [
+      "https://github.com/ArchQian",
+      "https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa",
+      "https://www.zcool.com.cn/u/27619561"
+    ]
+  }
+  </script>
+  
   <title>筑居思 - 回归生活本源的思考与创造</title>
   <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://thinkingleaf.space/">
   
   <!-- 关键CSS内联，提高首屏渲染速度 -->
   <style>
@@ -126,11 +166,22 @@
       align-items: center;
       justify-content: center;
       border: 1px solid var(--color-border);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .avatar-container:hover {
+      box-shadow: 0 0 20px rgba(200, 70, 48, 0.2),
+                  0 0 40px rgba(200, 70, 48, 0.15),
+                  0 0 60px rgba(200, 70, 48, 0.1);
+      transform: scale(1.02);
     }
     .avatar-img {
       width: 90%;
       height: 90%;
       object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .avatar-container:hover .avatar-img {
+      transform: scale(1.05);
     }
     .about-content {
       flex: 1;
@@ -150,9 +201,19 @@
       border-radius: 20px;
       font-size: 0.9rem;
       transition: background-color 0.4s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
     }
     .dark-theme .bio-item {
       background-color: rgba(229, 90, 75, 0.2);
+    }
+    .bio-emoji {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .bio-item:hover .bio-emoji {
+      transform: rotate(30deg) scale(1.5);
     }
     .about-social {
       margin-top: 1rem;
@@ -163,8 +224,15 @@
       color: var(--color-text);
       transition: color 0.3s ease;
     }
+    .social-icon svg {
+      transition: stroke 0.3s ease, color 0.3s ease;
+    }
     .social-icon:hover {
-      color: var(--color-accent-lotus-red);
+      color: white;
+    }
+    .social-icon:hover svg {
+      color: white;
+      stroke: white;
     }
     /* 内容盒子样式 */
     .content-section {
@@ -346,7 +414,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Kaiti+SC:wght@700&family=Source+Han+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="index-page">
   <!-- 无障碍跳过链接 -->
   <a href="#main-content" class="skip-link">跳到主要内容</a>
 
@@ -399,10 +467,13 @@
           <div class="about-content">
             <h2>关于我-Qianny</h2>
             <div class="about-bio">
-              <span class="bio-item">❣️光通信行业大数据B端UI设计师</span>
-              <span class="bio-item">👀人文社科/旅行展览</span>
-              <span class="bio-item">禅修践行者</span>
-              <span class="bio-item">美学维纳斯</span>
+              <span class="bio-item"><span class="bio-emoji">❣️</span>光通信行业大数据B端UI设计师</span>
+              <span class="bio-item"><span class="bio-emoji">♻️</span>Remake艺术家</span>
+              <span class="bio-item"><span class="bio-emoji">🧘🏻‍♀️</span>禅修践行者</span>
+              <span class="bio-item"><span class="bio-emoji">✨</span>美学维纳斯</span>
+              <span class="bio-item"><span class="bio-emoji">📚</span>终身学习者</span>
+              <span class="bio-item"><span class="bio-emoji">🚶</span>存在主义er</span>
+              <span class="bio-item"><span class="bio-emoji">👀</span>展览爱好者</span>
             </div>
             <div class="about-social">
               <a href="https://github.com/ArchQian" aria-label="GitHub" class="social-icon" target="_blank">
@@ -430,17 +501,17 @@
           <h3>个人博客 - 最新文章</h3>
           <div class="content-cards">
             <div class="content-card">
-              <a href="blogs/2024-07-06-meditation-journey.html">
-                <h4>半载观想小记：在大理、在内观禅修的路上</h4>
-                <span class="date">2023-11-24</span>
-                <p>禅修之旅的思考与感悟，探索内在的宁静与觉知</p>
+              <a href="blogs/2025-10-26-在禅堂里我遇见了所有人记第二次内观禅修的结缘.html">
+                <h4>在禅堂里，我遇见了所有人——记第二次内观禅修的结缘</h4>
+                <span class="date">2025-10-26</span>
+                <p></p>
               </a>
             </div>
             <div class="content-card">
-              <a href="blogs/2025-05-03-creativity-thoughts.html">
-                <h4>我是如何看待创造的</h4>
-                <span class="date">2023-09-22</span>
-                <p>关于创造的本质、意义与如何提升创造力</p>
+              <a href="blogs/2025-08-28-2025年了为什么我还是推荐用RSS订阅内容.html">
+                <h4>2025年了！为什么我还是推荐用RSS订阅内容</h4>
+                <span class="date">2025-08-28</span>
+                <p></p>
               </a>
             </div>
           </div>

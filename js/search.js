@@ -207,7 +207,7 @@ class SiteSearch {
       { path: 'blogs.html', type: 'blog', weight: 1.5 },
       { path: 'blogs/meditation-journey.html', type: 'blog', weight: 1.5 },
       { path: 'blogs/creativity-thoughts.html', type: 'blog', weight: 1.5 },
-      { path: 'blogs/24-things.html', type: 'blog', weight: 1.5 },
+      { path: 'blogs/2024-11-30-24岁学会的24件事.html', type: 'blog', weight: 1.5 },
       { path: 'blogs/talking-to-19-yo-self.html', type: 'blog', weight: 1.5 },
       { path: 'exhibits/exhibit-001.html', type: 'exhibit', weight: 1.0 },
       { path: 'exhibits/exhibit-002.html', type: 'exhibit', weight: 1.0 },
