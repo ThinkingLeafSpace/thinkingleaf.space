@@ -65,7 +65,7 @@ def extract_blog_info(html_file):
     title_match = re.search(r'<title>([^<]+)</title>', content)
     title = title_match.group(1).replace(' - 筑居思', '').strip() if title_match else ''
     
-    desc_match = re.search(r'<meta name="description" content="([^"]+)">', content)
+    desc_match = re.search(r'<meta name="description" content="([^"]*)"', content)
     description = desc_match.group(1) if desc_match else ''
     
     return {
