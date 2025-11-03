@@ -405,6 +405,7 @@ class MarkdownConverter:
     <meta name="description" content="{description}">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/blog-post.css">
+    <link rel="stylesheet" href="../css/recommendations.css">
     <link rel="icon" href="../images/putiye心形菩提叶.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -452,6 +453,7 @@ class MarkdownConverter:
                     <div class="post-content">
 {content}
                     </div>
+                    <section class="recommended-articles" id="recommended-articles" aria-label="相关文章推荐"></section>
                 </article>
             </main>
 
@@ -479,6 +481,15 @@ class MarkdownConverter:
 
     <script src="../js/theme-switcher.js"></script>
     <script src="../js/lazy-loading.js"></script>
+    <script>
+      // 将基本元信息暴露给推荐模块（若无FrontMatter标签，则使用默认）
+      window.currentArticleMeta = window.currentArticleMeta || {{
+        title: {json.dumps(title)},
+        tags: {json.dumps(categories or [])},
+        pillar: {json.dumps((categories or ['思'])[0] if categories else '思')}
+      }};
+    </script>
+    <script src="../js/recommendations.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>'''

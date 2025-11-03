@@ -21,7 +21,7 @@
 .dark-theme .sidebar-nav a:hover,
 .dark-theme .sidebar-nav a.active {
     background-color: var(--bg-primary);
-    color: var(--accent);
+    color: var(--theme-primary);
 }
 
 /* 主内容区域 */

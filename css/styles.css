@@ -192,8 +192,18 @@
 
 /* Trial mounts (scoped; no change without data-emotion) */
 [data-emotion] .content-card {
-    border: 2px solid var(--theme-primary);
-    box-shadow: 0 6px 16px color-mix(in oklab, var(--theme-support), transparent 70%);
+    /* 回归克制：保留中性边框，加入轻微情绪内嵌色条与柔和阴影 */
+    border: 1px solid color-mix(in oklab, var(--theme-support), transparent 80%);
+    box-shadow:
+        inset 3px 0 0 color-mix(in oklab, var(--theme-primary), transparent 86%),
+        0 4px 14px color-mix(in oklab, var(--theme-support), transparent 88%);
+}
+
+[data-emotion] .content-card:hover {
+    border-color: color-mix(in oklab, var(--theme-support), transparent 72%);
+    box-shadow:
+        inset 3px 0 0 color-mix(in oklab, var(--theme-primary), transparent 82%),
+        0 8px 22px color-mix(in oklab, var(--theme-support), transparent 82%);
 }
 
 [data-emotion] .content-card h4 {
@@ -238,12 +248,20 @@
     background-color: var(--theme-primary);
     color: #fff;
     border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 8px 12px; /* ensure left/right >= 4px */
+    margin-top: 8px; /* top spacing outside frame */
 }
 
 [data-emotion] .cta-button:hover {
     background-color: var(--theme-accent);
     color: #fff;
     border-color: transparent;
+}
+
+/* Ensure spacing between invite paragraph and CTA */
+.invitation-link-area p {
+    margin-bottom: 16px;
 }
 
 * {
@@ -390,14 +408,14 @@ h1, h2, h3, h4, h5, h6 {
     border-left: 3px solid transparent;
 }
 
-.sidebar-nav a:hover, 
+.sidebar-nav a:hover,
 .sidebar-nav a.active {
     background-color: var(--bg-primary);
-    color: var(--accent);
+    color: var(--theme-primary);
 }
 
 .sidebar-nav a.active {
-    border-left-color: var(--accent);
+    border-left-color: var(--theme-primary);
 }
 
 /* 修改按钮和图标样式 */
@@ -412,7 +430,8 @@ button, .btn {
     flex: 1;
     margin-left: var(--sidebar-width);
     width: calc(100% - var(--sidebar-width));
-    overflow-x: hidden;
+    /* 允许内部全宽区块（如 footer 的 100vw 背景）突破容器 */
+    overflow-x: visible;
     opacity: 0;
     animation: fadeInContent 0.8s ease forwards;
 }
@@ -586,14 +605,17 @@ footer {
     padding: var(--spacing-4) 0;
     margin-top: var(--spacing-6);
     text-align: center;
+    background-color: var(--footer-bg);
+    /* full-bleed background even when inside a centered container */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
 }
 
 .footer-content {
     max-width: 720px;
     margin: 0 auto;
     padding: var(--spacing-4) var(--spacing-3);
-    background-color: var(--footer-bg);
-    border-radius: 8px;
 }
 
 .footer-content p {

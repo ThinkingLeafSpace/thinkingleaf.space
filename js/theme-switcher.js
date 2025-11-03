@@ -198,5 +198,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   initEmotion();
-  mountEmotionSwitcher();
+  // Hide switcher by default; enable only when debug flag is set
+  if (localStorage.getItem('emotion_debug') === 'on') {
+    mountEmotionSwitcher();
+  }
 });

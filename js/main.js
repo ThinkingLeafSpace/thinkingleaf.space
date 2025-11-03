@@ -63,12 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 根据当前页面高亮导航链接
     function setActiveNavLink() {
-        const currentPath = window.location.pathname;
+        const currentPath = window.location.pathname.replace(/index\.html$/, '') || '/';
         const navLinks = document.querySelectorAll('.sidebar-nav a');
         
-        // 如果在根路径，默认为主页
-        if (currentPath === '/' || currentPath.endsWith('index.html')) {
-            const homeLink = document.querySelector('.sidebar-nav a[href="index.html"]');
+        // 根路径匹配主页
+        if (currentPath === '/') {
+            const homeLink = document.querySelector('.sidebar-nav a[href="/"]');
             if (homeLink) homeLink.classList.add('active');
             return;
         }
@@ -76,22 +76,42 @@ document.addEventListener('DOMContentLoaded', () => {
         // 博客文章页：任何 /blogs/ 下的页面都高亮“个人博客”
         if (currentPath.includes('/blogs/')) {
             const blogLink = Array.from(navLinks).find(link => {
-                const hrefFile = (link.getAttribute('href') || '').split('/').pop();
-                return hrefFile === 'blogs.html';
+                const href = link.getAttribute('href') || '';
+                return href === '/blog';
             });
             if (blogLink) blogLink.classList.add('active');
             return;
         }
 
         // 其他页面：匹配当前路径（仅比较文件名，兼容 ../xxx.html 相对路径）
-        const currentFile = currentPath.split('/').pop();
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href') || '';
-            const hrefFile = href.split('/').pop();
-            if (currentFile === hrefFile) {
-                link.classList.add('active');
+        const route = currentPath.replace(/\.html$/, '');
+        const mapping = [
+            { path: '/manifesto', selector: 'a[href="/manifesto"]' },
+            { path: '/blog', selector: 'a[href="/blog"]' },
+            { path: '/cabinet', selector: 'a[href="/cabinet"]' }
+        ];
+        // 兼容旧文件路径
+        const legacy = [
+            { test: /what-is-zhu-ju-si\.html$/, selector: 'a[href="/manifesto"]' },
+            { test: /blogs\.html$/, selector: 'a[href="/blog"]' },
+            { test: /cabinet\.html$/, selector: 'a[href="/cabinet"]' }
+        ];
+
+        let activated = false;
+        for (const m of mapping) {
+            if (route === m.path) {
+                const el = document.querySelector(`.sidebar-nav ${m.selector}`);
+                if (el) { el.classList.add('active'); activated = true; }
             }
-        });
+        }
+        if (!activated) {
+            for (const l of legacy) {
+                if (l.test.test(currentPath)) {
+                    const el = document.querySelector(`.sidebar-nav ${l.selector}`);
+                    if (el) { el.classList.add('active'); activated = true; }
+                }
+            }
+        }
     }
     
     // 初始化活动导航链接
