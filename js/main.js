@@ -117,15 +117,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 阅读进度指示器
-    const progressBar = document.getElementById('reading-progress');
-    if (progressBar) {
-        window.addEventListener('scroll', () => {
-            const totalHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / totalHeight) * 100;
-            progressBar.style.width = `${progress}%`;
-        });
+    // 阅读进度指示器（若不存在则动态创建）
+    let progressBar = document.getElementById('reading-progress');
+    if (!progressBar) {
+        const progressContainer = document.createElement('div');
+        progressContainer.className = 'progress-container';
+        const bar = document.createElement('div');
+        bar.className = 'progress-bar';
+        bar.id = 'reading-progress';
+        progressContainer.appendChild(bar);
+        // 插入到 <body> 开头，确保置顶
+        document.body.insertBefore(progressContainer, document.body.firstChild);
+        progressBar = bar;
     }
+
+    window.addEventListener('scroll', () => {
+        if (!progressBar) return;
+        const totalHeight = document.body.scrollHeight - window.innerHeight;
+        const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+        progressBar.style.width = `${progress}%`;
+    });
 
 
     // ========== newsletter 轮播逻辑 ==========
