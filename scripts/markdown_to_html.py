@@ -420,7 +420,6 @@ class MarkdownConverter:
             <li><a href="../index.html">首页</a></li>
             <li><a href="../blogs.html">个人博客</a></li>
             <li><a href="../cabinet.html">造物拾遗</a></li>
-            <li><a href="../portfolio.html">个人作品集</a></li>
         </ul>
         <div class="theme-toggle">
             <button id="theme-toggle-btn" aria-label="切换主题">

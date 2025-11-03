@@ -35,6 +35,217 @@
     --sidebar-bg: var(--bg-secondary);
 }
 
+/* ----------------------------------------------------
+ * 「筑居思」色彩主题变量 (Matisse x Zen Aesthetics)
+ * 核心原则：禅意 (留白) 为底，马蒂斯 (高饱和) 为锚点。
+ * 亮色模式 (默认) 基础变量 + 无 data-emotion 时的默认主题
+ * ---------------------------------------------------- */
+
+:root {
+    /* 禅意基础色 (The Zen Base) */
+    --color-background-primary: #FCFCF8; /* 温暖奶油白，纸张感 */
+    --color-background-secondary: #F0ECE3; /* 浅米灰，用于卡片/区块背景 */
+    --color-text-primary: #262626;      /* 深炭黑，主正文 */
+    --color-text-secondary: #575757;    /* 中灰，描述性文字 */
+    --color-border-subtle: #E0E0E0;     /* 浅灰边框 */
+
+    /* 通用马蒂斯锚点色 (General Accents) */
+    --color-accent-blue: #007BFF;       /* 马蒂斯蓝：核心链接/按钮 */
+    --color-accent-orange: #E67E22;     /* 赭石橙：Remake 徽章/CTA */
+    --color-accent-yellow: #FFD700;     /* 纯粹黄：Hover/Tooltip 惊喜 */
+
+    /* 无 data-emotion 时的默认主题变量 */
+    --theme-primary: var(--color-accent-blue);
+    --theme-secondary: var(--color-background-secondary);
+    --theme-accent: var(--color-accent-orange);
+    --theme-support: #90BE6D; /* 辅助色，檀青绿 */
+    --theme-ink: var(--color-text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* 深色基础 (Zen Base Dark) */
+        --color-background-primary: #1F2124;
+        --color-background-secondary: #2C2F33;
+        --color-text-primary: #F0ECE3;
+        --color-text-secondary: #A0A0A0;
+
+        /* 默认主题 (Dark) */
+        --theme-primary: #599FFF;
+        --theme-secondary: #3A3E45;
+        --theme-accent: #FF9E4A;
+        --theme-support: #B8DB8D;
+        --theme-ink: var(--color-text-primary);
+    }
+}
+
+/* ========== Emotion Themes (Light & Dark) ========== */
+/* Light variants */
+:root[data-emotion="passion"] {
+    --theme-primary: #E63946;
+    --theme-secondary: #FFB703;
+    --theme-accent: #2A9D8F;
+    --theme-support: #264653;
+    --theme-ink: #1D1D1F;
+}
+
+:root[data-emotion="serenity"] {
+    --theme-primary: #277DA1;
+    --theme-secondary: #43AA8B;
+    --theme-accent: #F3722C;
+    --theme-support: #90BE6D;
+    --theme-ink: #0F172A;
+}
+
+:root[data-emotion="joy"] {
+    --theme-primary: #FF006E;
+    --theme-secondary: #FDC500;
+    --theme-accent: #3A86FF;
+    --theme-support: #8338EC;
+    --theme-ink: #111827;
+}
+
+:root[data-emotion="contemplation"] {
+    --theme-primary: #4C3F91;
+    --theme-secondary: #26A69A;
+    --theme-accent: #FF6B6B;
+    --theme-support: #FFD166;
+    --theme-ink: #0B1021;
+}
+
+:root[data-emotion="growth"] {
+    --theme-primary: #00A884;
+    --theme-secondary: #7AE582;
+    --theme-accent: #FF9F1C;
+    --theme-support: #2D7DD2;
+    --theme-ink: #0A0A0B;
+}
+
+:root[data-emotion="wander"] {
+    --theme-primary: #1AA7EC;
+    --theme-secondary: #F46036;
+    --theme-accent: #2EC4B6;
+    --theme-support: #FFBF69;
+    --theme-ink: #0E1116;
+}
+
+:root[data-emotion="transcend"] {
+    --theme-primary: #C84630; /* 品牌朱红 */
+    --theme-secondary: #7E9C8D;
+    --theme-accent: #1D3557;
+    --theme-support: #E63946;
+    --theme-ink: #111111;
+}
+
+/* Dark variants */
+@media (prefers-color-scheme: dark) {
+    :root[data-emotion="passion"] {
+        --theme-primary: #FF5566;
+        --theme-secondary: #FFC44D;
+        --theme-accent: #34B6A3;
+        --theme-support: #1C2A35;
+        --theme-ink: #F5F5F5;
+    }
+    :root[data-emotion="serenity"] {
+        --theme-primary: #3B95BE;
+        --theme-secondary: #5BC2A3;
+        --theme-accent: #FF8A48;
+        --theme-support: #A5D983;
+        --theme-ink: #E6EAF3;
+    }
+    :root[data-emotion="joy"] {
+        --theme-primary: #FF3390;
+        --theme-secondary: #FFD04D;
+        --theme-accent: #69A3FF;
+        --theme-support: #9C66FF;
+        --theme-ink: #F3F4F6;
+    }
+    :root[data-emotion="contemplation"] {
+        --theme-primary: #6A5BB3;
+        --theme-secondary: #3CBBAF;
+        --theme-accent: #FF8E8E;
+        --theme-support: #FFDE85;
+        --theme-ink: #E6E9F4;
+    }
+    :root[data-emotion="growth"] {
+        --theme-primary: #1BC1A0;
+        --theme-secondary: #96F19B;
+        --theme-accent: #FFB347;
+        --theme-support: #4A96EC;
+        --theme-ink: #F3F3F4;
+    }
+    :root[data-emotion="wander"] {
+        --theme-primary: #3ABDFF;
+        --theme-secondary: #FF7B55;
+        --theme-accent: #55DDCF;
+        --theme-support: #FFD787;
+        --theme-ink: #E9ECF2;
+    }
+    :root[data-emotion="transcend"] {
+        --theme-primary: #E55A4B;
+        --theme-secondary: #96B5A6;
+        --theme-accent: #2A4B85;
+        --theme-support: #FF6B6B;
+        --theme-ink: #F2F2F2;
+    }
+}
+
+/* Trial mounts (scoped; no change without data-emotion) */
+[data-emotion] .content-card {
+    border: 2px solid var(--theme-primary);
+    box-shadow: 0 6px 16px color-mix(in oklab, var(--theme-support), transparent 70%);
+}
+
+[data-emotion] .content-card h4 {
+    color: var(--theme-ink);
+}
+
+[data-emotion] .content-card .date {
+    color: var(--theme-accent);
+}
+
+[data-emotion] .btn-primary {
+    background: var(--theme-primary);
+    color: #fff;
+    border-color: transparent;
+}
+
+[data-emotion] .btn-primary:hover {
+    background: var(--theme-accent);
+    color: #fff;
+    border-color: transparent;
+}
+
+/* Links adopt emotion accent; hover pivots to primary for clearer affordance */
+[data-emotion] a {
+    color: var(--theme-accent);
+}
+
+[data-emotion] a:hover {
+    color: var(--theme-primary);
+}
+
+/* Tags adopt themed secondary background and ink color */
+[data-emotion] .tag,
+[data-emotion] .date-tag {
+    background-color: var(--theme-secondary);
+    color: var(--theme-ink);
+    border: 1px solid color-mix(in oklab, var(--theme-support), transparent 75%);
+}
+
+/* CTA button mapping if present */
+[data-emotion] .cta-button {
+    background-color: var(--theme-primary);
+    color: #fff;
+    border: 2px solid transparent;
+}
+
+[data-emotion] .cta-button:hover {
+    background-color: var(--theme-accent);
+    color: #fff;
+    border-color: transparent;
+}
+
 * {
     margin: 0;
     padding: 0;

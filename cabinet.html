@@ -344,7 +344,7 @@
     }
   </style>
 </head>
-<body>
+<body data-emotion="wander">
   <!-- 左侧固定导航栏 -->
   <div class="sidebar">
     <div class="sidebar-logo">
@@ -352,9 +352,9 @@
     </div>
     <ul class="sidebar-nav">
       <li><a href="index.html">首页</a></li>
+      <li><a href="what-is-zhu-ju-si.html">何为筑居思</a></li>
       <li><a href="blogs.html">个人博客</a></li>
       <li><a href="cabinet.html">造物拾遗</a></li>
-      <li><a href="portfolio.html">个人作品集</a></li>
     </ul>
     <div class="theme-toggle">
       <button id="theme-toggle-btn" aria-label="切换主题">
@@ -381,79 +381,24 @@
       <main>
         <section class="hero">
           <h2>造物拾遗</h2>
-          <p>收集与展示我的创意与收藏</p>
+          <p>网站的核心实践模块，分为两个子版块：</p>
         </section>
-        
-        <!-- 我的收藏展 -->
+
         <section class="collection-category">
-          <div class="cabinet-carousel-container">
-            <div class="carousel-nav-area carousel-nav-top" data-direction="prev"></div>
-            
-            <div class="cabinet-carousel" id="cabinet-carousel">
-              <!-- 展品001 -->
-              <div class="collection-card carousel-item" data-index="0" data-href="exhibits/exhibit-001.html">
-                <div class="collection-image">
-                  <img loading="lazy" src="images/exhibits/exhibit-001/main.jpg" alt="树枝画框" class="collection-img" data-src="images/exhibits/exhibit-001/main.jpg">
-                </div>
-                <div class="collection-info">
-                  <h4>展品001-树枝画框</h4>
-                  <p>公园捡到的枯树枝，断裂纹理细腻</p>
-                  <a href="exhibits/exhibit-001.html" class="card-link">查看详情 →</a>
-                </div>
-              </div>
-              
-              <!-- 展品002 -->
-              <div class="collection-card carousel-item" data-index="1" data-href="exhibits/exhibit-002.html">
-                <div class="collection-image">
-                  <img loading="lazy" src="images/exhibit-002-main.jpg" alt="红靴子与花" class="collection-img" data-src="images/exhibit-002-main.jpg">
-                </div>
-                <div class="collection-info">
-                  <h4>展品002-红靴子与绿植</h4>
-                  <p>3D打印的红靴子，种下种子生出芽儿</p>
-                  <a href="exhibits/exhibit-002.html" class="card-link">查看详情 →</a>
-                </div>
-              </div>
-              
-              <!-- 展品003 -->
-              <div class="collection-card carousel-item" data-index="2" data-href="exhibits/exhibit-003.html">
-                <div class="collection-image">
-                  <img loading="lazy" src="images/exhibit-003-main.jpg" alt="花艺设计" class="collection-img" data-src="images/exhibit-003-main.jpg">
-                </div>
-                <div class="collection-info">
-                  <h4>展品003-菜之花</h4>
-                  <p>探索自然与艺术的边界</p>
-                  <a href="exhibits/exhibit-003.html" class="card-link">查看详情 →</a>
-                </div>
-              </div>
-              
-              <!-- 展品001细节图 -->
-              <div class="collection-card carousel-item" data-index="3" data-href="exhibits/exhibit-001.html">
-                <div class="collection-image">
-                  <div class="image-overlay"></div>
-                  <img loading="lazy" src="images/exhibits/exhibit-001/detail-1.jpg" alt="树枝画框细节" class="collection-img" data-src="images/exhibits/exhibit-001/detail-1.jpg">
-                </div>
-                <div class="collection-info">
-                  <h4>展品001-树枝画框（细节）</h4>
-                  <p>断裂纹理的细腻展现</p>
-                  <a href="exhibits/exhibit-001.html" class="card-link">查看详情 →</a>
-                </div>
-              </div>
-              
-              <!-- 展品002细节图 -->
-              <div class="collection-card carousel-item" data-index="4" data-href="exhibits/exhibit-002.html">
-                <div class="collection-image">
-                  <div class="image-overlay"></div>
-                  <img loading="lazy" src="images/exhibits/exhibit-002/detail-2.jpg" alt="红靴子与绿植细节" class="collection-img" data-src="images/exhibits/exhibit-002/detail-2.jpg">
-                </div>
-                <div class="collection-info">
-                  <h4>展品002-红靴子与绿植（细节）</h4>
-                  <p>绿植生长的细节展现</p>
-                  <a href="exhibits/exhibit-002.html" class="card-link">查看详情 →</a>
-                </div>
-              </div>
+          <h2>子版块</h2>
+          <div class="content-cards" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="content-card">
+              <a href="remake.html">
+                <h4>蜕变日志（筑）</h4>
+                <p>记录 Remake 项目的详细过程（长文、多图）。</p>
+              </a>
             </div>
-            
-            <div class="carousel-nav-area carousel-nav-bottom" data-direction="next"></div>
+            <div class="content-card">
+              <a href="moments.html">
+                <h4>拾遗 · 瞬间（居）</h4>
+                <p>画廊/策展列表：瞬间定格、物件叙事、色彩与光影笔记。</p>
+              </a>
+            </div>
           </div>
         </section>
       </main>
