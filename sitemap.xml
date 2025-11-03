@@ -6,7 +6,7 @@
   <!-- 主页 -->
   <url>
     <loc>https://thinkingleaf.space/</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -14,7 +14,7 @@
   <!-- 主要页面 -->
   <url>
     <loc>https://thinkingleaf.space/blogs.html</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-10-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -42,7 +42,7 @@
   
   <!-- 博客文章 -->
   <url>
-    <loc>https://thinkingleaf.space/blogs/2025-10-26-2025-10-26.html</loc>
+    <loc>https://thinkingleaf.space/blogs/2025-10-26-meeting-everyone-in-the-meditation-hall.html</loc>
     <lastmod>2025-10-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.9</priority>
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://thinkingleaf.space/blogs/2025-04-17-2025-04-17.html</loc>
+    <loc>https://thinkingleaf.space/blogs/2025-04-17-design-experiments-tend-to-fail.html</loc>
     <lastmod>2025-04-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.9</priority>
@@ -70,7 +70,7 @@
   </url>
   
   <url>
-    <loc>https://thinkingleaf.space/blogs/2024-07-06-2024-07-06.html</loc>
+    <loc>https://thinkingleaf.space/blogs/2024-07-06-half-year-mindfulness-journey-in-dali.html</loc>
     <lastmod>2024-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
@@ -84,7 +84,7 @@
   </url>
   
   <url>
-    <loc>https://thinkingleaf.space/blogs/2023-01-15-2023-01-15.html</loc>
+    <loc>https://thinkingleaf.space/blogs/2023-01-15-swimming-till-the-sea-turns-blue.html</loc>
     <lastmod>2023-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
@@ -105,7 +105,7 @@
   </url>
   
   <url>
-    <loc>https://thinkingleaf.space/blogs/2022-11-08-2022-11-08.html</loc>
+    <loc>https://thinkingleaf.space/blogs/2022-11-08-hello-again-little-flowers-in-space.html</loc>
     <lastmod>2022-11-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
@@ -119,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://thinkingleaf.space/blogs/2022-09-17-2022-09-17.html</loc>
+    <loc>https://thinkingleaf.space/blogs/2022-09-17-reawakening-self-awareness.html</loc>
     <lastmod>2022-09-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
@@ -140,7 +140,7 @@
   </url>
   
   <url>
-    <loc>https://thinkingleaf.space/blogs/2022-08-21-2022-08-21.html</loc>
+    <loc>https://thinkingleaf.space/blogs/2022-08-21-reading-philosophy.html</loc>
     <lastmod>2022-08-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>

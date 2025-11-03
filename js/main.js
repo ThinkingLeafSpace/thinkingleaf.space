@@ -73,10 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // 否则，匹配当前路径
+        // 博客文章页：任何 /blogs/ 下的页面都高亮“个人博客”
+        if (currentPath.includes('/blogs/')) {
+            const blogLink = Array.from(navLinks).find(link => {
+                const hrefFile = (link.getAttribute('href') || '').split('/').pop();
+                return hrefFile === 'blogs.html';
+            });
+            if (blogLink) blogLink.classList.add('active');
+            return;
+        }
+
+        // 其他页面：匹配当前路径（仅比较文件名，兼容 ../xxx.html 相对路径）
+        const currentFile = currentPath.split('/').pop();
         navLinks.forEach(link => {
-            const linkPath = link.getAttribute('href');
-            if (currentPath.endsWith(linkPath)) {
+            const href = link.getAttribute('href') || '';
+            const hrefFile = href.split('/').pop();
+            if (currentFile === hrefFile) {
                 link.classList.add('active');
             }
         });
@@ -84,6 +96,227 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 初始化活动导航链接
     setActiveNavLink();
+
+    // 特定页面与博客页面：移除面包屑
+    if (window.location.pathname.endsWith('mitsein.html') || window.location.pathname.includes('/blogs/')) {
+        document.querySelectorAll('.breadcrumb, .breadcrumbs').forEach(el => el.remove());
+    }
+
+    // ========== 博客页面：仅修正中文标题显示（不再注入面包屑） ==========
+    (function ensureChineseTitle() {
+        const postTitleEl = document.querySelector('.post-title');
+        if (!postTitleEl) return;
+
+        const titleText = (postTitleEl.textContent || '').trim();
+        if (titleText) {
+            // 统一设置浏览器标签标题为中文标题
+            document.title = `${titleText} - 筑居思`;
+        }
+    })();
+
+    // ========== 博客页面：底部相关推荐（Topics 优先 + Pillar 兜底；卡片+封面图） ==========
+    (function injectRelatedPosts() {
+        const postContent = document.querySelector('.post-content');
+        if (!postContent) return;
+
+        const currentTitle = (document.querySelector('.post-title')?.textContent || '').trim();
+        const currentUrl = window.location.pathname.split('/').pop();
+        const currentISODate = (document.querySelector('.post-header time')?.getAttribute('datetime') || '').trim(); // YYYY-MM-DD
+        const tagEls = Array.from(document.querySelectorAll('.blog-tags .tag'));
+        const topicTags = tagEls.map(el => (el.textContent || '').trim()).filter(Boolean);
+        const metaKeywords = (document.querySelector('meta[name="keywords"]')?.getAttribute('content') || '')
+            .split(/[,，]/).map(s => s.trim()).filter(Boolean);
+
+        // Pillar 推断：优先 meta 覆盖，其次根据关键词/标签/标题启发式
+        function inferPillarFromSignals(signalsText) {
+            const s = (signalsText || '').toLowerCase();
+            if (/禅修|内观|vipassana|自我觉察|心理|哲学|思考/.test(s)) return '思';
+            if (/空间|建筑|设计|美学|城市|筑/.test(s)) return '筑';
+            if (/生活|家|居住|家庭|居|日常/.test(s)) return '居';
+            return '思';
+        }
+
+        function getCurrentPillar() {
+            const metaPillar = document.querySelector('meta[name="pillar"]')?.getAttribute('content');
+            if (metaPillar) return metaPillar.trim();
+            const combined = [currentTitle, ...topicTags, ...metaKeywords].join(' ');
+            return inferPillarFromSignals(combined);
+        }
+
+        const currentPillar = getCurrentPillar();
+
+        // 封面图兜底映射（使用站内已存在资源）
+        const pillarFallbackCovers = {
+            '筑': '../images/exhibit-001-main.jpg',
+            '居': '../images/exhibit-002-main.jpg',
+            '思': '../images/exhibit-003-main.jpg',
+            'default': '../images/placeholder-image.jpg'
+        };
+
+        function getPillarFallback(pillar) {
+            return pillarFallbackCovers[pillar] || pillarFallbackCovers['default'];
+        }
+
+        // 评分：Topics 重合度为主；同 Pillar 加分；同月轻权重
+        function scoreCandidate(candidate) {
+            let score = 0;
+            const candidateSignals = new Set([...(candidate.topics || []), ...(candidate.keywords || [])]);
+            topicTags.forEach(t => { if (candidateSignals.has(t)) score += 4; }); // 主题强相关
+            metaKeywords.forEach(k => { if (candidateSignals.has(k)) score += 2; }); // 关键词次之
+
+            if (candidate.pillar && currentPillar && candidate.pillar === currentPillar) score += 1.5;
+
+            // 同月小权重
+            if (currentISODate && candidate.date) {
+                const monthA = currentISODate.slice(0, 7);
+                const monthB = candidate.date.slice(0, 7);
+                if (monthA && monthB && monthA === monthB) score += 0.5;
+            }
+
+            // 标题弱匹配（中文2字片段）
+            for (let i = 0; i < Math.max(0, currentTitle.length - 1); i++) {
+                const part = currentTitle.slice(i, i + 2);
+                if (/^[\u4e00-\u9fa5]{2}$/.test(part) && (candidate.title || '').includes(part)) {
+                    score += 0.5;
+                }
+            }
+            return score;
+        }
+
+        async function fetchDoc(url) {
+            const res = await fetch(url);
+            if (!res.ok) return null;
+            const html = await res.text();
+            return new DOMParser().parseFromString(html, 'text/html');
+        }
+
+        function extractFirstImage(doc) {
+            const img = doc.querySelector('.post-content img, article img');
+            if (!img) return null;
+            let src = img.getAttribute('src') || '';
+            if (!src) return null;
+            // 规范化相对路径
+            if (src.startsWith('./')) src = src.replace('./', '');
+            if (src.startsWith('../')) return src; // 已经是相对上级路径
+            if (/^https?:\/\//i.test(src)) return src; // 绝对 URL
+            // 候选页通常位于 blogs/ 下，这里将相对路径提升到与候选同层
+            return `../${src.replace(/^\/?/, '')}`;
+        }
+
+        function extractTopics(doc) {
+            const tags = Array.from(doc.querySelectorAll('.blog-tags .tag')).map(el => (el.textContent || '').trim()).filter(Boolean);
+            const keywords = (doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '')
+                .split(/[,，]/).map(s => s.trim()).filter(Boolean);
+            return { tags, keywords };
+        }
+
+        function extractPillar(doc) {
+            const metaPillar = doc.querySelector('meta[name="pillar"]')?.getAttribute('content');
+            if (metaPillar) return metaPillar.trim();
+            const title = (doc.querySelector('.post-title')?.textContent || doc.title || '').trim();
+            const { tags, keywords } = extractTopics(doc);
+            const combined = [title, ...tags, ...keywords].join(' ');
+            return inferPillarFromSignals(combined);
+        }
+
+        async function loadCandidatesWithDetails() {
+            try {
+                const indexDoc = await fetchDoc('../blogs.html');
+                if (!indexDoc) return [];
+                const links = Array.from(indexDoc.querySelectorAll('.links-grid a.link-card'));
+                const basics = links.map(a => {
+                    const href = a.getAttribute('href') || '';
+                    const file = href.split('/').pop();
+                    const title = (a.querySelector('h5')?.textContent || '').trim();
+                    const date = (a.querySelector('.date-tag')?.textContent || '').trim(); // YYYY-MM-DD
+                    const full = href.startsWith('blogs/') ? `../${href}` : href;
+                    return { href: full, file, title, date };
+                }).filter(x => x.file && x.file.endsWith('.html') && x.file !== currentUrl);
+
+                // 并发抓取详情，用于 Topics 与首图提取
+                const docs = await Promise.all(basics.map(it => fetchDoc(it.href).catch(() => null)));
+                return basics.map((it, idx) => {
+                    const doc = docs[idx];
+                    if (!doc) return { ...it, topics: [], keywords: [], pillar: null, cover: null };
+                    const title = (doc.querySelector('.post-title')?.textContent || it.title || '').trim();
+                    const { tags, keywords } = extractTopics(doc);
+                    const pillar = extractPillar(doc);
+                    const cover = extractFirstImage(doc);
+                    return { ...it, title, topics: tags, keywords, pillar, cover };
+                });
+            } catch (e) {
+                console.warn('加载候选文章失败', e);
+                return [];
+            }
+        }
+
+        function pickTopRelated(candidates) {
+            // 先按评分排序
+            candidates.forEach(c => { c._score = scoreCandidate(c); });
+            const sorted = [...candidates].sort((a, b) => (b._score - a._score) || (b.date.localeCompare(a.date)));
+            const topByTopics = sorted.filter(c => c._score > 0).slice(0, 3);
+            if (topByTopics.length >= 3) return topByTopics;
+
+            // 兜底：从同 Pillar 中按时间补齐
+            const chosenSet = new Set(topByTopics.map(x => x.file));
+            const samePillar = candidates
+                .filter(c => c.pillar === currentPillar && !chosenSet.has(c.file))
+                .sort((a, b) => b.date.localeCompare(a.date));
+
+            const final = [...topByTopics];
+            for (const c of samePillar) {
+                if (final.length >= 3) break;
+                final.push(c);
+            }
+            // 若仍不足，任意最新补齐
+            if (final.length < 3) {
+                const rest = candidates.filter(c => !new Set(final.map(x => x.file)).has(c.file))
+                    .sort((a, b) => b.date.localeCompare(a.date));
+                for (const c of rest) {
+                    if (final.length >= 3) break;
+                    final.push(c);
+                }
+            }
+            return final.slice(0, 3);
+        }
+
+        (async () => {
+            const candidates = await loadCandidatesWithDetails();
+            if (!candidates || candidates.length === 0) return;
+
+            const picks = pickTopRelated(candidates);
+            if (!picks || picks.length === 0) return;
+
+            const section = document.createElement('section');
+            section.className = 'related-posts';
+            section.innerHTML = `
+                <h3>相关推荐</h3>
+                <div class="related-grid"></div>
+            `;
+
+            const grid = section.querySelector('.related-grid');
+            picks.forEach(it => {
+                const card = document.createElement('a');
+                card.href = it.href;
+                card.className = 'related-card';
+                const cover = it.cover || getPillarFallback(it.pillar || currentPillar);
+                card.innerHTML = `
+                    <div class="cover-wrap"><img class="cover" src="${cover}" alt="${(it.title || '相关封面').replace(/"/g, '&quot;')}" loading="lazy"></div>
+                    <h4>${it.title || ''}</h4>
+                    ${it.date ? `<p class="date">${it.date}</p>` : '<p class="date"></p>'}
+                `;
+                grid.appendChild(card);
+            });
+
+            // 插入到文章底部
+            const article = document.querySelector('.container.blog-post article') || document.querySelector('article');
+            if (article) {
+                article.appendChild(section);
+            } else {
+                postContent.parentElement?.appendChild(section);
+            }
+        })();
+    })();
 
     // 移动菜单切换
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');

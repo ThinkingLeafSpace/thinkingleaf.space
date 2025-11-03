@@ -3,9 +3,8 @@
    提供平滑的加载动画和占位符效果
    ============================================ */
 
-/* 懒加载图片基础样式 */
-img[data-src],
-img[loading="lazy"]:not(.lazy-loaded) {
+/* 懒加载图片基础样式（仅对 data-src 方式隐藏，避免原生 lazy 图片被误隐藏）*/
+img[data-src] {
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
   background-color: var(--lazy-placeholder-bg, #f2f2f2);

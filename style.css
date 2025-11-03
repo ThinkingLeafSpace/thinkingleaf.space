@@ -107,6 +107,39 @@ html, body {
   padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 6);
 }
 
+/* 面包屑导航（Breadcrumb） */
+.breadcrumb {
+  margin: 16px 0 24px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.breadcrumb a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent-lotus-red);
+  text-decoration: underline;
+}
+
+.breadcrumb .sep {
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+  margin: 0 4px;
+}
+
+.breadcrumb .current {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
 @media (max-width: 768px) {
   .article-container {
     padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 3);

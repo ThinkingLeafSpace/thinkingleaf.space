@@ -85,10 +85,9 @@
     }
     
     .exhibit-image img {
-      width: 40%;
+      width: 100%;
       height: auto;
       display: block;
-      margin: 0 auto;
     }
     
     .exhibit-description {
@@ -205,7 +204,11 @@
   <div class="article-container">
     <!-- 导航 -->
     <nav class="breadcrumb">
-      <a href="../index.html">首页</a> / <a href="../cabinet.html">造物拾遗</a> / <span>展品003-菜之花</span>
+      <a href="../index.html">首页</a>
+      <span class="sep">›</span>
+      <a href="../remake.html">造物拾遗</a>
+      <span class="sep">›</span>
+      <span class="current">展品003-菜之花</span>
     </nav>
     
     <!-- 展品头部 -->
@@ -222,7 +225,7 @@
     <!-- 展品图片 -->
     <div class="exhibit-gallery">
       <div class="exhibit-image">
-        <img loading="lazy" src="../images/exhibit-003-main.jpg" alt="菜之花正面">
+        <img loading="eager" src="../images/exhibit-003-main.jpg" alt="菜之花正面">
       </div>
     </div>
     

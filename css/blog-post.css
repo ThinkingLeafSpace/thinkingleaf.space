@@ -8,7 +8,7 @@
 
 .blog-header, .post-header {
     margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem; /* 增加与正文的间距，约两行高 */
     text-align: center;
 }
 
@@ -181,6 +181,33 @@
     margin: 0;
 }
 
+/* 相关推荐卡片封面图样式（温暖、治愈的呼吸感） */
+.related-card .cover-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0.9rem;
+    background: var(--bg-secondary);
+}
+
+.related-card .cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.01);
+    transition: transform 0.5s ease;
+}
+
+.related-card:hover .cover {
+    transform: scale(1.05);
+}
+
+.related-card .date {
+    margin-top: 0.25rem;
+}
+
 /* 博客页面的特殊元素 */
 .blog-aside, aside {
     background-color: var(--bg-secondary);
@@ -217,6 +244,9 @@ blockquote {
 @media (max-width: 768px) {
     .blog-header h1, .post-header h1 {
         font-size: 2rem;
+    }
+    .blog-header, .post-header {
+        margin-bottom: 2.5rem; /* 移动端适当缩小但仍保留两行视觉留白 */
     }
     
     .blog-body, .post-content {

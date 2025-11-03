@@ -617,7 +617,7 @@ footer {
 }
 
 /* Remove old header styles that are no longer needed */
-header {
+.site-header {
     display: none;
 }
 
@@ -1168,6 +1168,16 @@ body.blogs-page .links-grid .link-card:nth-child(17) { animation-delay: 0.66s; }
 body.blogs-page .links-grid .link-card:nth-child(18) { animation-delay: 0.70s; }
 body.blogs-page .links-grid .link-card:nth-child(19) { animation-delay: 0.74s; }
 body.blogs-page .links-grid .link-card:nth-child(20) { animation-delay: 0.78s; }
+
+/* 博客列表：强制单列布局，一行一个卡片 */
+body.blogs-page .links-grid {
+    grid-template-columns: 1fr;
+}
+
+/* 博客列表卡片标题：字号增大一档 */
+body.blogs-page .link-content h5 {
+    font-size: 1.3rem;
+}
 
 /* 展品页面样式补充 */
 .categories {

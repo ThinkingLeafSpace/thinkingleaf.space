@@ -1,0 +1,67 @@
+.tip-popover {
+  position: fixed;
+  z-index: 10000;
+  min-width: 220px;
+  max-width: 360px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  backdrop-filter: saturate(120%) blur(10px);
+  -webkit-backdrop-filter: saturate(120%) blur(10px);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  color: var(--color-text, #2D2D2D);
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+  transition: opacity .16s ease, transform .16s ease;
+  pointer-events: none;
+}
+
+.dark-theme .tip-popover {
+  background: rgba(34, 34, 34, 0.55);
+  border-color: rgba(255,255,255,0.08);
+  color: var(--color-text, #D1C7B9);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.tip-popover.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.tip-popover .tip-content {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.tip-popover .tip-cta {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--color-accent-lotus-red, #C84630);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.tip-popover .tip-cta:hover,
+.tip-popover .tip-cta:focus {
+  text-decoration: underline;
+}
+
+.tip-popover.pos-top { transform-origin: bottom center; }
+.tip-popover.pos-left { transform-origin: top left; }
+.tip-popover.pos-right { transform-origin: top right; }
+
+/* 悬停增强：带 tip 的链接做轻微强调 */
+a[data-tip] {
+  position: relative;
+  text-decoration-color: rgba(200, 70, 48, 0.35);
+  text-underline-offset: 2px;
+}
+a[data-tip]:hover,
+a[data-tip]:focus {
+  text-decoration-color: rgba(200, 70, 48, 0.8);
+}
+
+
