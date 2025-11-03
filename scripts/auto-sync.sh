@@ -46,8 +46,17 @@ sync_once() {
   echo "[auto-sync] Pull --rebase"
   git pull --rebase || true
 
-  echo "[auto-sync] Push"
-  git push || true
+  echo "[auto-sync] Push (with retry)"
+  MAX_PUSH_RETRIES=3
+  for i in $(seq 1 $MAX_PUSH_RETRIES); do
+    if git push 2>&1; then
+      echo "[auto-sync] Push successful"
+      break
+    else
+      echo "[auto-sync] Push failed, retry $i/$MAX_PUSH_RETRIES"
+      sleep 3
+    fi
+  done
 }
 
 # Debounce events within a short window
