@@ -86,13 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // 其他页面：匹配当前路径（仅比较文件名，兼容 ../xxx.html 相对路径）
         const route = currentPath.replace(/\.html$/, '');
         const mapping = [
-            { path: '/manifesto', selector: 'a[href="/manifesto"]' },
+            { path: '/what-is-zhu-ju-si.html', selector: 'a[href="/what-is-zhu-ju-si.html"]' },
             { path: '/blog', selector: 'a[href="/blog"]' },
             { path: '/cabinet', selector: 'a[href="/cabinet"]' }
         ];
         // 兼容旧文件路径
         const legacy = [
-            { test: /what-is-zhu-ju-si\.html$/, selector: 'a[href="/manifesto"]' },
+            { test: /what-is-zhu-ju-si\.html$/, selector: 'a[href="/what-is-zhu-ju-si.html"]' },
             { test: /blogs\.html$/, selector: 'a[href="/blog"]' },
             { test: /cabinet\.html$/, selector: 'a[href="/cabinet"]' }
         ];
