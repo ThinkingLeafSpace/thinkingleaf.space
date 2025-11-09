@@ -28,16 +28,34 @@
   <link rel="stylesheet" href="css/dark-mode.css">
   <link rel="stylesheet" href="css/lazy-loading.css">
   <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <!-- 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@latest/style.css">
   <style>
     .hero { margin-bottom: 1rem; }
     .manifesto-cta { display: flex; gap: 1rem; margin: 1rem 0 2rem; flex-wrap: wrap; }
     .btn-primary { display: inline-block; padding: .6rem 1.1rem; background-color: var(--accent); color: #fff; border-radius: 6px; text-decoration: none; border: 2px solid transparent; }
     .btn-secondary { display: inline-block; padding: .6rem 1.1rem; background-color: var(--bg-tertiary); color: var(--text-secondary); border-radius: 6px; text-decoration: none; border: 2px solid transparent; }
-    .expander { margin: 1rem 0 0; }
-    .expander button { background: transparent; border: 1px solid var(--color-border); padding: .5rem .9rem; border-radius: 6px; cursor: pointer; color: var(--color-text); }
+    .expander { margin: 1rem 0 0; position: relative; }
+    .expander button { background: transparent; border: 1px solid var(--color-border); padding: .5rem .9rem; border-radius: 6px; cursor: pointer; color: var(--color-text); transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
     .expander button:hover { background: rgba(200,70,48,.08); border-color: var(--color-accent-lotus-red); }
-    .expander-content { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
-    .expander-content.open { max-height: 4000px; }
+    .expander button.fade-out { opacity: 0; pointer-events: none; transform: translateY(-8px); }
+    .expander-content { 
+      max-height: 0; 
+      overflow: hidden; 
+      opacity: 0;
+      position: relative;
+      transform: translateY(-8px);
+      /* 优化后的丝滑展开效果：更流畅的缓动曲线 */
+      transition: max-height 1.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                  opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+                  transform 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+    }
+    .expander-content.open { 
+      max-height: 4000px; 
+      opacity: 1;
+      transform: translateY(0);
+    }
     .post-content h3, .post-content h4 { color: var(--color-accent-lotus-red); }
     .footnotes { font-size: .95rem; color: var(--color-text-secondary); }
   </style>
@@ -45,13 +63,13 @@
 <body>
   <div class="sidebar">
     <div class="sidebar-logo">
-      <a href="/" aria-label="返回首页"><h1>筑居<span>思</span></h1></a>
+      <a href="index.html" aria-label="返回首页"><h1>筑居<span>思</span></h1></a>
     </div>
     <ul class="sidebar-nav">
-      <li><a href="/what-is-zhu-ju-si.html">🧭 何为筑居思？</a></li>
-      <li><a href="/remake.html">🔨 筑 · 创造</a></li>
-      <li><a href="/remake.html">☕ 居 · 拾遗</a></li>
-      <li><a href="/blog">🧠 思 · 博客</a></li>
+      <li><a href="what-is-zhu-ju-si.html">🧭 何为筑居思？</a></li>
+      <li><a href="remake.html">🔨 筑 · 创造</a></li>
+      <li><a href="cabinet.html">☕ 居 · 拾遗</a></li>
+      <li><a href="blogs.html">🧠 思 · 博客</a></li>
     </ul>
     <div class="theme-toggle">
       <button id="theme-toggle-btn" aria-label="切换主题">
@@ -175,11 +193,50 @@
       const btn = document.getElementById('toggle-expander');
       const panel = document.getElementById('expander-content');
       if (!btn || !panel) return;
+      
+      let isExpanded = false;
+      
+      // 使用 Intersection Observer 监听按钮进入视口
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // 当按钮进入视口时，延迟后自动展开
+          if (entry.isIntersecting && !isExpanded) {
+            // 延迟500ms后开始展开，保持流畅感
+            setTimeout(() => {
+              if (!isExpanded) {
+                isExpanded = true;
+                panel.classList.add('open');
+                panel.setAttribute('aria-hidden', 'false');
+                btn.setAttribute('aria-expanded', 'true');
+                
+                // 按钮在展开开始0.6秒后淡出，与内容展开节奏同步
+                setTimeout(() => {
+                  btn.classList.add('fade-out');
+                }, 600);
+              }
+            }, 500);
+          }
+        });
+      }, {
+        // 当按钮距离视口顶部 300px 时触发，提前准备展开
+        rootMargin: '300px 0px 0px 0px',
+        threshold: 0.1
+      });
+      
+      observer.observe(btn);
+      
+      // 保留点击功能作为备用（如果需要手动展开）
       btn.addEventListener('click', () => {
-        const open = panel.classList.toggle('open');
-        panel.setAttribute('aria-hidden', String(!open));
-        btn.setAttribute('aria-expanded', String(open));
-        btn.textContent = open ? '收起全文' : '展开全文';
+        if (!isExpanded) {
+          isExpanded = true;
+          panel.classList.add('open');
+          panel.setAttribute('aria-hidden', 'false');
+          btn.setAttribute('aria-expanded', 'true');
+          // 点击时也使用相同的淡出效果，与自动展开节奏一致
+          setTimeout(() => {
+            btn.classList.add('fade-out');
+          }, 600);
+        }
       });
     })();
   </script>

@@ -8,7 +8,7 @@
   --color-accent-lotus-red: #C84630;
   --color-text-secondary: #666;
   --color-border: #eee;
-  --font-family-serif: "source han serif sc", "思源宋体", "Songti SC", serif;
+  --font-family-serif: "LXGW WenKai", "霞鹜文楷", "source han serif sc", "思源宋体", "Songti SC", serif;
   --content-width: 1400px;
   --spacing-unit: 8px;
 }
@@ -208,7 +208,7 @@ a:hover {
 
 /* 1. "引首章" (The Leading Seal) - 阅读的仪式感 */
 .article-body p:first-of-type::first-letter {
-  font-family: var(--font-family-kai);
+  font-family: "LXGW WenKai", "霞鹜文楷", var(--font-family-serif);
   float: left;
   font-size: 64px; /* 放大以突出 */
   line-height: 1;
@@ -223,7 +223,7 @@ blockquote {
   margin: calc(var(--spacing-unit) * 4) 0;
   padding-left: calc(var(--spacing-unit) * 3);
   border-left: 3px solid var(--color-accent-lotus-red);
-  font-family: var(--font-family-kai);
+  font-family: "LXGW WenKai", "霞鹜文楷", var(--font-family-serif);
   font-size: 18px;
   color: var(--color-text-secondary);
   font-style: italic;

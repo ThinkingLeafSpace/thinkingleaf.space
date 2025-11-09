@@ -156,11 +156,51 @@
   flex-direction: column;
 }
 
+/* 搜索结果分组 */
+.search-results-group {
+  margin-bottom: 24px;
+  background: var(--color-bg);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+}
+
+.search-results-group-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.search-results-group-header svg {
+  color: var(--color-accent-lotus-red);
+}
+
+.search-results-group-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.search-results-group-count {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: normal;
+}
+
+.search-results-group-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .search-result-item {
   display: flex;
   padding: 12px;
   border-radius: 6px;
-  margin-bottom: 8px;
   text-decoration: none;
   color: var(--color-text);
   transition: background-color 0.2s ease;
@@ -235,6 +275,23 @@
   .search-input {
     font-size: 16px;
   }
+  
+  .search-results-group {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .search-results-group-header {
+    font-size: 14px;
+  }
+  
+  .search-results-group-title {
+    font-size: 14px;
+  }
+  
+  .search-results-group-count {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -263,5 +320,10 @@
   
   .search-modal {
     margin-top: 20px;
+  }
+  
+  .search-results-group {
+    padding: 10px;
+    margin-bottom: 12px;
   }
 }
