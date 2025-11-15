@@ -60,9 +60,14 @@ def extract_blog_info(html_file: Path) -> Optional[Dict]:
             if img_match:
                 cover_image = img_match.group(1)
         
-        # 过滤占位符图片
-        if cover_image and ('placeholder-image' in cover_image.lower() or 'placeholder' in cover_image.lower()):
-            cover_image = None
+        # 过滤占位符图片和无效路径
+        if cover_image:
+            cover_image_lower = cover_image.lower()
+            if ('placeholder-image' in cover_image_lower or 
+                'placeholder' in cover_image_lower or
+                '${date}' in cover_image or
+                '${' in cover_image):
+                cover_image = None
         
         # 规范化图片路径（相对于blogs.html）
         if cover_image:
