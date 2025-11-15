@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "echo '请使用您的构建工具启动开发服务器'",
-    "build": "echo '请使用您的构建工具进行构建'"
+    "build": "echo '静态网站无需构建，直接部署' && exit 0"
   },
   "dependencies": {
     "framer-motion": "^11.0.0",
