@@ -92,35 +92,87 @@ class LinkPreview {
      * 绑定事件监听器
      */
     bindEvents() {
-        // 使用事件委托处理所有内部链接
-        document.addEventListener('mouseenter', (e) => {
-            const link = e.target.closest('a[data-internal-link="true"]');
-            if (link) {
-                this.handleLinkEnter(e, link);
-            }
-        }, true);
+        // 检测是否为移动设备
+        const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                        ('ontouchstart' in window) || 
+                        (navigator.maxTouchPoints > 0);
+        
+        if (isMobile) {
+            // 移动端：点击触发预览
+            document.addEventListener('click', (e) => {
+                const link = e.target.closest('a[data-internal-link="true"]');
+                if (link) {
+                    // 如果预览已显示且是同一个链接，允许正常跳转
+                    if (this.currentLink === link && this.previewCard.classList.contains('visible')) {
+                        // 不阻止跳转，让链接正常工作
+                        return;
+                    }
+                    
+                    // 阻止默认跳转，显示预览
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // 显示预览
+                    this.currentLink = link;
+                    this.showPreview(link, e);
+                } else {
+                    // 点击其他区域时隐藏预览
+                    if (this.previewCard.classList.contains('visible') && 
+                        !this.previewCard.contains(e.target)) {
+                        this.hidePreview();
+                    }
+                }
+            });
+            
+            // 移动端：点击预览卡片内的链接允许跳转
+            this.previewCard.addEventListener('click', (e) => {
+                const link = e.target.closest('a');
+                if (link && link.getAttribute('href')) {
+                    // 允许跳转
+                    window.location.href = link.getAttribute('href');
+                }
+            });
+            
+            // 移动端：点击预览卡片外部区域关闭
+            document.addEventListener('touchstart', (e) => {
+                if (this.previewCard.classList.contains('visible')) {
+                    if (!this.previewCard.contains(e.target) && 
+                        !e.target.closest('a[data-internal-link="true"]')) {
+                        this.hidePreview();
+                    }
+                }
+            });
+        } else {
+            // 桌面端：鼠标悬停触发预览
+            document.addEventListener('mouseenter', (e) => {
+                const link = e.target.closest('a[data-internal-link="true"]');
+                if (link) {
+                    this.handleLinkEnter(e, link);
+                }
+            }, true);
 
-        document.addEventListener('mouseleave', (e) => {
-            const link = e.target.closest('a[data-internal-link="true"]');
-            if (link) {
-                this.handleLinkLeave(e, link);
-            }
-        }, true);
+            document.addEventListener('mouseleave', (e) => {
+                const link = e.target.closest('a[data-internal-link="true"]');
+                if (link) {
+                    this.handleLinkLeave(e, link);
+                }
+            }, true);
 
-        // 鼠标移动时更新预览卡片位置
-        document.addEventListener('mousemove', (e) => {
-            if (this.currentLink && this.previewCard.classList.contains('visible')) {
-                this.updatePreviewPosition(e);
-            }
-        });
+            // 鼠标移动时更新预览卡片位置
+            document.addEventListener('mousemove', (e) => {
+                if (this.currentLink && this.previewCard.classList.contains('visible')) {
+                    this.updatePreviewPosition(e);
+                }
+            });
 
-        // 点击链接时隐藏预览
-        document.addEventListener('click', (e) => {
-            const link = e.target.closest('a[data-internal-link="true"]');
-            if (link) {
-                this.hidePreview();
-            }
-        });
+            // 点击链接时隐藏预览
+            document.addEventListener('click', (e) => {
+                const link = e.target.closest('a[data-internal-link="true"]');
+                if (link) {
+                    this.hidePreview();
+                }
+            });
+        }
     }
 
     /**
@@ -180,7 +232,10 @@ class LinkPreview {
             // 验证缓存的数据是否有效
             if (this.isValidPreviewData(cachedData)) {
                 this.renderPreview(cachedData);
-                this.updatePreviewPosition(event);
+                // 等待DOM更新后再更新位置
+                setTimeout(() => {
+                    this.updatePreviewPosition(event);
+                }, 0);
                 this.previewCard.classList.add('visible');
                 return;
             } else {
@@ -191,8 +246,11 @@ class LinkPreview {
 
         // 显示加载状态
         this.previewCard.innerHTML = '<div class="link-preview-loading">加载预览</div>';
-        this.updatePreviewPosition(event);
         this.previewCard.classList.add('visible');
+        // 等待DOM更新后再更新位置
+        setTimeout(() => {
+            this.updatePreviewPosition(event);
+        }, 0);
 
         try {
             // 获取页面预览信息
@@ -210,6 +268,10 @@ class LinkPreview {
             
             // 渲染预览
             this.renderPreview(previewData);
+            // 等待DOM更新后再更新位置
+            setTimeout(() => {
+                this.updatePreviewPosition(event);
+            }, 0);
         } catch (error) {
             // 获取失败，直接隐藏预览卡片，不显示错误信息
             console.warn('Failed to fetch preview:', error);
@@ -285,19 +347,33 @@ class LinkPreview {
         // 优先使用 og:description，然后是 meta description
         const ogDesc = doc.querySelector('meta[property="og:description"]');
         if (ogDesc) {
-            return ogDesc.getAttribute('content');
+            const desc = ogDesc.getAttribute('content');
+            // 如果描述超过150字，截取前150字
+            if (desc && desc.length > 150) {
+                return desc.substring(0, 150) + '...';
+            }
+            return desc || '';
         }
         
         const metaDesc = doc.querySelector('meta[name="description"]');
         if (metaDesc) {
-            return metaDesc.getAttribute('content');
+            const desc = metaDesc.getAttribute('content');
+            // 如果描述超过150字，截取前150字
+            if (desc && desc.length > 150) {
+                return desc.substring(0, 150) + '...';
+            }
+            return desc || '';
         }
         
         // 尝试从内容中提取
         const content = doc.querySelector('.post-content, .article-content, .blog-body, main p');
         if (content) {
             const text = content.textContent.trim();
-            return text.substring(0, 150) + (text.length > 150 ? '...' : '');
+            // 确保提取150个字符（中文字符）
+            if (text.length > 150) {
+                return text.substring(0, 150) + '...';
+            }
+            return text;
         }
         
         return '暂无描述';
@@ -416,9 +492,28 @@ class LinkPreview {
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
         const spacing = 12; // 卡片与链接的间距
+        
+        // 检测是否为移动设备
+        const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                        ('ontouchstart' in window) || 
+                        (navigator.maxTouchPoints > 0);
 
-        let top = rect.bottom + spacing;
-        let left = rect.left + (rect.width / 2) - (cardRect.width / 2);
+        let top, left;
+        
+        if (isMobile) {
+            // 移动端：居中显示在屏幕中央
+            left = (viewportWidth - cardRect.width) / 2;
+            top = (viewportHeight - cardRect.height) / 2;
+            
+            // 如果卡片高度超过视窗，则从顶部开始显示
+            if (cardRect.height > viewportHeight - spacing * 2) {
+                top = spacing;
+            }
+        } else {
+            // 桌面端：显示在链接下方
+            top = rect.bottom + spacing;
+            left = rect.left + (rect.width / 2) - (cardRect.width / 2);
+        }
 
         // 重置位置类
         this.previewCard.classList.remove('position-top', 'position-left', 'position-right');
@@ -443,7 +538,7 @@ class LinkPreview {
 
         // 确保不超出顶部
         if (top < spacing) {
-            top = rect.bottom + spacing;
+            top = isMobile ? spacing : rect.bottom + spacing;
         }
 
         this.previewCard.style.top = `${top}px`;

@@ -236,11 +236,17 @@
 }
 
 /* Tags adopt themed secondary background and ink color */
-[data-emotion] .tag,
-[data-emotion] .date-tag {
+[data-emotion] .tag {
     background-color: var(--theme-secondary);
     color: var(--theme-ink);
     border: 1px solid color-mix(in oklab, var(--theme-support), transparent 75%);
+}
+
+/* 时间标签统一使用红色背景和白色字体 */
+[data-emotion] .date-tag {
+    background-color: #C84630; /* 红色背景 */
+    color: #FFFFFF; /* 白色字体 */
+    border: 1px solid #C84630;
 }
 
 /* CTA button mapping if present */
@@ -404,17 +410,26 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
     font-size: 1rem;
     font-weight: 400;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-left-color 0.2s ease;
     border-left: 3px solid transparent;
 }
 
-.sidebar-nav a:hover,
-.sidebar-nav a.active {
+.sidebar-nav a:hover:not(.active),
+.sidebar-nav a:focus:not(.active) {
     background-color: var(--bg-primary);
     color: var(--theme-primary);
 }
 
 .sidebar-nav a.active {
+    background-color: var(--bg-primary);
+    color: var(--theme-primary);
+    border-left-color: var(--theme-primary);
+}
+
+.sidebar-nav a.active:hover,
+.sidebar-nav a.active:focus {
+    background-color: var(--bg-primary);
+    color: var(--theme-primary);
     border-left-color: var(--theme-primary);
 }
 
@@ -594,6 +609,50 @@ blockquote {
     color: var(--text-secondary);
     font-size: 0.9rem;
     margin-top: var(--spacing-1);
+}
+
+.link-content p.blog-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: var(--spacing-1);
+    margin-bottom: var(--spacing-1);
+}
+
+/* 关键词样式 */
+.blog-keywords {
+    margin-top: var(--spacing-1);
+    padding-top: var(--spacing-1);
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: 0.85rem;
+}
+
+.keywords-label {
+    color: var(--text-tertiary);
+    font-weight: 500;
+    margin-right: 0.5em;
+}
+
+.keywords-list {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* 首页关键词标签样式（灵魂黄金三角的一部分） */
+.content-card .keywords-tags {
+    display: block;
+    margin-top: var(--spacing-2);
+    padding-top: var(--spacing-2);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    border-top: 1px solid var(--color-border-subtle);
+    opacity: 0.85;
+}
+
+.content-card:hover .keywords-tags {
+    opacity: 1;
+    color: var(--text-primary);
 }
 
 .link-card:hover .link-content h5 {
@@ -1248,17 +1307,18 @@ footer {
 .date-tag {
     display: inline-block;
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: #FFFFFF; /* 白色字体 */
     margin-top: -0.25rem;
     margin-bottom: 0.5rem;
     padding: 0.15rem 0.5rem;
-    background-color: var(--bg-secondary);
+    background-color: #C84630; /* 红色背景 */
     border-radius: 3px;
     font-weight: 500;
 }
 
 .dark-mode .date-tag {
-    background-color: var(--dark-bg-secondary);
+    background-color: #C84630; /* 红色背景 */
+    color: #FFFFFF; /* 白色字体 */
 }
 
 /* Newsletter部分样式 */
@@ -1503,6 +1563,42 @@ body.blogs-page .link-content h5 {
 .link-card {
     text-decoration: none;
     display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.link-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-color: var(--accent);
+}
+
+/* 博客列表卡片封面图样式（灵魂封面图） */
+.blog-cover-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    position: relative;
+}
+
+.blog-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.link-card:hover .blog-cover {
+    transform: scale(1.05);
+}
+
+.link-content {
+    padding: var(--spacing-3);
 }
 
 .link-content h5 {
@@ -1599,4 +1695,394 @@ body.blogs-page .link-content h5 {
     .links-grid {
         grid-template-columns: 1fr;
     }
-} 
+}
+
+/* ========== 灵魂配图样式 (Soulful Image Curation) ========== */
+/* 这是"Vibe Coding"工作流的核心样式，兼顾"灵魂美学"与"性能洁癖" */
+
+/* Figure 容器 - 灵魂美学的基础 */
+figure {
+    margin: 2.5rem auto;
+    max-width: 100%;
+    position: relative;
+    /* 防止页面跳动 (CLS) */
+    min-height: 1px;
+}
+
+/* 图片样式 - 性能洁癖 + 视觉呼吸 */
+figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    /* 优雅的阴影，增加层次感 */
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+    /* 平滑淡入动画 - 图片加载时自动触发 */
+    opacity: 0;
+    animation: soulfulFadeIn 0.8s ease forwards;
+}
+
+/* 图片已加载完成（由lazy-loading.js添加的class） */
+figure img.lazy-loaded {
+    opacity: 1;
+}
+
+/* 如果图片没有loading属性（立即加载的图片），直接显示 */
+figure img:not([loading="lazy"]) {
+    opacity: 1;
+    animation: soulfulFadeIn 0.6s ease forwards;
+}
+
+/* 图片悬停效果 - 微妙的"呼吸感" */
+figure:hover img {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.12),
+        0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* 图注样式 - 灵魂印记 */
+figure figcaption {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-secondary, #587465);
+    text-align: center;
+    font-style: italic;
+    /* 优雅的透明度，不抢夺主图注意力 */
+    opacity: 0.85;
+    /* 禅意留白 */
+    padding: 0 1rem;
+    max-width: 100%;
+}
+
+/* 暗色模式下的图注 */
+.dark-theme figure figcaption {
+    color: var(--text-secondary, #90A49B);
+    opacity: 0.75;
+}
+
+/* 淡入动画 - 灵魂美学 */
+@keyframes soulfulFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式优化 - 移动端 */
+@media (max-width: 768px) {
+    figure {
+        margin: 2rem auto;
+    }
+    
+    figure img {
+        border-radius: 6px;
+    }
+    
+    figure figcaption {
+        font-size: 0.85rem;
+        padding: 0 0.5rem;
+        margin-top: 0.75rem;
+    }
+}
+
+/* 位置A：灵魂定调图 - 特殊样式（可选） */
+.whisper-intro + figure {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+/* 位置B：灵魂呼吸点 - 章节后的图片 */
+h2 + figure {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+/* 位置C：灵魂印记 - 后记图片（可选） */
+.postscript figure,
+.easter-egg figure {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+/* 打印样式优化 */
+@media print {
+    figure {
+        page-break-inside: avoid;
+        margin: 1.5rem 0;
+    }
+    
+    figure img {
+        box-shadow: none;
+    }
+    
+    figure figcaption {
+        font-size: 0.8rem;
+        opacity: 1;
+    }
+} /* Whisper 组件样式 - 与项目禅意风格保持一致 */
+
+/* 灵感私语卡片容器 */
+.whisper-intro-section {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.whisper-intro-card {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--card-bg, rgba(255, 255, 255, 0.6));
+  border: 1px solid var(--card-border, rgba(88, 116, 101, 0.15));
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.whisper-intro-card:hover {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  border-color: var(--card-border, rgba(88, 116, 101, 0.25));
+  transform: translateY(-1px);
+}
+
+.whisper-intro-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary, #587465);
+  line-height: 1.4;
+}
+
+.whisper-intro {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #777);
+  line-height: 1.6;
+}
+
+.dark-theme .whisper-intro-card {
+  background: var(--card-bg, rgba(43, 46, 44, 0.6));
+  border-color: var(--card-border, rgba(88, 116, 101, 0.2));
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .whisper-intro-card:hover {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+  border-color: var(--card-border, rgba(88, 116, 101, 0.3));
+}
+
+.dark-theme .whisper-intro-card h3 {
+  color: var(--text-secondary, #90A49B);
+}
+
+.dark-theme .whisper-intro {
+  color: var(--text-secondary, #90A49B);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .whisper-intro-card {
+    padding: 0.875rem 1rem;
+  }
+  
+  .whisper-intro-card h3 {
+    font-size: 0.85rem;
+  }
+  
+  .whisper-intro {
+    font-size: 0.8rem;
+  }
+}
+
+.whisper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  margin: 0 0.2em;
+  vertical-align: middle;
+  font-size: 1em;
+  line-height: 1;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* 让图标更明显 - 添加背景和边框 */
+  background: rgba(88, 116, 101, 0.08);
+  border: 1px solid rgba(88, 116, 101, 0.2);
+  border-radius: 4px;
+  padding: 0.15em 0.3em;
+  min-width: 1.2em;
+  min-height: 1.2em;
+}
+
+.whisper:hover {
+  transform: scale(1.15);
+  background: rgba(88, 116, 101, 0.15);
+  border-color: rgba(88, 116, 101, 0.4);
+  box-shadow: 0 2px 6px rgba(88, 116, 101, 0.2);
+}
+
+.whisper:focus-visible {
+  outline: 2px solid var(--accent, #C84630);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.whisper-card {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.5em;
+  
+  /* 卡片样式 - 使用项目 CSS 变量 */
+  background: var(--card-bg, var(--bg-primary, #F8F6F2));
+  border: 1px solid var(--card-border, rgba(88, 116, 101, 0.2));
+  border-radius: 8px;
+  padding: 0.75em 1em;
+  
+  /* 增强投影效果 - 多层阴影营造立体感 */
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(88, 116, 101, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* 文字样式 - 比正文小一号 */
+  color: var(--text-primary, #2D2D2D);
+  font-size: 0.9rem; /* 正文是 1.1rem，小一号是 0.9rem */
+  line-height: 1.5;
+  
+  /* 自适应宽度：确保能容纳足够的文字 */
+  width: fit-content;
+  /* 桌面端：至少容纳 150 个字，一行至少 20 个字符 */
+  max-width: min(70ch, calc(100vw - 60px)); /* 70ch 足够容纳 150 个字 */
+  min-width: 22ch; /* 一行至少容纳 20 个中文字符 */
+  white-space: normal; /* 允许多行显示 */
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  /* 确保内容不会被截断，可以无限多行 */
+  overflow: visible;
+  /* 不限制高度，允许内容无限扩展 */
+  max-height: none;
+  
+  /* 确保卡片在最上层 */
+  z-index: 1000;
+}
+
+/* hover 时增强投影效果 */
+.whisper:hover .whisper-card,
+.whisper:focus .whisper-card {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    0 12px 32px rgba(88, 116, 101, 0.15);
+  /* 保持居中定位，只添加垂直偏移 */
+  transform: translateX(-50%) translateY(-2px) scale(1);
+}
+
+/* 指针箭头 - 外层箭头（边框） */
+.whisper-card::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid var(--card-border, rgba(88, 116, 101, 0.2));
+  margin-top: -1px;
+}
+
+/* 指针箭头 - 内层箭头（背景） */
+.whisper-card::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--card-bg, var(--bg-primary, #F8F6F2));
+}
+
+/* 深色模式适配 */
+.dark-theme .whisper {
+  background: rgba(88, 116, 101, 0.15);
+  border-color: rgba(88, 116, 101, 0.3);
+}
+
+.dark-theme .whisper:hover {
+  background: rgba(88, 116, 101, 0.25);
+  border-color: rgba(88, 116, 101, 0.5);
+  box-shadow: 0 2px 6px rgba(88, 116, 101, 0.3);
+}
+
+.dark-theme .whisper-card {
+  background: var(--card-bg, var(--bg-primary, #222221));
+  border-color: var(--card-border, rgba(88, 116, 101, 0.25));
+  color: var(--text-primary, #E8ECE9);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    0 8px 24px rgba(88, 116, 101, 0.15);
+}
+
+.dark-theme .whisper:hover .whisper-card,
+.dark-theme .whisper:focus .whisper-card {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 12px 32px rgba(88, 116, 101, 0.2);
+}
+
+.dark-theme .whisper-card::after {
+  border-top-color: var(--card-bg, var(--bg-primary, #222221));
+}
+
+.dark-theme .whisper-card::before {
+  border-top-color: var(--card-border, rgba(88, 116, 101, 0.25));
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .whisper-card {
+    /* 移动端：至少容纳 150 个字，一行至少 8 个字符 */
+    max-width: min(90vw, 50ch); /* 50ch 足够容纳 150 个字 */
+    width: fit-content;
+    min-width: 10ch; /* 一行至少容纳 8 个中文字符 */
+    font-size: 0.85rem; /* 移动端稍小一些 */
+    padding: 0.6em 0.8em;
+    /* 不限制高度，允许内容无限扩展 */
+    max-height: none;
+  }
+  
+  .whisper {
+    margin: 0 0.15em;
+  }
+}
+

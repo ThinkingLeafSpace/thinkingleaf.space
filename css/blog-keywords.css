@@ -1,0 +1,77 @@
+/* 博客关键词标签样式 */
+
+.blog-keywords {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.keywords-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-right: 0.25rem;
+    white-space: nowrap;
+}
+
+.keywords-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+/* 关键词标签卡片样式 */
+.keyword-tag {
+    display: inline-block;
+    background-color: rgba(55, 132, 101, 0.1); /* #378465 透明度10% */
+    color: #1A1A1A; /* 偏黑色字，更深一些 */
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    font-weight: 400;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(26, 26, 26, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.keyword-tag:hover {
+    background-color: rgba(55, 132, 101, 0.2); /* hover时稍微深一点 */
+    border-color: rgba(26, 26, 26, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* 暗色模式适配 */
+.dark-theme .keyword-tag {
+    background-color: #5A5A3A; /* 暗色模式下的浅黄色（深一点的黄褐色） */
+    color: #E8E8D8; /* 暗色模式下的浅色字 */
+    border-color: rgba(232, 232, 216, 0.25);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .keyword-tag:hover {
+    background-color: #6A6A4A;
+    border-color: rgba(232, 232, 216, 0.35);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .blog-keywords {
+        margin-top: 0.5rem;
+        gap: 0.4rem;
+    }
+    
+    .keywords-label {
+        font-size: 0.8rem;
+    }
+    
+    .keyword-tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.5rem;
+    }
+}
+

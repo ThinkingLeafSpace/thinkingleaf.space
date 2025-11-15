@@ -37,6 +37,13 @@
   
   <!-- 博客文章 -->
   <url>
+    <loc>https://thinkingleaf.space/blogs/2025-11-14-learned-to-play-at-37.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkingleaf.space/blogs/2025-10-26-meeting-everyone-in-the-meditation-hall.html</loc>
     <lastmod>2025-10-26</lastmod>
     <changefreq>yearly</changefreq>

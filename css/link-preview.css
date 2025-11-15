@@ -7,8 +7,9 @@
 .link-preview-card {
     position: absolute;
     z-index: 9999;
-    width: 320px;
+    width: 400px;
     max-width: 90vw;
+    max-height: 80vh;
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
@@ -18,7 +19,8 @@
     transform: translateY(8px) scale(0.95);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
     pointer-events: none;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* 显示状态 */
@@ -55,12 +57,12 @@
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: var(--spacing-2);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    /* 移除line-clamp限制，允许完整显示150字 */
+    display: block;
+    overflow: visible;
 }
 
 /* 预览卡片元数据 */
@@ -160,13 +162,25 @@ a[data-internal-link="true"] {
 /* 移动端适配 */
 @media (max-width: 768px) {
     .link-preview-card {
-        width: 280px;
+        width: calc(100vw - 32px);
         max-width: calc(100vw - 32px);
+        max-height: 70vh;
+        display: block;
+        pointer-events: auto; /* 移动端允许点击 */
     }
     
-    /* 移动端禁用预览（可选，或使用点击触发） */
-    .link-preview-card {
-        display: none;
+    /* 移动端描述也完整显示 */
+    .link-preview-description {
+        display: block;
+        overflow: visible;
+        word-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+    }
+    
+    /* 移动端预览卡片可见时允许交互 */
+    .link-preview-card.visible {
+        pointer-events: auto;
     }
 }
 

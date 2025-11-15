@@ -4,13 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>造物拾遗图片上传</title>
+  
   <style>
+    /* 优先使用系统字体，确保文字立即可见 */
+    /* 字体回退列表：优先使用系统已安装的字体，避免等待外部字体加载 */
     body {
-      font-family: "LXGW WenKai", "霞鹜文楷", "source han serif sc", "思源宋体", "Songti SC", serif;
+      font-family: "source han serif sc", "思源宋体", "Songti SC", "STSong", "SimSun", serif;
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
       line-height: 1.6;
+      /* 强制立即渲染，不等待任何资源 */
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+    
+    /* 页面加载完成后再应用自定义字体 */
+    body.fonts-loaded {
+      font-family: "LXGW WenKai", "霞鹜文楷", "source han serif sc", "思源宋体", "Songti SC", serif;
     }
     h1 {
       color: #C84630;
@@ -132,5 +143,37 @@
   <div class="note">
     <p><strong>提示：</strong>上传完成后，请确认图片路径与HTML文件中的路径一致。如果不一致，请修改HTML文件中的图片路径。</p>
   </div>
+  
+  <script>
+    // 延迟加载字体，确保文字立即可见
+    // 页面先用系统字体渲染，字体加载完成后再切换
+    (function() {
+      // 立即显示页面内容（使用系统字体）
+      document.body.style.visibility = 'visible';
+      
+      // 页面加载完成后再加载自定义字体
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadFonts);
+      } else {
+        loadFonts();
+      }
+      
+      function loadFonts() {
+        // 异步加载字体样式表，不阻塞渲染
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@latest/style.css';
+        link.media = 'print'; // 先设置为print，避免阻塞渲染
+        link.onload = function() {
+          this.media = 'all'; // 加载完成后切换为all
+          // 字体加载完成后添加class，应用自定义字体
+          setTimeout(function() {
+            document.body.classList.add('fonts-loaded');
+          }, 100);
+        };
+        document.head.appendChild(link);
+      }
+    })();
+  </script>
 </body>
 </html> 

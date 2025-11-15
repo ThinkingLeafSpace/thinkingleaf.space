@@ -36,7 +36,7 @@
     "jobTitle": "光通信行业大数据B端UI设计师",
     "description": "回归生活本源的思考与创造 | 禅修践行者",
     "sameAs": [
-      "https://github.com/ArchQian",
+      "https://github.com/ThinkingLeafSpace/thinkingleaf.space",
       "https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa",
       "https://www.zcool.com.cn/u/27619561"
     ]
@@ -293,6 +293,16 @@
       color: inherit;
       display: block;
     }
+    /* 空内容提示样式 */
+    .content-cards:empty::after {
+      content: "暂无内容";
+      display: block;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+      grid-column: 1 / -1;
+    }
     /* 页脚样式 */
     .site-footer {
       max-width: var(--content-width);
@@ -397,6 +407,142 @@
         padding: 1rem;
       }
     }
+    
+    /* 灵感私语两行间距调整 */
+    .whisper-intro-lines {
+      line-height: 2;
+    }
+    .whisper-intro-lines .whisper-line {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .whisper-intro-lines .whisper-line:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* 页脚微信图标和弹窗样式 */
+    .footer-wechat-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    
+    /* 微信图标使用 social-icon 样式，不需要特殊样式 */
+    
+    .footer-wechat-popup {
+      position: absolute;
+      bottom: calc(100% + 16px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      background-color: var(--color-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 220px;
+      z-index: 1000;
+      border: 1px solid var(--color-border);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .footer-wechat-popup.show {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .footer-wechat-popup:before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -8px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: var(--color-border) transparent transparent transparent;
+    }
+    
+    .dark-theme .footer-wechat-popup {
+      background-color: var(--color-bg);
+      border-color: var(--color-text-secondary);
+    }
+    
+    .dark-theme .footer-wechat-popup:before {
+      border-color: var(--color-text-secondary) transparent transparent transparent;
+    }
+    
+    .wechat-popup-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .wechat-qr-image-wrapper {
+      width: 180px;
+      height: 180px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 8px;
+      background-color: white;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .wechat-qr-image-wrapper .wechat-qr-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+    }
+    
+    .wechat-popup-text {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: var(--color-text);
+      text-align: center;
+    }
+    
+    .copy-wechat-id-footer {
+      width: 100%;
+      padding: 10px;
+      background-color: rgba(200, 70, 48, 0.1);
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+      color: var(--color-text);
+    }
+    
+    .dark-theme .copy-wechat-id-footer {
+      background-color: rgba(229, 90, 75, 0.2);
+    }
+    
+    .copy-wechat-id-footer:hover {
+      background-color: rgba(200, 70, 48, 0.2);
+    }
+    
+    .dark-theme .copy-wechat-id-footer:hover {
+      background-color: rgba(229, 90, 75, 0.3);
+    }
+    
+    .copy-tip-footer {
+      color: var(--color-accent-lotus-red);
+      font-size: 12px;
+      font-weight: 500;
+    }
   </style>
   
   <!-- 预连接外部资源 -->
@@ -411,6 +557,7 @@
   <link rel="stylesheet" href="css/search.css">
   <link rel="stylesheet" href="css/dark-mode.css">
   <link rel="stylesheet" href="css/lazy-loading.css">
+  <link rel="stylesheet" href="css/whisper.css">
   <!-- 引入霞鹜文楷字体 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@latest/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
@@ -478,7 +625,7 @@
               <span class="bio-item"><span class="bio-emoji">👀</span>展览爱好者</span>
             </div>
             <div class="about-social">
-              <a href="https://github.com/ArchQian" aria-label="GitHub" class="social-icon" target="_blank">
+              <a href="https://github.com/ThinkingLeafSpace/thinkingleaf.space" aria-label="GitHub" class="social-icon" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
               </a>
               <a href="https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa" aria-label="即刻" class="social-icon" target="_blank">
@@ -498,23 +645,61 @@
           </div>
         </section>
         
-        <!-- 个人博客最新内容 -->
+        <!-- 🔨 筑 · 创造 -->
         <section class="content-section">
+          <h3>🔨 筑 · 创造</h3>
           <div class="content-cards">
-            <a href="blogs.html" class="content-card" style="grid-column: 1 / -1; text-decoration: none; color: inherit;">
-              <h4>🧠 思 · 博客</h4>
-              <p>我的思考与写作集合</p>
+            <!-- 暂时为空，后续添加内容 -->
+          </div>
+        </section>
+        
+        <!-- ☕ 居 · 拾遗 -->
+        <section class="content-section">
+          <h3>☕ 居 · 拾遗</h3>
+          <div class="content-cards">
+            <a href="exhibits/exhibit-001.html" class="content-card">
+              <h4>展品001-树枝画框</h4>
+              <span class="date">2023-12-15</span>
+              <p>公园捡到的枯树枝，断裂纹理细腻</p>
+            </a>
+            <a href="exhibits/exhibit-002.html" class="content-card">
+              <h4>展品002-红靴子与绿植</h4>
+              <span class="date">2023-11-20</span>
+              <p>3D打印的红靴子，种下种子生出芽儿</p>
+            </a>
+            <a href="exhibits/exhibit-003.html" class="content-card">
+              <h4>展品003-菜之花</h4>
+              <span class="date">2023-10-10</span>
+              <p>探索自然与艺术的边界</p>
             </a>
           </div>
         </section>
         
-        <!-- 居 · 拾遗最新内容 -->
+        <!-- 🧠 思 · 博客 -->
         <section class="content-section">
+          <h3>🧠 思 · 博客</h3>
           <div class="content-cards">
-            <a href="cabinet.html" class="content-card" style="grid-column: 1 / -1; text-decoration: none; color: inherit;">
-              <h4>☕ 居 · 拾遗</h4>
-              <p>收集与展示我的创意与收藏、展品作品</p>
+            <a href="blogs/2025-10-26-meeting-everyone-in-the-meditation-hall.html" class="content-card">
+              <h4>在禅堂里，我遇见了所有人——记第二次内观禅修的结缘</h4>
+              <span class="date">2025-10-26</span>
+              <span class="keywords-tags">威海, Vipassana, 哲思随笔, 海德格尔, 内观</span>
             </a>
+            <a href="blogs/2025-08-28-2025年了为什么我还是推荐用RSS订阅内容.html" class="content-card">
+              <h4>筑居思·算法：RSS——在信息迷雾中构建“认知绿洲”的艺术</h4>
+              <span class="date">2025-08-28</span>
+              <span class="keywords-tags">工具推荐, 信息过载, 算法, RSS, 信息自主</span>
+            </a>
+            <a href="blogs/2025-05-03-creativity-thoughts.html" class="content-card">
+              <h4>创造性思维</h4>
+              <span class="date">2025-05-03</span>
+              <span class="keywords-tags">设计, 反思, 生活, 创造性, 思维</span>
+            </a>
+          
+          
+          
+          
+          
+          
           </div>
         </section>
         
@@ -525,20 +710,34 @@
       <footer>
         <div class="footer-content">
           <p id="footer-greeting">愿你在此找到片刻的安宁与灵感。</p>
-          <nav class="footer-nav">
-            <a href="/" class="footer-link">首页</a>
-            <a href="what-is-zhu-ju-si.html" class="footer-link">何为筑居思？</a>
-            <a href="remake.html" class="footer-link">筑 · 创造</a>
-            <a href="cabinet.html" class="footer-link">居 · 拾遗</a>
-            <a href="blogs.html" class="footer-link">思 · 博客</a>
-          </nav>
           <p>© 2025 筑居思. 保留所有权利.</p>
           <div class="social-links">
-            <a href="https://github.com/ArchQian" aria-label="GitHub" class="social-icon" target="_blank">
+            <div class="footer-wechat-wrapper">
+              <a href="#" class="social-icon footer-wechat-icon" id="footer-wechat-icon" aria-label="微信" onclick="return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+              </a>
+              <div class="footer-wechat-popup" id="footer-wechat-popup">
+                <div class="wechat-popup-content">
+                  <div class="wechat-qr-image-wrapper">
+                    <img src="images/wechat_code.png" alt="微信二维码" class="wechat-qr-image">
+                  </div>
+                  <p class="wechat-popup-text">扫码加我，期待与你思想碰撞</p>
+                  <div class="copy-wechat-id-footer" id="copy-wechat-id-footer">
+                    <span>微信号: ColorfulALQian</span>
+                    <span class="copy-tip-footer">点击复制</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="https://github.com/ThinkingLeafSpace/thinkingleaf.space" aria-label="GitHub" class="social-icon" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
             </a>
             <a href="https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa" aria-label="即刻" class="social-icon" target="_blank">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
             </a>
             <a href="https://www.zcool.com.cn/u/27619561" aria-label="站酷" class="social-icon" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -558,5 +757,112 @@
   <script src="js/theme-switcher.js" defer></script>
   <script src="js/lazy-loading.js" defer></script>
   <script src="js/auto-summaries.js" defer></script>
+  
+  <!-- 页脚微信弹窗功能 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const wechatIcon = document.getElementById('footer-wechat-icon');
+      const wechatPopup = document.getElementById('footer-wechat-popup');
+      const copyWechatBtn = document.getElementById('copy-wechat-id-footer');
+      let hideTimeout = null;
+      let isHoveringPopup = false;
+      
+      if (!wechatIcon || !wechatPopup) return;
+      
+      // 显示弹窗
+      function showPopup() {
+        // 清除之前的隐藏定时器
+        if (hideTimeout) {
+          clearTimeout(hideTimeout);
+          hideTimeout = null;
+        }
+        wechatPopup.classList.add('show');
+      }
+      
+      // 隐藏弹窗（延迟10秒）
+      function hidePopup() {
+        // 如果正在 hover 弹窗，不隐藏
+        if (isHoveringPopup) return;
+        
+        // 清除之前的定时器
+        if (hideTimeout) {
+          clearTimeout(hideTimeout);
+        }
+        
+        // 10秒后隐藏
+        hideTimeout = setTimeout(function() {
+          wechatPopup.classList.remove('show');
+          hideTimeout = null;
+        }, 10000); // 10秒 = 10000毫秒
+      }
+      
+      // 鼠标进入微信图标
+      wechatIcon.addEventListener('mouseenter', function() {
+        showPopup();
+      });
+      
+      // 鼠标离开微信图标
+      wechatIcon.addEventListener('mouseleave', function() {
+        hidePopup();
+      });
+      
+      // 鼠标进入弹窗
+      wechatPopup.addEventListener('mouseenter', function() {
+        isHoveringPopup = true;
+        // 清除隐藏定时器
+        if (hideTimeout) {
+          clearTimeout(hideTimeout);
+          hideTimeout = null;
+        }
+      });
+      
+      // 鼠标离开弹窗
+      wechatPopup.addEventListener('mouseleave', function() {
+        isHoveringPopup = false;
+        hidePopup();
+      });
+      
+      // 复制微信号功能
+      if (copyWechatBtn) {
+        copyWechatBtn.addEventListener('click', function() {
+          const wechatId = this.querySelector('span:first-child').textContent.split(': ')[1];
+          
+          // 使用现代 Clipboard API
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(wechatId).then(function() {
+              const tipElement = copyWechatBtn.querySelector('.copy-tip-footer');
+              const originalText = tipElement.textContent;
+              tipElement.textContent = '复制成功!';
+              
+              setTimeout(function() {
+                tipElement.textContent = originalText;
+              }, 2000);
+            }).catch(function() {
+              alert('复制失败，请手动复制微信号：' + wechatId);
+            });
+          } else {
+            // 降级方案：使用传统方法
+            const tempInput = document.createElement('input');
+            tempInput.value = wechatId;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+              document.execCommand('copy');
+              const tipElement = copyWechatBtn.querySelector('.copy-tip-footer');
+              const originalText = tipElement.textContent;
+              tipElement.textContent = '复制成功!';
+              
+              setTimeout(function() {
+                tipElement.textContent = originalText;
+              }, 2000);
+            } catch (err) {
+              alert('复制失败，请手动复制微信号：' + wechatId);
+            }
+            document.body.removeChild(tempInput);
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

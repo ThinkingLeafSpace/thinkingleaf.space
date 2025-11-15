@@ -66,18 +66,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentPath = window.location.pathname.replace(/index\.html$/, '') || '/';
         const navLinks = document.querySelectorAll('.sidebar-nav a');
         
+        // 先清除所有导航链接的 active 类
+        navLinks.forEach(link => link.classList.remove('active'));
+        
         // 根路径匹配主页
         if (currentPath === '/') {
-            const homeLink = document.querySelector('.sidebar-nav a[href="/"]');
+            const homeLink = document.querySelector('.sidebar-nav a[href="/"]') || 
+                           document.querySelector('.sidebar-nav a[href="index.html"]');
             if (homeLink) homeLink.classList.add('active');
             return;
         }
         
-        // 博客文章页：任何 /blogs/ 下的页面都高亮“个人博客”
+        // 博客文章页：任何 /blogs/ 下的页面都高亮"个人博客"
         if (currentPath.includes('/blogs/')) {
             const blogLink = Array.from(navLinks).find(link => {
                 const href = link.getAttribute('href') || '';
-                return href === '/blog';
+                return href === '/blog' || href === 'blogs.html' || href.includes('blog');
             });
             if (blogLink) blogLink.classList.add('active');
             return;
@@ -86,36 +90,66 @@ document.addEventListener('DOMContentLoaded', () => {
         // 其他页面：匹配当前路径（仅比较文件名，兼容 ../xxx.html 相对路径）
         const route = currentPath.replace(/\.html$/, '');
         const mapping = [
-            { path: '/what-is-zhu-ju-si.html', selector: 'a[href="/what-is-zhu-ju-si.html"]' },
-            { path: '/blog', selector: 'a[href="/blog"]' },
-            { path: '/cabinet', selector: 'a[href="/cabinet"]' }
+            { path: '/what-is-zhu-ju-si.html', selector: 'a[href="/what-is-zhu-ju-si.html"], a[href="what-is-zhu-ju-si.html"]' },
+            { path: '/blog', selector: 'a[href="/blog"], a[href="blogs.html"]' },
+            { path: '/cabinet', selector: 'a[href="/cabinet"], a[href="cabinet.html"]' }
         ];
         // 兼容旧文件路径
         const legacy = [
-            { test: /what-is-zhu-ju-si\.html$/, selector: 'a[href="/what-is-zhu-ju-si.html"]' },
-            { test: /blogs\.html$/, selector: 'a[href="/blog"]' },
-            { test: /cabinet\.html$/, selector: 'a[href="/cabinet"]' }
+            { test: /what-is-zhu-ju-si\.html$/, selector: 'a[href="/what-is-zhu-ju-si.html"], a[href="what-is-zhu-ju-si.html"]' },
+            { test: /blogs\.html$/, selector: 'a[href="/blog"], a[href="blogs.html"]' },
+            { test: /cabinet\.html$/, selector: 'a[href="/cabinet"], a[href="cabinet.html"]' }
         ];
 
         let activated = false;
         for (const m of mapping) {
             if (route === m.path) {
-                const el = document.querySelector(`.sidebar-nav ${m.selector}`);
-                if (el) { el.classList.add('active'); activated = true; }
+                const selectors = m.selector.split(',');
+                for (const selector of selectors) {
+                    const el = document.querySelector(`.sidebar-nav ${selector.trim()}`);
+                    if (el) { 
+                        el.classList.add('active'); 
+                        activated = true;
+                        break;
+                    }
+                }
             }
         }
         if (!activated) {
             for (const l of legacy) {
                 if (l.test.test(currentPath)) {
-                    const el = document.querySelector(`.sidebar-nav ${l.selector}`);
-                    if (el) { el.classList.add('active'); activated = true; }
+                    const selectors = l.selector.split(',');
+                    for (const selector of selectors) {
+                        const el = document.querySelector(`.sidebar-nav ${selector.trim()}`);
+                        if (el) { 
+                            el.classList.add('active'); 
+                            activated = true;
+                            break;
+                        }
+                    }
                 }
             }
         }
     }
     
+    // 为导航链接添加点击事件处理，确保点击时立即更新 active 状态
+    function setupNavLinkClickHandlers() {
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // 清除所有导航链接的 active 类
+                navLinks.forEach(l => l.classList.remove('active'));
+                // 为当前点击的链接添加 active 类
+                this.classList.add('active');
+            });
+        });
+    }
+    
     // 初始化活动导航链接
     setActiveNavLink();
+    
+    // 设置导航链接点击事件处理器
+    setupNavLinkClickHandlers();
 
     // 特定页面与博客页面：移除面包屑
     if (window.location.pathname.endsWith('mitsein.html') || window.location.pathname.includes('/blogs/')) {

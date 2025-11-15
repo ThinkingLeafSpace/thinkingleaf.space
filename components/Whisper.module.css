@@ -1,0 +1,173 @@
+/* Whisper 组件样式 - 与项目禅意风格保持一致 */
+
+.whisperTrigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  margin: 0 0.2em;
+  vertical-align: middle;
+  font-size: 1em;
+  line-height: 1;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* 让图标更明显 - 添加背景和边框 */
+  background: rgba(88, 116, 101, 0.08);
+  border: 1px solid rgba(88, 116, 101, 0.2);
+  border-radius: 4px;
+  padding: 0.15em 0.3em;
+  min-width: 1.2em;
+  min-height: 1.2em;
+}
+
+.whisperTrigger:hover {
+  transform: scale(1.15);
+  background: rgba(88, 116, 101, 0.15);
+  border-color: rgba(88, 116, 101, 0.4);
+  box-shadow: 0 2px 6px rgba(88, 116, 101, 0.2);
+}
+
+.whisperCard {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.5em;
+  
+  /* 卡片样式 - 使用项目 CSS 变量 */
+  background: var(--card-bg, var(--bg-primary, #F8F6F2));
+  border: 1px solid var(--card-border, rgba(88, 116, 101, 0.2));
+  border-radius: 8px;
+  padding: 0.75em 1em;
+  
+  /* 增强投影效果 - 多层阴影营造立体感 */
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(88, 116, 101, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* 文字样式 - 比正文小一号 */
+  color: var(--text-primary, #2D2D2D);
+  font-size: 0.9rem; /* 正文是 1.1rem，小一号是 0.9rem */
+  line-height: 1.5;
+  
+  /* 自适应宽度：确保能容纳足够的文字 */
+  width: fit-content;
+  /* 桌面端：至少容纳 150 个字，一行至少 20 个字符 */
+  max-width: min(70ch, calc(100vw - 60px)); /* 70ch 足够容纳 150 个字 */
+  min-width: 22ch; /* 一行至少容纳 20 个中文字符 */
+  white-space: normal; /* 允许多行显示 */
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  /* 确保内容不会被截断，可以无限多行 */
+  overflow: visible;
+  /* 不限制高度，允许内容无限扩展 */
+  max-height: none;
+  
+  /* 确保卡片在最上层 */
+  z-index: 1000;
+}
+
+/* hover 时增强投影效果 */
+.whisperTrigger:hover .whisperCard,
+.whisperTrigger:focus .whisperCard {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    0 12px 32px rgba(88, 116, 101, 0.15);
+  /* 保持居中定位，只添加垂直偏移 */
+  transform: translateX(-50%) translateY(-2px) scale(1);
+}
+
+/* 指针箭头 - 外层箭头（边框） */
+.whisperCard::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid var(--card-border, rgba(88, 116, 101, 0.2));
+  margin-top: -1px;
+}
+
+/* 指针箭头 - 内层箭头（背景） */
+.whisperCard::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--card-bg, var(--bg-primary, #F8F6F2));
+}
+
+/* 深色模式适配 */
+.dark-theme .whisperTrigger {
+  background: rgba(88, 116, 101, 0.15);
+  border-color: rgba(88, 116, 101, 0.3);
+}
+
+.dark-theme .whisperTrigger:hover {
+  background: rgba(88, 116, 101, 0.25);
+  border-color: rgba(88, 116, 101, 0.5);
+  box-shadow: 0 2px 6px rgba(88, 116, 101, 0.3);
+}
+
+.dark-theme .whisperCard {
+  background: var(--card-bg, var(--bg-primary, #222221));
+  border-color: var(--card-border, rgba(88, 116, 101, 0.25));
+  color: var(--text-primary, #E8ECE9);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    0 8px 24px rgba(88, 116, 101, 0.15);
+}
+
+.dark-theme .whisperTrigger:hover .whisperCard,
+.dark-theme .whisperTrigger:focus .whisperCard {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 12px 32px rgba(88, 116, 101, 0.2);
+}
+
+.dark-theme .whisperCard::after {
+  border-top-color: var(--card-bg, var(--bg-primary, #222221));
+}
+
+.dark-theme .whisperCard::before {
+  border-top-color: var(--card-border, rgba(88, 116, 101, 0.25));
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .whisperCard {
+    /* 移动端：至少容纳 150 个字，一行至少 8 个字符 */
+    max-width: min(90vw, 50ch); /* 50ch 足够容纳 150 个字 */
+    width: fit-content;
+    min-width: 10ch; /* 一行至少容纳 8 个中文字符 */
+    font-size: 0.85rem; /* 移动端稍小一些 */
+    padding: 0.6em 0.8em;
+    /* 不限制高度，允许内容无限扩展 */
+    max-height: none;
+  }
+}
+
+/* 无障碍访问：键盘焦点样式 */
+.whisperTrigger:focus-visible {
+  outline: 2px solid var(--accent, #C84630);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+

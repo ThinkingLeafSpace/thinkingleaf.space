@@ -25,6 +25,18 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+    margin-bottom: 1rem; /* 增加与内容标签的间距 */
+}
+
+/* 时间标签统一使用红色背景和白色字体 */
+.blog-meta time,
+.post-meta time {
+    color: #FFFFFF; /* 白色字体 */
+    background-color: #C84630; /* 红色背景 */
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    font-weight: 500;
 }
 
 .blog-body, .post-content {

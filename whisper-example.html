@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whisper 组件示例</title>
+  
+  <!-- 引入项目样式 -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- 引入 Whisper 样式 -->
+  <link rel="stylesheet" href="css/whisper.css">
+  
+  <style>
+    body {
+      font-family: "LXGW WenKai", "霞鹜文楷", "source han serif sc", "思源宋体", "Songti SC", serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.8;
+      color: var(--text-primary, #2D2D2D);
+      background: var(--bg-primary, #F8F6F2);
+    }
+    
+    h1 {
+      color: var(--accent, #C84630);
+      border-bottom: 2px solid var(--card-border, rgba(88, 116, 101, 0.2));
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+    }
+    
+    h2 {
+      color: var(--text-primary, #2D2D2D);
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    
+    .example-section {
+      margin: 30px 0;
+      padding: 25px;
+      background: var(--card-bg, var(--bg-primary, #F8F6F2));
+      border: 1px solid var(--card-border, rgba(88, 116, 101, 0.2));
+      border-radius: 8px;
+      box-shadow: 0 2px 8px var(--card-shadow, rgba(0, 0, 0, 0.05));
+    }
+    
+    .code-block {
+      background: var(--bg-secondary, #E8ECE9);
+      padding: 15px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      margin: 15px 0;
+      overflow-x: auto;
+      border-left: 3px solid var(--accent, #C84630);
+    }
+    
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    li {
+      margin: 10px 0;
+      padding-left: 25px;
+      position: relative;
+    }
+    
+    li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent, #C84630);
+    }
+  </style>
+</head>
+<body>
+  <h1>Whisper 组件使用示例</h1>
+  
+  <div class="example-section">
+    <h2>基本用法</h2>
+    <p>
+      你在《存在与时间》
+      <span class="whisper" data-content="海德格尔的代表作。一本试图"搞懂我们是怎么存在"的烧脑天书。"></span>
+      里找到了答案。
+    </p>
+    
+    <div class="code-block">
+&lt;span class="whisper" data-content="提示内容"&gt;&lt;/span&gt;
+    </div>
+  </div>
+  
+  <div class="example-section">
+    <h2>自定义图标</h2>
+    <p>
+      这个哲学概念
+      <span class="whisper" data-content="存在主义的核心概念之一" data-emoji="💭"></span>
+      值得深入思考。
+    </p>
+    
+    <p>
+      点击这里
+      <span class="whisper" data-content="了解更多关于禅修的信息" data-emoji="🧘"></span>
+      了解更多。
+    </p>
+    
+    <div class="code-block">
+&lt;span class="whisper" data-content="提示内容" data-emoji="💡"&gt;&lt;/span&gt;
+    </div>
+  </div>
+  
+  <div class="example-section">
+    <h2>在文章中使用</h2>
+    <article>
+      <p>
+        在阅读《存在与时间》
+        <span class="whisper" data-content="马丁·海德格尔于1927年出版的哲学著作，是20世纪最重要的哲学作品之一。"></span>
+        时，我深深被其关于"此在"（Dasein）的论述所吸引。
+      </p>
+      
+      <p>
+        海德格尔认为，我们不应该将存在视为一个静态的概念
+        <span class="whisper" data-content="传统哲学往往将存在视为一个抽象的概念，但海德格尔强调存在的动态性和时间性。" data-emoji="📖"></span>
+        ，而应该理解为我们与世界的关系。
+      </p>
+    </article>
+  </div>
+  
+  <div class="example-section">
+    <h2>在列表中使用</h2>
+    <ul>
+      <li>
+        存在主义
+        <span class="whisper" data-content="20世纪哲学思潮，强调个体存在和自由选择的重要性。"></span>
+      </li>
+      <li>
+        现象学
+        <span class="whisper" data-content="哲学方法，关注直接经验和意识的结构。" data-emoji="🔍"></span>
+      </li>
+      <li>
+        诠释学
+        <span class="whisper" data-content="理解和解释文本与意义的理论。" data-emoji="📚"></span>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="example-section">
+    <h2>特性说明</h2>
+    <ul>
+      <li>✨ <strong>流畅动画</strong>：使用 CSS 过渡实现弹性动画效果</li>
+      <li>🎨 <strong>主题适配</strong>：自动适配项目的深色/浅色模式</li>
+      <li>♿ <strong>无障碍访问</strong>：支持键盘导航和屏幕阅读器</li>
+      <li>📱 <strong>响应式设计</strong>：在移动设备上自动调整大小</li>
+      <li>🎯 <strong>精确定位</strong>：提示卡片自动定位在触发元素上方</li>
+    </ul>
+  </div>
+  
+  <!-- 引入 Whisper JavaScript -->
+  <script src="js/whisper.js"></script>
+</body>
+</html>
+

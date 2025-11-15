@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筑居思·Vibe：我的人文、科技与“白日梦” - 筑居思</title>
+    <meta name="description" content="人文 · 科技 · 白日梦’—— 这篇刊物是‘筑居思’的Vibe定义。以‘一席’厦门讲座为锚点，我探讨了何志森‘永远不要停止想象’的策展，并反思了‘网红空间’的异化与‘在城市中彷徨’的我们。这是一份关于‘哆啦A梦式传送之旅’的白日梦邀请。">
+    <meta name="keywords" content="newsletter, 科技, 城市漫游, 白日梦, 何志森, 一席, 《心灵奇旅》, 想象力, 人文主义, 筑居思">
+    <meta name="author" content="Qianny">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://thinkingleaf.space/blogs/2022-11-08-proust-questionnaire.html">
+    <meta property="og:title" content="筑居思·Vibe：我的人文、科技与“白日梦” - 筑居思">
+    <meta property="og:description" content="人文 · 科技 · 白日梦’—— 这篇刊物是‘筑居思’的Vibe定义。以‘一席’厦门讲座为锚点，我探讨了何志森‘永远不要停止想象’的策展，并反思了‘网红空间’的异化与‘在城市中彷徨’的我们。这是一份关于‘哆啦A梦式传送之旅’的白日梦邀请。">
+    <meta property="og:image" content="https://thinkingleaf.space/images/putiye心形菩提叶.svg">
+    <meta property="article:published_time" content="2022-11-08T00:00:00+08:00">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://thinkingleaf.space/blogs/2022-11-08-proust-questionnaire.html">
+    <meta name="twitter:title" content="筑居思·Vibe：我的人文、科技与“白日梦” - 筑居思">
+    <meta name="twitter:description" content="人文 · 科技 · 白日梦’—— 这篇刊物是‘筑居思’的Vibe定义。以‘一席’厦门讲座为锚点，我探讨了何志森‘永远不要停止想象’的策展，并反思了‘网红空间’的异化与‘在城市中彷徨’的我们。这是一份关于‘哆啦A梦式传送之旅’的白日梦邀请。">
+    <meta name="twitter:image" content="https://thinkingleaf.space/images/putiye心形菩提叶.svg">
+    
+    <link rel="canonical" href="https://thinkingleaf.space/blogs/2022-11-08-proust-questionnaire.html">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/blog-post.css">
+    <link rel="stylesheet" href="../css/lazy-loading.css">
+    <link rel="stylesheet" href="../css/link-preview.css">
+    
+    <style>
+        /* 普鲁斯特问卷样式 */
+        .proust-question {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: text;
+        }
+        
+        .proust-question .question-text {
+            margin: 0;
+        }
+        
+        .proust-question .answer-text {
+            margin: 0.75rem 0 0 0;
+            padding-top: 0.75rem;
+            border-top: 1px dashed var(--color-border, #eee);
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.4s ease, max-height 0.4s ease, padding-top 0.4s ease, margin-top 0.4s ease;
+            color: var(--color-text-secondary, #666);
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        /* Desktop: hover显示答案 */
+        @media (hover: hover) and (pointer: fine) {
+            .proust-question:hover .answer-text {
+                opacity: 1;
+                max-height: 500px;
+                padding-top: 0.75rem;
+                margin-top: 0.75rem;
+            }
+        }
+        
+        /* Mobile: 滚动时渐进显示 */
+        .proust-question.visible .answer-text {
+            opacity: 1;
+            max-height: 500px;
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
+        }
+        
+        /* 深色模式 */
+        .dark-theme .proust-question .answer-text {
+            border-top-color: var(--color-border, #3A3A3A);
+            color: var(--color-text-secondary, #7E9C8D);
+        }
+        
+        /* 复制时只复制问题文本 */
+        .proust-question::selection {
+            background: rgba(200, 70, 48, 0.2);
+        }
+    </style>
+    <link rel="icon" href="../images/putiye心形菩提叶.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 左侧固定导航栏 -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <a href="../index.html" aria-label="返回首页"><h1>筑居<span>思</span></h1></a>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="../what-is-zhu-ju-si.html">🧭 何为筑居思？</a></li>
+            <li><a href="../remake.html">🔨 筑 · 创造</a></li>
+            <li><a href="../cabinet.html">☕ 居 · 拾遗</a></li>
+            <li><a href="../blogs.html">🧠 思 · 博客</a></li>
+        </ul>
+        <div class="theme-toggle">
+            <button id="theme-toggle-btn" aria-label="切换主题">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 移动端菜单按钮 -->
+    <button class="mobile-menu-toggle" aria-label="打开导航菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- 主要内容区域 -->
+    <div class="main-content">
+        <div class="container blog-post">
+            <main>
+                <article>
+                    <header class="post-header">
+                        <h1 class="post-title">筑居思·Vibe：我的人文、科技与“白日梦”</h1>
+                        <div class="post-meta">
+                            <time datetime="2022-11-08">2022年11月8日</time>
+                        </div>
+                        <div class="blog-tags">
+                            <span class="tag">自我探索</span>
+                            <span class="tag">哲学思考</span>
+                            <span class="tag">内心对话</span>
+                            <span class="tag">普鲁斯特问卷</span>
+                        </div>
+                    </header>
+
+                    <div class="post-content">
+                        <p><em>普鲁斯特问卷（Proust Questionnaire）是一系列关于个人价值观、人生观和世界观的问题，因法国作家马塞尔·普鲁斯特（Marcel Proust）的经典回答而闻名。这些问题帮助我们更深入地了解自己，探索内心的真实想法。</em></p>
+                        
+                        <p><strong>原文链接：</strong><a href="https://en.wikipedia.org/wiki/Proust_Questionnaire" target="_blank" rel="noopener noreferrer">普鲁斯特问卷 - Wikipedia</a></p>
+                        
+                        <hr />
+                        
+                        <h3 id="_1">35个问题</h3>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>01 你认为最完美的幸福是怎样的？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>02 你最大的恐惧是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>03 你最痛恨自己的哪些特质？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>04 你最痛恨别人的什么特点？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>05 还在世的人中你最欣赏的是谁？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>06 你最大的奢侈品是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>07 你目前的心境怎样？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>08 你认为哪种美德是被过高评价的？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>09 什么情况下你会撒谎？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>10 你对自己的外表哪一点不满意？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>11 还在世的人中你最鄙视谁？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>12 你最喜欢男性身上的什么品质？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>13 你最喜欢女性身上的什么品质？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>14 你最常使用的单词或短语是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>15 你这一生中最伟大的爱是谁/什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>16 何时何地让你感觉到最快乐？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>17 你最想拥有哪种才能？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>18 如果你能够改变自己的一件事，那会是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>19 你认为自己最大的成就是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>20 如果有转世，你希望成为什么样的人或物？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>21 你最想住在哪里？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>22 你最珍贵的财产是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>23 你认为程度最浅的痛苦是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>24 你最喜欢的职业是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>25 你最显著的特点是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>26 你最看重朋友的什么特点？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>27 你最喜欢的作家是谁？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>28 谁是你心目中小说里的英雄？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>29 你最认同哪位历史人物？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>30 谁是你现实生活中的英雄？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>31 你最喜欢的名字是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>32 你最不喜欢什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>33 你最大的遗憾是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>34 你想以何种方式死去？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <blockquote class="proust-question" data-answer=""><p class="question-text"><strong>35 你的座右铭是什么？</strong></p><p class="answer-text"></p></blockquote>
+                        
+                        <hr />
+                        
+                        <p><em>这些问题没有标准答案，每个人的回答都是独特的。它们帮助我们更深入地了解自己，探索内心的真实想法。如果你也想回答这些问题，不妨找个安静的时刻，诚实地面对自己，写下你的答案。</em></p>
+                                            <hr />
+                        
+                        <div class="whisper-intro-section">
+                            <div class="whisper-intro-card">
+                                <h3 id="_1">🌱 灵感私语</h3>
+                                <p class="whisper-intro">叶芽之下，别有根系。</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </main>
+
+            <footer>
+                <div class="footer-content">
+                    <p>© 2025 筑居思. 保留所有权利.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/ArchQian" aria-label="GitHub" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </a>
+                        <a href="https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa" aria-label="即刻" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                        </a>
+                        <a href="https://www.zcool.com.cn/u/27619561" aria-label="站酷" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="../rss.xml" aria-label="RSS订阅" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="../js/theme-switcher.js"></script>
+    <script src="../js/lazy-loading.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/link-preview.js"></script>
+    <script src="../js/whisper.js"></script>
+    <script>
+        // 普鲁斯特问卷交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const questions = document.querySelectorAll('.proust-question');
+            
+            // 初始化：从data-answer属性填充答案
+            questions.forEach(function(question) {
+                const answerText = question.querySelector('.answer-text');
+                const answer = question.getAttribute('data-answer');
+                if (answer && answer.trim()) {
+                    answerText.textContent = answer;
+                }
+            });
+            
+            // 移动端：使用Intersection Observer实现渐进显示
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -50px 0px', // 当元素距离底部50px时触发
+                    threshold: 0.1
+                };
+                
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            // 可选：显示后停止观察
+                            // observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+                
+                // 只在移动端启用渐进显示
+                if (window.matchMedia('(max-width: 768px)').matches || 
+                    !window.matchMedia('(hover: hover)').matches) {
+                    questions.forEach(function(question) {
+                        const answerText = question.querySelector('.answer-text');
+                        if (answerText && answerText.textContent.trim()) {
+                            observer.observe(question);
+                        }
+                    });
+                }
+            }
+            
+            // 复制功能：只复制问题文本
+            questions.forEach(function(question) {
+                question.addEventListener('copy', function(e) {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString();
+                    
+                    if (selectedText.length > 0) {
+                        const questionText = question.querySelector('.question-text');
+                        const answerText = question.querySelector('.answer-text');
+                        
+                        // 检查选择是否包含答案文本
+                        if (answerText && answerText.textContent.trim() && 
+                            selection.containsNode(answerText, true)) {
+                            // 如果选择了答案，只复制问题文本
+                            e.preventDefault();
+                            const questionOnly = questionText ? questionText.textContent.trim() : '';
+                            e.clipboardData.setData('text/plain', questionOnly);
+                            return;
+                        }
+                        
+                        // 如果只选择了问题文本，正常复制
+                        // 如果选择了问题+答案，只复制问题
+                        if (questionText && selection.containsNode(questionText, true)) {
+                            const range = selection.getRangeAt(0);
+                            const questionRange = document.createRange();
+                            questionRange.selectNodeContents(questionText);
+                            
+                            // 检查选择范围是否超出问题文本
+                            if (range.compareBoundaryPoints(Range.START_TO_START, questionRange) < 0 ||
+                                range.compareBoundaryPoints(Range.END_TO_END, questionRange) > 0) {
+                                // 选择超出了问题文本，只复制问题
+                                e.preventDefault();
+                                const questionOnly = questionText.textContent.trim();
+                                e.clipboardData.setData('text/plain', questionOnly);
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
