@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>部署检查页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .check-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        .timestamp {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 GitHub Pages 部署检查</h1>
+    <div class="check-item">
+        <h2>✅ 如果你能看到这个页面</h2>
+        <p>说明 GitHub Pages 部署正常！</p>
+        <p class="timestamp">页面生成时间：<script>document.write(new Date().toLocaleString('zh-CN'));</script></p>
+    </div>
+    <div class="check-item">
+        <h2>📋 检查清单</h2>
+        <ul>
+            <li>✅ 文件已部署</li>
+            <li>✅ HTML 可以正常显示</li>
+            <li>✅ JavaScript 可以正常运行</li>
+        </ul>
+    </div>
+    <div class="check-item">
+        <h2>🔗 相关链接</h2>
+        <p><a href="/">返回首页</a></p>
+        <p><a href="/test.html">测试页面</a></p>
+    </div>
+</body>
+</html>
+
