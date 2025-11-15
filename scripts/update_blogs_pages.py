@@ -60,6 +60,10 @@ def extract_blog_info(html_file: Path) -> Optional[Dict]:
             if img_match:
                 cover_image = img_match.group(1)
         
+        # 过滤占位符图片
+        if cover_image and ('placeholder-image' in cover_image.lower() or 'placeholder' in cover_image.lower()):
+            cover_image = None
+        
         # 规范化图片路径（相对于blogs.html）
         if cover_image:
             # 如果图片路径是相对于博客文件的（../images/），需要转换为相对于blogs.html的路径
