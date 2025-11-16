@@ -379,32 +379,112 @@
     }
     
     @media (max-width: 768px) {
+      /* 基础字体调整 */
+      html {
+        font-size: 15px;
+      }
+      
       .content-cards {
         grid-template-columns: 1fr; /* 小屏幕单列 */
+        gap: 1rem;
       }
+      
+      .content-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      
       .about-section {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding: 1.5rem;
       }
+      
       .about-bio {
         justify-content: center;
+        gap: 0.5rem;
       }
+      
       .about-social {
         justify-content: center;
+        margin-top: 1rem;
+      }
+      
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+      }
+      
+      .cta-button {
+        width: 100%;
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+      }
+      
+      /* 主题切换按钮位置调整 */
+      .theme-toggle {
+        top: 16px;
+        right: 68px;
+      }
+      
+      #theme-toggle-btn {
+        width: 44px;
+        height: 44px;
       }
     }
     
     @media (max-width: 480px) {
+      html {
+        font-size: 14px;
+      }
+      
       h1 {
-        font-size: 24px;
+        font-size: 1.5rem;
       }
+      
       .avatar-container {
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
       }
+      
       .content-card {
+        padding: 0.875rem;
+      }
+      
+      .about-section {
         padding: 1rem;
+      }
+      
+      .bio-item {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+      }
+      
+      .theme-toggle {
+        right: 60px;
+        top: 12px;
+      }
+      
+      .mobile-menu-toggle {
+        right: 12px;
+        top: 12px;
+      }
+    }
+    
+    @media (max-width: 375px) {
+      html {
+        font-size: 13px;
+      }
+      
+      .container {
+        padding: 0 0.5rem;
+      }
+      
+      .content-card {
+        padding: 0.75rem;
       }
     }
     

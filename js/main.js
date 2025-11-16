@@ -377,9 +377,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.querySelector('.sidebar');
     
     if (mobileMenuToggle && sidebar) {
-        mobileMenuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('show');
-            mobileMenuToggle.classList.toggle('active');
+        // 切换侧边栏显示状态
+        const toggleSidebar = () => {
+            const isOpen = sidebar.classList.contains('show');
+            if (isOpen) {
+                sidebar.classList.remove('show');
+                document.body.classList.remove('sidebar-open');
+                mobileMenuToggle.classList.remove('active');
+            } else {
+                sidebar.classList.add('show');
+                document.body.classList.add('sidebar-open');
+                mobileMenuToggle.classList.add('active');
+            }
+        };
+        
+        mobileMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar();
         });
         
         // 点击外部时关闭侧边栏（移动端）
@@ -390,6 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (!isClickInsideSidebar && !isClickOnMenuToggle && sidebar.classList.contains('show')) {
                     sidebar.classList.remove('show');
+                    document.body.classList.remove('sidebar-open');
                     mobileMenuToggle.classList.remove('active');
                 }
             }
@@ -399,6 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768 && sidebar.classList.contains('show')) {
                 sidebar.classList.remove('show');
+                document.body.classList.remove('sidebar-open');
                 mobileMenuToggle.classList.remove('active');
             }
         });

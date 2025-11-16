@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>筑居思 - 回归生活本源的思考与创造</title>
     <link>https://thinkingleaf.space/</link>
@@ -8,6 +8,15 @@
     <lastBuildDate>Mon, 15 Jan 2025 12:00:00 +0800</lastBuildDate>
     <atom:link href="https://thinkingleaf.space/rss.xml" rel="self" type="application/rss+xml"/>
     <copyright>筑居思 © 2025</copyright>
+    <image>
+      <url>https://thinkingleaf.space/images/putiye心形菩提叶.svg</url>
+      <title>筑居思</title>
+      <link>https://thinkingleaf.space/</link>
+    </image>
+    <managingEditor>qianny@thinkingleaf.space (Qianny)</managingEditor>
+    <webMaster>qianny@thinkingleaf.space (Qianny)</webMaster>
+    <generator>筑居思 RSS Generator</generator>
+    <ttl>60</ttl>
     
     <!-- 首页精选内容 -->
     <item>

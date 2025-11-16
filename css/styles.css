@@ -825,14 +825,16 @@ footer {
     top: 16px;
     background: var(--bg-secondary);
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 44px; /* 增大触摸目标，符合移动端最小44x44px标准 */
+    height: 44px;
     border-radius: 8px;
     z-index: 1001;
     flex-direction: column;
     justify-content: space-between;
     padding: 12px 8px;
     box-shadow: 0 2px 8px var(--card-shadow);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* 移除移动端点击高亮 */
 }
 
 .mobile-menu-toggle span {
@@ -840,6 +842,7 @@ footer {
     height: 2px;
     background-color: var(--text-primary);
     transition: transform 0.3s ease, opacity 0.3s ease;
+    width: 100%;
 }
 
 /* 响应式设计 */
@@ -855,12 +858,65 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* 基础字体大小调整 */
+    html {
+        font-size: 15px; /* 移动端稍微减小基础字体 */
+    }
+    
+    body {
+        line-height: 1.7; /* 移动端行高稍微减小 */
+    }
+    
+    /* 侧边栏移动端样式 */
     .sidebar {
         transform: translateX(-100%);
+        width: 280px; /* 移动端侧边栏稍宽，便于操作 */
+        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
     }
     
     .sidebar.show {
         transform: translateX(0);
+    }
+    
+    /* 侧边栏遮罩层 - 使用body类控制 */
+    body.sidebar-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    body.sidebar-open {
+        overflow: hidden; /* 防止背景滚动 */
+    }
+    
+    .sidebar-nav a {
+        padding: var(--spacing-2) var(--spacing-3);
+        font-size: 1rem;
+        min-height: 44px; /* 确保触摸目标足够大 */
+        display: flex;
+        align-items: center;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    
+    /* 移动端菜单按钮动画 */
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
     
     .main-content {
@@ -877,34 +933,341 @@ footer {
         display: flex;
     }
     
+    /* 主题切换按钮移动端位置调整 */
+    .theme-toggle {
+        top: 16px;
+        right: 68px; /* 为移动菜单按钮留出空间 */
+    }
+    
+    #theme-toggle-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    /* 标题样式优化 */
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.3;
+        margin-bottom: var(--spacing-2);
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+    }
+    
     .featured-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-3);
     }
     
     .links-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-3);
+    }
+    
+    /* 英雄区优化 */
+    .hero {
+        padding: var(--spacing-5) 0 var(--spacing-4);
     }
     
     .hero h2 {
-        font-size: 1.8rem;
+        font-size: 1.75rem;
+        margin-bottom: var(--spacing-2);
     }
     
     .hero p {
         font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    /* 卡片样式优化 */
+    .content-card, .link-card, .featured-card {
+        padding: var(--spacing-3);
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .link-content {
+        padding: var(--spacing-3);
+    }
+    
+    .link-content h5 {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        margin-bottom: var(--spacing-1);
+    }
+    
+    /* 关于我部分移动端优化 */
+    .about-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: var(--spacing-3);
+    }
+    
+    .about-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .avatar-container {
+        width: 100px;
+        height: 100px;
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .about-bio {
+        justify-content: center;
+        gap: var(--spacing-1);
+    }
+    
+    .bio-item {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.7rem;
+    }
+    
+    .about-social {
+        justify-content: center;
+        margin-top: var(--spacing-2);
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
+    /* 按钮优化 */
+    .btn, .btn-primary, .btn-secondary {
+        min-height: 44px;
+        padding: var(--spacing-2) var(--spacing-4);
+        font-size: 1rem;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation; /* 优化触摸响应 */
+    }
+    
+    .cta-button {
+        min-height: 44px;
+        padding: var(--spacing-2) var(--spacing-4);
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        display: block;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    
+    /* 链接卡片触摸优化 */
+    .link-card, .content-card {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        cursor: pointer;
+    }
+    
+    /* 改善移动端链接点击体验 */
+    a {
+        -webkit-tap-highlight-color: rgba(200, 70, 48, 0.1);
+        touch-action: manipulation;
+    }
+    
+    /* 页脚优化 */
+    .footer-content {
+        padding: var(--spacing-3) var(--spacing-2);
+    }
+    
+    .footer-nav {
+        flex-direction: column;
+        gap: var(--spacing-2);
+    }
+    
+    .footer-link {
+        margin: 0;
+        padding: var(--spacing-1) 0;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* 容器优化 */
+    .container {
+        padding: 0 var(--spacing-3);
+    }
+    
+    /* 引用块优化 */
+    blockquote {
+        padding: var(--spacing-2) var(--spacing-3);
+        margin: var(--spacing-3) 0;
+        font-size: 0.95rem;
+    }
+    
+    /* 分类头部优化 */
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-2);
+    }
+    
+    /* 展品容器优化 */
+    .cabinet-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-3);
+    }
+    
+    .exhibit-item {
+        height: 250px;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    
+    .exhibit-title {
+        font-size: 0.95rem;
+        padding: var(--spacing-2);
+    }
+    
+    /* 博客封面图移动端优化 */
+    .blog-cover-wrap {
+        aspect-ratio: 16 / 9;
+    }
+    
+    /* 日期标签移动端优化 */
+    .date-tag, .date {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    /* 关键词标签移动端优化 */
+    .keywords-tags {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+    
+    /* 页脚社交图标移动端优化 */
+    .social-links {
+        gap: var(--spacing-2);
+    }
+    
+    .social-icon {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        min-height: 38px;
     }
 }
 
 @media (max-width: 576px) {
+    html {
+        font-size: 14px;
+    }
+    
     .container {
         padding: 0 var(--spacing-2);
     }
     
     .hero {
-        padding: var(--spacing-6) 0 var(--spacing-4);
+        padding: var(--spacing-4) 0 var(--spacing-3);
     }
     
     .hero h2 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.95rem;
+    }
+    
+    /* 更小屏幕的卡片内边距 */
+    .content-card, .link-card, .featured-card {
+        padding: var(--spacing-2);
+    }
+    
+    .link-content {
+        padding: var(--spacing-2);
+    }
+    
+    /* 标题进一步缩小 */
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* 侧边栏在小屏幕上更窄 */
+    .sidebar {
+        width: 260px;
+    }
+    
+    /* 移动菜单按钮位置调整 */
+    .mobile-menu-toggle {
+        right: 12px;
+        top: 12px;
+    }
+    
+    .theme-toggle {
+        right: 60px;
+        top: 12px;
+    }
+    
+    /* 关于我部分进一步优化 */
+    .about-section {
+        padding: var(--spacing-2);
+    }
+    
+    .avatar-container {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .bio-item {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+/* 超小屏幕优化（iPhone SE等） */
+@media (max-width: 375px) {
+    html {
+        font-size: 13px;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-1);
+    }
+    
+    .hero h2 {
+        font-size: 1.3rem;
+    }
+    
+    .content-card, .link-card {
+        padding: var(--spacing-2);
+    }
+    
+    .sidebar {
+        width: 240px;
+    }
+    
+    /* 超小屏幕下的按钮和链接 */
+    .btn, .btn-primary, .btn-secondary, .cta-button {
+        font-size: 0.95rem;
+        padding: var(--spacing-2) var(--spacing-3);
+    }
+    
+    .link-content h5 {
+        font-size: 1rem;
     }
 }
 
@@ -1255,53 +1618,7 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    .sidebar {
-        transform: translateX(-100%);
-    }
-
-    .sidebar.show {
-        transform: translateX(0);
-    }
-
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-    }
-
-    .featured-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .links-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    }
-
-    .hero h2 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1.1rem;
-    }
-    
-    .portfolio-title {
-        font-size: 1.3rem;
-    }
-    
-    .portfolio-actions {
-        flex-direction: column;
-    }
-    
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
-}
+/* 重复的768px媒体查询已合并到上方统一管理 */
 
 /* 添加日期标签样式 */
 .date-tag {
@@ -1687,15 +2004,7 @@ body.blogs-page .link-content h5 {
     color: white;
 }
 
-@media (max-width: 768px) {
-    .cabinet-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .links-grid {
-        grid-template-columns: 1fr;
-    }
-}
+/* 重复的768px媒体查询已合并到上方统一管理 */
 
 /* ========== 灵魂配图样式 (Soulful Image Curation) ========== */
 /* 这是"Vibe Coding"工作流的核心样式，兼顾"灵魂美学"与"性能洁癖" */
@@ -1777,20 +2086,22 @@ figure figcaption {
     }
 }
 
-/* 响应式优化 - 移动端 */
+/* 响应式优化 - 移动端图片样式 */
 @media (max-width: 768px) {
     figure {
-        margin: 2rem auto;
+        margin: 1.5rem auto;
     }
     
     figure img {
         border-radius: 6px;
+        max-width: 100%;
     }
     
     figure figcaption {
         font-size: 0.85rem;
-        padding: 0 0.5rem;
-        margin-top: 0.75rem;
+        padding: 0 var(--spacing-2);
+        margin-top: var(--spacing-2);
+        line-height: 1.5;
     }
 }
 
@@ -1897,18 +2208,21 @@ h2 + figure {
   color: var(--text-secondary, #90A49B);
 }
 
-/* 响应式调整 */
+/* 响应式调整 - Whisper组件移动端 */
 @media (max-width: 768px) {
   .whisper-intro-card {
-    padding: 0.875rem 1rem;
+    padding: var(--spacing-2) var(--spacing-3);
+    margin: var(--spacing-2) 0;
   }
   
   .whisper-intro-card h3 {
     font-size: 0.85rem;
+    line-height: 1.4;
   }
   
   .whisper-intro {
     font-size: 0.8rem;
+    line-height: 1.6;
   }
 }
 
@@ -2068,7 +2382,7 @@ h2 + figure {
   border-top-color: var(--card-border, rgba(88, 116, 101, 0.25));
 }
 
-/* 响应式设计 */
+/* 响应式设计 - Whisper卡片移动端 */
 @media (max-width: 768px) {
   .whisper-card {
     /* 移动端：至少容纳 150 个字，一行至少 8 个字符 */
@@ -2076,13 +2390,17 @@ h2 + figure {
     width: fit-content;
     min-width: 10ch; /* 一行至少容纳 8 个中文字符 */
     font-size: 0.85rem; /* 移动端稍小一些 */
-    padding: 0.6em 0.8em;
+    padding: var(--spacing-2) var(--spacing-3);
     /* 不限制高度，允许内容无限扩展 */
     max-height: none;
+    line-height: 1.5;
   }
   
   .whisper {
     margin: 0 0.15em;
+    min-width: 1.3em;
+    min-height: 1.3em;
+    padding: 0.2em 0.35em;
   }
 }
 
