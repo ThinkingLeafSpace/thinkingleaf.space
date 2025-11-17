@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // 支持按钮点击事件
   const supportBtn = document.getElementById('support-btn');
   const supportModal = document.getElementById('support-modal');
-  const closeButton = supportModal?.querySelector('.close-button');
+  const closeButton = supportModal ? supportModal.querySelector('.close-button') : null;
   
   if (supportBtn && supportModal) {
     supportBtn.addEventListener('click', function() {

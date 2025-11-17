@@ -173,12 +173,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const postContent = document.querySelector('.post-content');
         if (!postContent) return;
 
-        const currentTitle = (document.querySelector('.post-title')?.textContent || '').trim();
+        const postTitleEl = document.querySelector('.post-title');
+        const currentTitle = (postTitleEl && postTitleEl.textContent ? postTitleEl.textContent : '').trim();
         const currentUrl = window.location.pathname.split('/').pop();
-        const currentISODate = (document.querySelector('.post-header time')?.getAttribute('datetime') || '').trim(); // YYYY-MM-DD
+        const postHeaderTime = document.querySelector('.post-header time');
+        const currentISODate = (postHeaderTime && postHeaderTime.getAttribute('datetime') ? postHeaderTime.getAttribute('datetime') : '').trim(); // YYYY-MM-DD
         const tagEls = Array.from(document.querySelectorAll('.blog-tags .tag'));
         const topicTags = tagEls.map(el => (el.textContent || '').trim()).filter(Boolean);
-        const metaKeywords = (document.querySelector('meta[name="keywords"]')?.getAttribute('content') || '')
+        const metaKeywordsEl = document.querySelector('meta[name="keywords"]');
+        const metaKeywords = (metaKeywordsEl && metaKeywordsEl.getAttribute('content') ? metaKeywordsEl.getAttribute('content') : '')
             .split(/[,，]/).map(s => s.trim()).filter(Boolean);
 
         // Pillar 推断：优先 meta 覆盖，其次根据关键词/标签/标题启发式
@@ -191,7 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function getCurrentPillar() {
-            const metaPillar = document.querySelector('meta[name="pillar"]')?.getAttribute('content');
+            const metaPillarEl = document.querySelector('meta[name="pillar"]');
+            const metaPillar = metaPillarEl && metaPillarEl.getAttribute('content') ? metaPillarEl.getAttribute('content') : null;
             if (metaPillar) return metaPillar.trim();
             const combined = [currentTitle, ...topicTags, ...metaKeywords].join(' ');
             return inferPillarFromSignals(combined);
@@ -259,15 +263,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function extractTopics(doc) {
             const tags = Array.from(doc.querySelectorAll('.blog-tags .tag')).map(el => (el.textContent || '').trim()).filter(Boolean);
-            const keywords = (doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '')
+            const metaKeywordsEl = doc.querySelector('meta[name="keywords"]');
+            const keywords = (metaKeywordsEl && metaKeywordsEl.getAttribute('content') ? metaKeywordsEl.getAttribute('content') : '')
                 .split(/[,，]/).map(s => s.trim()).filter(Boolean);
             return { tags, keywords };
         }
 
         function extractPillar(doc) {
-            const metaPillar = doc.querySelector('meta[name="pillar"]')?.getAttribute('content');
+            const metaPillarEl = doc.querySelector('meta[name="pillar"]');
+            const metaPillar = metaPillarEl && metaPillarEl.getAttribute('content') ? metaPillarEl.getAttribute('content') : null;
             if (metaPillar) return metaPillar.trim();
-            const title = (doc.querySelector('.post-title')?.textContent || doc.title || '').trim();
+            const postTitleEl = doc.querySelector('.post-title');
+            const title = (postTitleEl && postTitleEl.textContent ? postTitleEl.textContent : doc.title || '').trim();
             const { tags, keywords } = extractTopics(doc);
             const combined = [title, ...tags, ...keywords].join(' ');
             return inferPillarFromSignals(combined);
@@ -281,8 +288,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const basics = links.map(a => {
                     const href = a.getAttribute('href') || '';
                     const file = href.split('/').pop();
-                    const title = (a.querySelector('h5')?.textContent || '').trim();
-                    const date = (a.querySelector('.date-tag')?.textContent || '').trim(); // YYYY-MM-DD
+                    const h5El = a.querySelector('h5');
+                    const title = (h5El && h5El.textContent ? h5El.textContent : '').trim();
+                    const dateTagEl = a.querySelector('.date-tag');
+                    const date = (dateTagEl && dateTagEl.textContent ? dateTagEl.textContent : '').trim(); // YYYY-MM-DD
                     const full = href.startsWith('blogs/') ? `../${href}` : href;
                     return { href: full, file, title, date };
                 }).filter(x => x.file && x.file.endsWith('.html') && x.file !== currentUrl);
@@ -292,7 +301,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return basics.map((it, idx) => {
                     const doc = docs[idx];
                     if (!doc) return { ...it, topics: [], keywords: [], pillar: null, cover: null };
-                    const title = (doc.querySelector('.post-title')?.textContent || it.title || '').trim();
+                    const postTitleEl = doc.querySelector('.post-title');
+                    const title = (postTitleEl && postTitleEl.textContent ? postTitleEl.textContent : it.title || '').trim();
                     const { tags, keywords } = extractTopics(doc);
                     const pillar = extractPillar(doc);
                     const cover = extractFirstImage(doc);
@@ -367,7 +377,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (article) {
                 article.appendChild(section);
             } else {
-                postContent.parentElement?.appendChild(section);
+                const parentEl = postContent.parentElement;
+                if (parentEl) {
+                    parentEl.appendChild(section);
+                }
             }
         })();
     })();

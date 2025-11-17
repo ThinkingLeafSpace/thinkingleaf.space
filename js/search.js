@@ -317,13 +317,17 @@ class SiteSearch {
       const doc = parser.parseFromString(html, 'text/html');
       
       // 提取页面信息
-      const title = doc.querySelector('title')?.textContent || 
-                    doc.querySelector('h1')?.textContent || 
+      const titleEl = doc.querySelector('title');
+      const h1El = doc.querySelector('h1');
+      const title = (titleEl && titleEl.textContent ? titleEl.textContent : '') || 
+                    (h1El && h1El.textContent ? h1El.textContent : '') || 
                     '';
-      const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+      const metaDescEl = doc.querySelector('meta[name="description"]');
+      const description = (metaDescEl && metaDescEl.getAttribute('content') ? metaDescEl.getAttribute('content') : '') || '';
       
       // 提取keywords
-      const keywords = doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || '';
+      const metaKeywordsEl = doc.querySelector('meta[name="keywords"]');
+      const keywords = (metaKeywordsEl && metaKeywordsEl.getAttribute('content') ? metaKeywordsEl.getAttribute('content') : '') || '';
       
       // 提取正文内容 - 尝试多个选择器
       let content = '';
