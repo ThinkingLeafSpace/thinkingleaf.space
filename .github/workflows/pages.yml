@@ -1,10 +1,13 @@
 name: Deploy GitHub Pages
 
+# ⚠️ 已禁用：此项目使用 Cloudflare Pages 部署
+# 如需手动部署到 GitHub Pages，可以在 GitHub Actions 页面手动触发
+
 on:
-  push:
-    branches:
-      - master
-  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - master
+  workflow_dispatch:  # 仅保留手动触发
 
 permissions:
   contents: read
