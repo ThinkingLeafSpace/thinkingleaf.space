@@ -33,3 +33,6 @@ yarn-error.log*
 
 # 防止子仓库问题
 life-in-weeks/ 
+
+# Temp ignore images to bypass deploy bug
+images/
