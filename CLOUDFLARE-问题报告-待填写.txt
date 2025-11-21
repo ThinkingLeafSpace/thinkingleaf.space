@@ -1,0 +1,47 @@
+🚨 Urgent: Pure static HTML site failing at "Validating asset output directory" with internal error (2025-11-21)
+
+Hey Pages team! 
+
+My pure static site (no build, no functions) deploys fine locally but fails consistently on Cloudflare. 
+
+**Repo:** https://github.com/ThinkingLeafSpace/thinkingleaf.space (public if needed)
+
+**Config:**
+- Framework preset: None
+- Build command: (empty)
+- Build output directory: `.`
+- Root directory: `/`
+
+**What I've tried:**
+- Multiple retries
+- Output directory switches (`/` vs `.`)
+- New commits
+- Reverted images (still shows `M images/exhibit-*.jpg` in logs)
+- No `wrangler.toml` or `functions/` directory
+
+**Latest log (commit 80bb4b6):**
+
+```
+[请在此处粘贴完整的部署日志]
+步骤：
+1. 登录 Cloudflare Dashboard
+2. 进入 Pages 项目 → Deployments
+3. 点击失败的部署（commit 80bb4b6）
+4. 展开 Build logs
+5. 复制从 "Cloning..." 开始到 "Failed" 结束的所有内容
+6. 粘贴到上面的代码块中
+```
+
+**Deployment ID:** `[请在此处填写 Deployment ID]`
+步骤：
+1. 在失败的部署详情页，查看浏览器地址栏
+2. URL 格式：.../deployments/3efaa1e7-f579-43dd-a8fa-629b9d472ba6
+3. 复制 UUID 部分（36 个字符，包含连字符）
+4. 替换上面的 [请在此处填写 Deployment ID]
+
+**Similar issues:**
+- https://community.cloudflare.com/t/failing-deploying-to-cloudflares-global-network-step/648465
+- https://community.cloudflare.com/t/cloudflare-pages-failed-an-internal-error-occurred/334596
+
+Any backend hiccup or quick fix (e.g. cache purge, legacy build)? Thanks! @WalshyMVP or mods?
+
