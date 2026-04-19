@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="页面未找到 - 筑居思">
+  <meta name="robots" content="noindex, nofollow">
+  <title>迷途 · 筑居思</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/ui-principles.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/dark-mode.css">
+  <link rel="icon" href="/images/putiye心形菩提叶.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@latest/style.css">
+  <style>
+    .error-hero { margin-bottom: 1.25rem; }
+    .error-code {
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+    }
+    .post-content p { max-width: 40em; line-height: 1.8; }
+    .error-actions { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+    .error-actions a.btn-home {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: var(--tls-radius-sm, 2px);
+      font-weight: 500;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .error-actions a.btn-home:hover {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+    .error-random {
+      font-size: 0.95rem;
+    }
+    .error-random a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200, 70, 48, 0.35);
+    }
+    .error-random a:hover { border-bottom-color: var(--accent); }
+  </style>
+</head>
+<body data-emotion="transcend">
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <a href="/index.html" aria-label="返回首页"><h1>筑居<span>思</span></h1></a>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="/what-is-zhu-ju-si.html">🧭 何为筑居思？</a></li>
+      <li><a href="/about.html">👤 关于</a></li>
+      <li><a href="/remake.html">🔨 筑 · 创造</a></li>
+      <li><a href="/cabinet.html">☕ 居 · 拾遗</a></li>
+      <li><a href="/blogs.html">🧠 思 · 博客</a></li>
+    </ul>
+    <div class="theme-toggle">
+      <button id="theme-toggle-btn" aria-label="切换主题">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <button class="mobile-menu-toggle" aria-label="打开导航菜单"><span></span><span></span><span></span></button>
+
+  <div class="progress-container"><div class="progress-bar" id="reading-progress"></div></div>
+
+  <div class="main-content">
+    <div class="container">
+      <main class="container blog-post">
+        <article class="post-content">
+          <section class="error-hero">
+            <p class="error-code">HTTP 404</p>
+            <h2 class="post-title">迷途</h2>
+          </section>
+          <p>这里没有对应路标。可能是链接过期、手误，或本站尚未发布该路径。</p>
+          <div class="error-actions">
+            <a class="btn-home" href="/index.html">返回首页</a>
+            <span class="error-random">或 <a id="error-random-leaf" href="/cabinet.html">随机拾一片</a>（居 · 拾遗）</span>
+          </div>
+          <hr class="ribbon-rule" aria-hidden="true" style="margin-top:2rem">
+          <p style="font-size:0.9rem;color:var(--text-secondary)"><a href="/colophon.html">制作说明</a> · <a href="/rss.xml">RSS</a></p>
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/theme-switcher.js" defer></script>
+  <script src="/js/main.js" defer></script>
+  <script src="/js/ui-enhancements.js" defer></script>
+  <script>
+    (function () {
+      var pool = [
+        '/cabinet.html',
+        '/remake.html',
+        '/what-is-zhu-ju-si.html',
+        '/blogs.html',
+        '/exhibits/exhibit-001.html',
+        '/exhibits/exhibit-002.html',
+        '/exhibits/exhibit-003.html',
+        '/blogs/2026-04-19-why-i-do-zhujusi.html',
+        '/blogs/2026-01-15-xishuangbanna-shuicaobao-bag.html'
+      ];
+      var a = document.getElementById('error-random-leaf');
+      if (a) a.setAttribute('href', pool[Math.floor(Math.random() * pool.length)]);
+    })();
+  </script>
+</body>
+</html>

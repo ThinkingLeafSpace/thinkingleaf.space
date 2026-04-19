@@ -1,0 +1,51 @@
+/* 档案风扩展变量：与既有 style.css（--color-*）与 cabinet 用 styles.css（--text-primary 等）兼容 */
+:root {
+  --tls-color-text: var(--color-text, var(--text-primary, #2d2d2d));
+  --tls-color-text-secondary: var(--color-text-secondary, var(--text-secondary, #587465));
+  --tls-color-border: var(--color-border, var(--card-border, #e8e8e4));
+  --tls-color-accent: var(--color-accent-lotus-red, var(--accent, #c84630));
+  --tls-radius-sm: 2px;
+  --tls-radius-md: 4px;
+  --font-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  --tls-border-strong: 1px solid color-mix(in srgb, var(--tls-color-border) 55%, var(--tls-color-text) 18%);
+  --tls-shadow-hard: 4px 4px 0 color-mix(in srgb, var(--tls-color-text) 12%, transparent);
+  --tls-shadow-hard-hover: 6px 6px 0 color-mix(in srgb, var(--tls-color-accent) 35%, transparent);
+  /* 红丝带语义：与改版方案 5.5 一致，莲红只用于「关系」分割与成簇提示 */
+  --tls-ribbon: var(--tls-color-accent);
+}
+
+/* 莲红分割：两大块之间、策展单元之间 */
+.ribbon-rule {
+  border: 0;
+  border-top: 2px solid var(--tls-ribbon, var(--tls-color-accent));
+  margin: 1.75rem 0;
+  opacity: 0.92;
+}
+
+/* 互相关联的一组卡片或列表外框（少用） */
+.cluster-related {
+  outline: 1px solid var(--tls-ribbon, var(--tls-color-accent));
+  outline-offset: 3px;
+}
+
+.dark-theme {
+  --tls-color-text: var(--color-text, var(--text-primary, #e8ece9));
+  --tls-color-text-secondary: var(--color-text-secondary, var(--text-secondary, #90a49b));
+  --tls-color-border: var(--color-border, var(--card-border, #3a3a3a));
+  --tls-color-accent: var(--color-accent-lotus-red, var(--accent, #e55a4b));
+  --tls-border-strong: 1px solid color-mix(in srgb, var(--tls-color-border) 80%, var(--tls-color-text) 12%);
+  --tls-shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.45);
+  --tls-shadow-hard-hover: 6px 6px 0 color-mix(in srgb, var(--tls-color-accent) 45%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light-theme) {
+    --tls-color-text: var(--color-text, var(--text-primary, #e8ece9));
+    --tls-color-text-secondary: var(--color-text-secondary, var(--text-secondary, #90a49b));
+    --tls-color-border: var(--color-border, var(--card-border, #3a3a3a));
+    --tls-color-accent: var(--color-accent-lotus-red, var(--accent, #e55a4b));
+    --tls-border-strong: 1px solid color-mix(in srgb, var(--tls-color-border) 80%, var(--tls-color-text) 12%);
+    --tls-shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.45);
+    --tls-shadow-hard-hover: 6px 6px 0 color-mix(in srgb, var(--tls-color-accent) 45%, transparent);
+  }
+}

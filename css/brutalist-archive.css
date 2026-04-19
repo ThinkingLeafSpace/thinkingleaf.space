@@ -1,0 +1,194 @@
+/* 数字粗野 × 档案感：仅在与首页一致的 data-tls-archive 下启用 */
+
+html[data-tls-archive="1"] body {
+  position: relative;
+}
+
+html[data-tls-archive="1"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10001;
+  opacity: 0.038;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.04) 2px, rgba(0, 0, 0, 0.04) 3px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.025) 2px, rgba(0, 0, 0, 0.025) 3px);
+  mix-blend-mode: multiply;
+}
+
+html[data-tls-archive="1"] body.dark-theme::before {
+  opacity: 0.06;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.04) 2px, rgba(255, 255, 255, 0.04) 3px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.025) 2px, rgba(255, 255, 255, 0.025) 3px);
+  mix-blend-mode: soft-light;
+}
+
+/* 元数据：等宽标签 */
+html[data-tls-archive="1"] .tls-meta,
+html[data-tls-archive="1"] .exhibit-header .date,
+html[data-tls-archive="1"] .breadcrumb .sep {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  letter-spacing: 0.03em;
+}
+
+html[data-tls-archive="1"] .exhibit-header .tags .tag {
+  border-radius: var(--tls-radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  border: var(--tls-border-strong);
+  background-color: color-mix(in srgb, var(--tls-color-accent) 8%, transparent);
+}
+
+html[data-tls-archive="1"] .tls-archive-strip {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tls-color-text-secondary);
+  border-left: 3px solid var(--tls-color-accent);
+  padding-left: 0.65rem;
+}
+
+/* 居 · 拾遗 hero（页面 class 为 .hero 时与 .cabinet-hero 同效） */
+html[data-tls-archive="1"] .main-content section.hero,
+html[data-tls-archive="1"] .cabinet-hero {
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+html[data-tls-archive="1"] .main-content section.hero::after,
+html[data-tls-archive="1"] .cabinet-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--tls-color-accent) 55%, transparent),
+    transparent 85%
+  );
+  opacity: 0.9;
+}
+
+/* 分区标题：红丝带纵线 */
+html[data-tls-archive="1"] .collection-category h2 {
+  border-left: 3px solid var(--tls-color-accent);
+  padding-left: 0.75rem;
+  margin-left: 0;
+}
+
+/* 卡片：硬阴影位移，非弹性 */
+html[data-tls-archive="1"] .collection-card,
+html[data-tls-archive="1"] .collection-category .content-card {
+  border-radius: var(--tls-radius-md) !important;
+  border: var(--tls-border-strong) !important;
+  box-shadow: var(--tls-shadow-hard);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+html[data-tls-archive="1"] .collection-card:hover,
+html[data-tls-archive="1"] .collection-category .content-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--tls-shadow-hard-hover);
+}
+
+html[data-tls-archive="1"] .carousel-item.active .collection-card {
+  box-shadow: var(--tls-shadow-hard-hover);
+  border-color: color-mix(in srgb, var(--tls-color-accent) 55%, var(--tls-color-border));
+}
+
+/* 展品页 */
+html[data-tls-archive="1"] .exhibit-header {
+  text-align: left;
+  border-left: 3px solid var(--tls-color-accent);
+  padding-left: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+html[data-tls-archive="1"] .exhibit-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+html[data-tls-archive="1"] .exhibit-image {
+  border-radius: var(--tls-radius-md);
+  border: var(--tls-border-strong);
+  box-shadow: var(--tls-shadow-hard);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+html[data-tls-archive="1"] .exhibit-image:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--tls-shadow-hard-hover);
+}
+
+html[data-tls-archive="1"] .exhibit-description h2 {
+  border-left: 3px solid var(--tls-color-accent);
+  padding-left: 0.6rem;
+  border-bottom: none;
+}
+
+html[data-tls-archive="1"] .exhibit-related {
+  border-top: 1px solid color-mix(in srgb, var(--tls-color-accent) 35%, var(--tls-color-border));
+  padding-top: 2rem;
+}
+
+/* ---------- 居 · 拾遗独立页 cabinet.html：减弱背景网格与硬阴影，分区用细线代替粗红纵线 ---------- */
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page::before {
+  opacity: 0 !important;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page .main-content section.hero::after {
+  opacity: 0.45;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--tls-color-accent) 16%, transparent),
+    transparent 92%
+  );
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-exhibits > h2 {
+  border-left: none;
+  padding-left: 0;
+  margin-bottom: 1.25rem;
+  color: var(--tls-color-text);
+  font-weight: 600;
+  border-bottom: 1px solid color-mix(in srgb, var(--tls-color-border) 90%, var(--tls-color-accent) 10%);
+  padding-bottom: 0.5rem;
+}
+
+/* 与全站 .content-card--hz 一致：横向条、左色带；此处用 !important 覆盖上文通用 .collection-category .content-card 硬阴影 */
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-exhibits .content-card.content-card--hz {
+  padding: 0 !important;
+  border-radius: var(--tls-radius-md) !important;
+  border: 1px solid color-mix(in srgb, var(--tls-color-border) 90%, var(--tls-color-text) 6%) !important;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--tls-color-text) 5%, transparent) !important;
+  background-color: color-mix(in srgb, var(--bg-primary, #f8f6f2) 97%, var(--tls-color-accent) 2%) !important;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page.dark-theme section.collection-category.cabinet-exhibits .content-card.content-card--hz {
+  background-color: color-mix(in srgb, var(--bg-primary, #222221) 96%, var(--tls-color-accent) 3%) !important;
+  border-color: color-mix(in srgb, var(--tls-color-border) 88%, var(--tls-color-text) 8%) !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35) !important;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-exhibits .content-card.content-card--hz:hover {
+  transform: translate(2px, 0) !important;
+  box-shadow: 0 3px 14px color-mix(in srgb, var(--tls-color-text) 8%, transparent) !important;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-exhibits .content-card--hz .content-card__body h4 {
+  color: var(--tls-color-text) !important;
+  font-weight: 600;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-exhibits .content-card--hz .date,
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-exhibits .content-card--hz p {
+  color: var(--tls-color-text-secondary);
+}

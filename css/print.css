@@ -1,0 +1,67 @@
+/* 打印样式：与改版方案「档案感」一致，隐藏导航与装饰控件，保留正文与档号线索 */
+
+@media print {
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html {
+    font-size: 12pt;
+    background: #fff !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .sidebar,
+  .mobile-menu-toggle,
+  .theme-toggle,
+  .progress-container,
+  .site-logo,
+  .footer-wechat-wrapper,
+  #footer-wechat-popup {
+    display: none !important;
+  }
+
+  .main-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  .container {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after,
+  a[href^="/"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    word-break: break-all;
+  }
+
+  a[href^="#"]::after {
+    content: none;
+  }
+
+  .content-card,
+  .post-article-prose,
+  article {
+    break-inside: avoid;
+  }
+
+  .ribbon-rule {
+    border-top-color: #000 !important;
+    opacity: 1 !important;
+  }
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="筑 · 创造：造物主线、2025 年 12 月 Remake 内测回顾、2026 年 4 月 404 Demo Night 样机，以及接线亮灯、工作台与品牌灯光色卡等方法札记。">
+  <meta name="keywords" content="筑居思, 筑创造, 可穿戴实验艺术, 电子织物, Remake, 工作坊">
+  <meta name="author" content="Qianny">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://thinkingleaf.space/remake.html">
+  <title>筑 · 创造 - 筑居思</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ui-principles.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/lazy-loading.css">
+  <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@latest/style.css">
+  <style>
+    .hero { margin-bottom: 1rem; }
+    .page-lede { max-width: 42em; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.75; }
+    .page-back { margin-top: 2rem; font-size: 0.95rem; }
+    .page-back a { color: var(--color-accent-lotus-red); text-decoration: none; border-bottom: 1px solid rgba(200, 70, 48, 0.35); }
+    .page-back a:hover { border-bottom-color: var(--color-accent-lotus-red); }
+    /* 影像区块与上方卡片区拉开间距 */
+    .content-section.remake-lab-recap {
+      margin-top: 2.25rem;
+      padding-top: 0.35rem;
+    }
+    /* 竖屏小结片：不预载视频，仅封面约 240KB */
+    .remake-lab-recap h3 { margin-bottom: 0.5rem; }
+    .video-recap-note { font-size: 0.9rem; color: var(--color-text-secondary); max-width: 42em; margin: 0 0 1rem; line-height: 1.65; }
+    .remake-video-wrap { max-width: min(100%, 22rem); margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid var(--color-border); background: #0a0a0a; }
+    .remake-video-wrap video { width: 100%; height: auto; vertical-align: middle; display: block; }
+    /* 横卡正文内链接：行内、与全站强调色一致 */
+    .content-card--hz .content-card__body p a {
+      display: inline;
+      color: var(--color-accent-lotus-red);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200, 70, 48, 0.35);
+    }
+    .content-card--hz .content-card__body p a:hover {
+      border-bottom-color: var(--color-accent-lotus-red);
+    }
+    .remake-section-heading {
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin: 0 0 0.75rem;
+      line-height: 1.35;
+      color: var(--accent, inherit);
+    }
+    /* 概况与活动：正文较长，不按三行截断（与上方博文短卡区分） */
+    .remake-narrative-cards .content-card--hz .content-card__body p {
+      display: block;
+      -webkit-line-clamp: unset;
+      line-clamp: unset;
+      overflow: visible;
+      -webkit-box-orient: unset;
+    }
+  </style>
+</head>
+<body data-emotion="transcend">
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <a href="index.html" aria-label="返回首页"><h1>筑居<span>思</span></h1></a>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="what-is-zhu-ju-si.html">🧭 何为筑居思？</a></li>
+      <li><a href="about.html">👤 关于</a></li>
+      <li><a href="remake.html" class="active" aria-current="page">🔨 筑 · 创造</a></li>
+      <li><a href="cabinet.html">☕ 居 · 拾遗</a></li>
+      <li><a href="blogs.html">🧠 思 · 博客</a></li>
+    </ul>
+    <div class="theme-toggle">
+      <button id="theme-toggle-btn" aria-label="切换主题">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <button class="mobile-menu-toggle" aria-label="打开导航菜单">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="reading-progress"></div>
+  </div>
+
+  <div class="main-content">
+    <div class="container">
+      <main class="container blog-post">
+        <article class="post-content">
+          <section class="hero">
+            <h2 class="post-title">🔨 筑 · 创造</h2>
+          </section>
+          <p class="page-lede">本页汇总筑居思<strong>造物线</strong>：<strong>概况</strong>、2025 年 12 月 Remake 内测回顾（含下方<strong>小结影像</strong>）、2026 年 4 月灵感买家俱乐部 404 Demo Night 的样机展示；并附三篇<strong>对外说明</strong>，分别介绍第一次电路亮灯、混合工位布置，以及灯光与品牌色如何对齐。</p>
+
+          <div class="content-section">
+            <h3 class="remake-section-heading">造物说明｜方法与标准</h3>
+            <div class="content-cards content-cards--hz">
+              <a href="blogs/2026-04-21-hardware-first-light-wiring.html" class="content-card content-card--hz">
+                <span class="content-card__accent" aria-hidden="true"></span>
+                <div class="content-card__body">
+                  <h4>第一次「点火」：从接线到亮灯</h4>
+                  <span class="date">2026-04-21</span>
+                  <span class="keywords-tags">原型阶段, 电路与光路</span>
+                </div>
+              </a>
+              <a href="blogs/2026-04-21-workbench-pegboard-sessions.html" class="content-card content-card--hz">
+                <span class="content-card__accent" aria-hidden="true"></span>
+                <div class="content-card__body">
+                  <h4>工作台怎么为硬件减负</h4>
+                  <span class="date">2026-04-21</span>
+                  <span class="keywords-tags">混合工位, 收纳与动线</span>
+                </div>
+              </a>
+              <a href="blogs/2026-04-21-wearable-light-brand-palette.html" class="content-card content-card--hz">
+                <span class="content-card__accent" aria-hidden="true"></span>
+                <div class="content-card__body">
+                  <h4>灯光不是随便闪：和品牌色卡对齐</h4>
+                  <span class="date">2026-04-21</span>
+                  <span class="keywords-tags">品牌色, 展品口径</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="content-section remake-narrative-cards">
+            <h3 class="remake-section-heading">造物线｜概况与活动</h3>
+            <div class="content-cards content-cards--hz">
+              <div class="content-card content-card--hz">
+                <span class="content-card__accent" aria-hidden="true"></span>
+                <div class="content-card__body">
+                  <h4>筑 · 创造｜造物主线</h4>
+                  <span class="date">进行中 · 概况</span>
+                  <p>这一带同时在做几件事：<strong>可穿戴方向的实验与样机</strong>、以旧衣和材料为主的 <strong>Remake</strong>，以及和大家一起动手的小型<strong>工作坊</strong>。更细的专题与案例会陆续补全；下面两条，一条是已办的内测工作坊，一条是春天的公开演示记录。</p>
+                </div>
+              </div>
+              <div class="content-card content-card--hz">
+                <span class="content-card__accent" aria-hidden="true"></span>
+                <div class="content-card__body">
+                  <h4>2025年12月｜Remake 线下工作坊（内测）</h4>
+                  <span class="date">已举办 · 回顾</span>
+                  <p>冬日里一场小范围线下场：参与者自带旧衣，在现场动手做 Remake。那次内测让我更清楚——<strong>大家更愿意亲手参与重塑</strong>，而不只是等着被代劳。<a href="#remake-lab-recap">活动小结影像见下文</a>。</p>
+                </div>
+              </div>
+              <div class="content-card content-card--hz">
+                <span class="content-card__accent" aria-hidden="true"></span>
+                <div class="content-card__body">
+                  <h4>近期探索｜404 Demo Night 与硬件样机</h4>
+                  <span class="date">2026年4月 · 已展示 · 阶段性记录</span>
+                  <p>2026 年 4 月前后，在「灵感买家俱乐部」<strong>404 Demo Night</strong> 上展示了一件可穿戴方向的<strong>硬件样机</strong>，并配合当时为演示准备的说明材料；同期也在摸索<strong>电子模块与布料怎样缝得稳、用得久</strong>。那是一次阶段性亮相，重在当面交流在场感受与工艺上的取舍；样机与工坊影像见 <a href="blogs/2026-04-04-404-demo-night-wearable-thread.html">404 Demo Night 长文</a>。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <section class="content-section remake-lab-recap" id="remake-lab-recap" aria-labelledby="remake-lab-recap-heading">
+            <h3 id="remake-lab-recap-heading" class="remake-section-heading">Remake Lab｜第一次工作坊小结影像</h3>
+            <p class="video-recap-note">约 1 分钟，竖屏录制。进入本页<strong>不会自动下载</strong>视频；只有在你点击播放后才开始加载。文件已用站内版本（H.264 + 快速起始，约 10MB），仍建议在 Wi-Fi 或稳定网络下观看。</p>
+            <div class="remake-video-wrap">
+              <video controls preload="none" playsinline poster="images/remake-lab-workshop-poster.png" width="1080" height="1920" aria-label="Remake Lab 第一次线下工作坊活动小结">
+                <source src="videos/remake-lab-first-workshop-2025-12.mp4" type="video/mp4">
+                您的浏览器不支持 HTML5 视频，请升级浏览器或使用 <a href="videos/remake-lab-first-workshop-2025-12.mp4">直接下载 MP4</a>。
+              </video>
+            </div>
+          </section>
+
+          <p class="page-back"><a href="index.html">← 返回首页</a> · <a href="about.html">关于</a></p>
+        </article>
+      </main>
+
+      <footer>
+        <div class="footer-content">
+          <p>© 2026 筑居思. 保留所有权利.</p>
+          <p class="footer-colophon"><a href="colophon.html">制作说明</a></p>
+          <div class="social-links">
+            <a href="https://github.com/ThinkingLeafSpace/thinkingleaf.space" aria-label="GitHub" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa" aria-label="即刻" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+            </a>
+            <a href="https://www.zcool.com.cn/u/27619561" aria-label="站酷" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="./rss.xml" aria-label="RSS订阅" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/theme-switcher.js" defer></script>
+  <script src="js/lazy-loading.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/ui-enhancements.js" defer></script>
+</body>
+</html>
