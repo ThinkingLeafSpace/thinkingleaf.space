@@ -24,13 +24,19 @@
 3. **若源站是对象存储 / 自有服务器 / 面板上传**  
    - `git push` 只更新了 GitHub，**必须再把本地 `thinkingleaf.space` 整站同步到实际提供 HTML 的那一侧**（FTP、R2、rsync、面板「上传」等）。
 
+## Cloudflare Pages 预览地址（不要抄「每次部署变的哈希」）
+
+- **固定生产预览域名**（项目名）：`https://thinkingleaf-space-20251122.pages.dev`  
+- 自检页面（与线上 `/remake` 对应）：`https://thinkingleaf-space-20251122.pages.dev/remake`  
+- 控制台里形如 `1ee93535.thinkingleaf-space-20251122.pages.dev` 的是**单次部署**子域，会随每次构建变化；日常请用上面 **不带哈希** 的 `*.pages.dev` 地址。
+
 ## 部署后自检命令
 
 ```bash
-curl -sL 'https://thinkingleaf.space/remake.html' | grep -E '<title>'
+curl -sL 'https://thinkingleaf.space/remake' | grep -E '<title>'
 ```
 
-应出现：`筑 · 创造 - 筑居思`（与仓库一致）。
+应出现：`筑 · 创造 - 筑居思`（与仓库一致）。若你仍使用 `remake.html`，注意线上可能 **308** 到 `/remake`，以最终跳转后的路径为准。
 
 ## 本地与远程一致时
 
