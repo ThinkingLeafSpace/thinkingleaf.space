@@ -2,75 +2,82 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>筑居思</title>
-    <link>https://thinkingleaf.space/</link>
+    <link>https://zhujusi.com/</link>
     <description>筑居思主理人 Qianny：生活方式事务所、可穿戴实验艺术与栖居、思的实践与数字档案。本订阅源与「思 · 博客」索引同步，按文章发布时间倒序列出全文链接。</description>
     <language>zh-CN</language>
     <copyright>© 2026 筑居思</copyright>
     <pubDate>Mon, 21 Apr 2026 08:00:00 +0800</pubDate>
-    <lastBuildDate>Mon, 21 Apr 2026 18:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jun 2026 08:00:00 +0800</lastBuildDate>
     <ttl>360</ttl>
     <docs>https://www.rssboard.org/rss-specification</docs>
-    <atom:link href="https://thinkingleaf.space/rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://zhujusi.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>灵感买家俱乐部咕咕会：帽子、工作坊与上量</title>
+      <link>https://zhujusi.com/blogs/2026-06-09-lingmai-gugu-hats-and-workshops.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2026-06-09-lingmai-gugu-hats-and-workshops.html</guid>
+      <pubDate>Tue, 10 Jun 2026 08:00:00 +0800</pubDate>
+      <description><![CDATA[6月9日周二咕咕会口述整理：33.3顶帽子、三场旧物工作坊、安吉指尖剧场与下一步上量。]]></description>
+    </item>
     <item>
       <title>灯光不是随便闪：和品牌色卡对齐</title>
-      <link>https://thinkingleaf.space/blogs/2026-04-21-wearable-light-brand-palette.html</link>
-      <guid isPermaLink="true">https://thinkingleaf.space/blogs/2026-04-21-wearable-light-brand-palette.html</guid>
+      <link>https://zhujusi.com/blogs/2026-04-21-wearable-light-brand-palette.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2026-04-21-wearable-light-brand-palette.html</guid>
       <pubDate>Mon, 21 Apr 2026 08:00:00 +0800</pubDate>
       <description><![CDATA[可穿戴灯光如何与筑居思主色一致：情绪语义、五色 RGB、亮度与布料约束，供展品说明与合作对齐。]]></description>
     </item>
     <item>
       <title>工作台怎么为硬件减负</title>
-      <link>https://thinkingleaf.space/blogs/2026-04-21-workbench-pegboard-sessions.html</link>
-      <guid isPermaLink="true">https://thinkingleaf.space/blogs/2026-04-21-workbench-pegboard-sessions.html</guid>
+      <link>https://zhujusi.com/blogs/2026-04-21-workbench-pegboard-sessions.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2026-04-21-workbench-pegboard-sessions.html</guid>
       <pubDate>Mon, 21 Apr 2026 08:00:00 +0800</pubDate>
       <description><![CDATA[缝纫与焊接共桌时的收纳与动线：降低动手门槛的布置思路，供同类小空间参考。]]></description>
     </item>
     <item>
       <title>第一次「点火」：从接线到亮灯</title>
-      <link>https://thinkingleaf.space/blogs/2026-04-21-hardware-first-light-wiring.html</link>
-      <guid isPermaLink="true">https://thinkingleaf.space/blogs/2026-04-21-hardware-first-light-wiring.html</guid>
+      <link>https://zhujusi.com/blogs/2026-04-21-hardware-first-light-wiring.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2026-04-21-hardware-first-light-wiring.html</guid>
       <pubDate>Mon, 21 Apr 2026 08:00:00 +0800</pubDate>
       <description><![CDATA[筑居思可穿戴原型线：第一次亮灯验证什么、亮灯后还须完成哪些环节；写给访客与同行。]]></description>
     </item>
     <item>
       <title>我为什么做筑居思</title>
-      <link>https://thinkingleaf.space/blogs/2026-04-19-why-i-do-zhujusi.html</link>
-      <guid isPermaLink="true">https://thinkingleaf.space/blogs/2026-04-19-why-i-do-zhujusi.html</guid>
+      <link>https://zhujusi.com/blogs/2026-04-19-why-i-do-zhujusi.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2026-04-19-why-i-do-zhujusi.html</guid>
       <pubDate>Sat, 19 Apr 2026 08:00:00 +0800</pubDate>
       <description><![CDATA[起手理由与时间线：约 2007 年起、网站定名筑居思、海德格尔与半马、从守护到造物；筑·居·思、建筑与界面训练，与实践的关系。]]></description>
     </item>
     <item>
       <title>404 Demo Night：发言与可穿戴尝试的一条线</title>
-      <link>https://thinkingleaf.space/blogs/2026-04-04-404-demo-night-wearable-thread.html</link>
-      <guid isPermaLink="true">https://thinkingleaf.space/blogs/2026-04-04-404-demo-night-wearable-thread.html</guid>
+      <link>https://zhujusi.com/blogs/2026-04-04-404-demo-night-wearable-thread.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2026-04-04-404-demo-night-wearable-thread.html</guid>
       <pubDate>Sat, 4 Apr 2026 08:00:00 +0800</pubDate>
       <description><![CDATA[路演要点、样机与工坊影像、会后命题与 demo 1.0 可穿戴线串讲。]]></description>
     </item>
     <item>
       <title>西双版纳的水草绳编包：从担心断带到一次拆解</title>
-      <link>https://thinkingleaf.space/blogs/2026-01-15-xishuangbanna-shuicaobao-bag.html</link>
-      <guid isPermaLink="true">https://thinkingleaf.space/blogs/2026-01-15-xishuangbanna-shuicaobao-bag.html</guid>
+      <link>https://zhujusi.com/blogs/2026-01-15-xishuangbanna-shuicaobao-bag.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2026-01-15-xishuangbanna-shuicaobao-bag.html</guid>
       <pubDate>Thu, 15 Jan 2026 08:00:00 +0800</pubDate>
       <description><![CDATA[集市上的水草绳编包、拆解与重构；附三幅图像记录。]]></description>
     </item>
     <item>
       <title>筑居思：37岁，我终于学会了「安心去玩」</title>
-      <link>https://thinkingleaf.space/blogs/2025-11-14-learned-to-play-at-37.html</link>
-      <guid isPermaLink="true">https://thinkingleaf.space/blogs/2025-11-14-learned-to-play-at-37.html</guid>
+      <link>https://zhujusi.com/blogs/2025-11-14-learned-to-play-at-37.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2025-11-14-learned-to-play-at-37.html</guid>
       <pubDate>Fri, 14 Nov 2025 08:00:00 +0800</pubDate>
       <description><![CDATA[工作与自我节奏：从「不敢停」到愿意安心去玩，一篇个人随笔。]]></description>
     </item>
     <item>
       <title>在禅堂里，我遇见了所有人——记第二次内观禅修的结缘</title>
-      <link>https://thinkingleaf.space/blogs/2025-10-26-meeting-everyone-in-the-meditation-hall.html</link>
-      <guid isPermaLink="true">https://thinkingleaf.space/blogs/2025-10-26-meeting-everyone-in-the-meditation-hall.html</guid>
+      <link>https://zhujusi.com/blogs/2025-10-26-meeting-everyone-in-the-meditation-hall.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2025-10-26-meeting-everyone-in-the-meditation-hall.html</guid>
       <pubDate>Sun, 26 Oct 2025 08:00:00 +0800</pubDate>
       <description><![CDATA[威海内观禅修札记：禅堂中的相遇与哲思随笔。]]></description>
     </item>
     <item>
       <title>筑居思·算法：RSS——在信息迷雾中构建「认知绿洲」的艺术</title>
-      <link>https://thinkingleaf.space/blogs/2025-08-28-2025年了为什么我还是推荐用RSS订阅内容.html</link>
-      <guid isPermaLink="true">https://thinkingleaf.space/blogs/2025-08-28-2025年了为什么我还是推荐用RSS订阅内容.html</guid>
+      <link>https://zhujusi.com/blogs/2025-08-28-2025年了为什么我还是推荐用RSS订阅内容.html</link>
+      <guid isPermaLink="true">https://zhujusi.com/blogs/2025-08-28-2025年了为什么我还是推荐用RSS订阅内容.html</guid>
       <pubDate>Thu, 28 Aug 2025 08:00:00 +0800</pubDate>
       <description><![CDATA[信息过载下如何用 RSS 保留主动权：工具观与订阅习惯。]]></description>
     </item>

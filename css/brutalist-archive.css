@@ -192,3 +192,60 @@ html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-cat
 html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-exhibits .content-card--hz p {
   color: var(--tls-color-text-secondary);
 }
+
+/* 居 · 拾遗 · 流动档案馆区块（位于展品上方） */
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-living-archive {
+  margin-top: 1.5rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-exhibits {
+  margin-top: 4.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--tls-color-border) 88%, var(--tls-color-accent) 12%);
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page section.collection-category.cabinet-living-archive > h2,
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page .cabinet-la-hub-header h2 {
+  border-left: none;
+  padding-left: 0;
+  margin-bottom: 0.65rem;
+  color: var(--tls-color-text);
+  font-weight: 600;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  border-bottom: none;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page .cabinet-archive-lede {
+  max-width: 36em;
+  color: var(--tls-color-text-secondary);
+  line-height: 1.75;
+  margin: 0 0 0.5rem;
+  font-size: 0.98rem;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page .cabinet-la-hub-header {
+  margin-bottom: 1.25rem;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page .cabinet-archive-meta {
+  margin-bottom: 1.75rem;
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page .cabinet-archive-more {
+  margin-top: 2.5rem;
+  font-size: 0.95rem;
+  color: var(--tls-color-text-secondary);
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page .cabinet-archive-more a {
+  color: var(--color-accent-lotus-red, var(--tls-color-accent));
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--tls-color-accent) 35%, transparent);
+}
+
+html.cabinet-root[data-tls-archive="1"] body.cabinet-page .cabinet-living-archive .la-story-grid {
+  margin-top: 0.5rem;
+}
