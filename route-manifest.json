@@ -1,0 +1,18 @@
+{
+  "about": "pages/about.html",
+  "archive": "pages/archive.html",
+  "home": "index.html",
+  "partners": "pages/partners.html",
+  "projects": "pages/projects.html",
+  "projects/anji": "pages/projects/anji.html",
+  "projects/remake-lab": "pages/projects/remake-lab.html",
+  "projects/wuliangji": "pages/projects/wuliangji.html",
+  "projects/youya-chongyang": "pages/projects/youya-chongyang.html",
+  "research": "pages/research.html",
+  "research/place": "pages/research/place.html",
+  "services": "pages/services.html",
+  "services/experiment": "pages/services/experiment.html",
+  "services/question": "pages/services/question.html",
+  "services/workshop": "pages/services/workshop.html",
+  "space-lab": "pages/space-lab.html"
+}
