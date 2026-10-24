@@ -1,3 +1,18 @@
+---
+tags:
+  - thinkingleaf-space
+  - deploy
+created: 2026-04-19
+updated: 2026-04-19
+ai_origin:
+  source: cursor_assistant
+  generated_at: "2026-04-19"
+aliases:
+  - ""
+---
+
+<!-- ai-origin:cursor_assistant -->
+
 # 部署说明：为何「已 push 但网站未变」
 
 ## 结论（已核对）
@@ -69,3 +84,33 @@ git push origin main
 - **步骤 1～3 通过、6 不通过**：问题在 **部署与发布**（Cloudflare Pages 未绑本仓库、未自动构建、或源站仍是旧文件），**不是 Git 写错**。
 - **步骤 5 的 308**：说明站点做了 **「去掉 .html」** 的规范地址；排查时请以 **`https://thinkingleaf.space/remake`**（或 Pages 项目预览域名）为准，看 **最近一次部署** 是否包含当前 `main`。
 - **缓存**：若 `cf-cache-status` 为 `DYNAMIC`，通常不是「只清浏览器缓存」就能解决，仍要 **重新部署或更新源站文件**。
+
+---
+
+## DNS 快照存档（可恢复参考）
+
+以下为 **Cloudflare 控制台 → 网站 `thinkingleaf.space` → DNS → 记录** 在存档时的界面状态摘要，便于你改绑 Pages 或调整 `www` 后，需要 **恢复成与当时一致** 时对照使用（以控制台实际显示为准）。
+
+| 存档日期 | 区域 DNS 设置 |
+|----------|----------------|
+| 2026-04-19 | **完整**（Full） |
+
+### 名称服务器（该区域）
+
+| 类型 | 值 |
+|------|-----|
+| NS | `jakub.ns.cloudflare.com` |
+| NS | `susan.ns.cloudflare.com` |
+
+### 当时生效的 DNS 记录（共 2 条）
+
+| 类型 | 名称 | 内容（目标） | 代理状态 | TTL |
+|------|------|--------------|----------|-----|
+| CNAME | `@`（根域 `thinkingleaf.space`） | `thinkingleaf-20251121.pages.dev` | 已代理（橙色云） | 自动 |
+| CNAME | `www` | `thinkingleafspace.github.io` | 已代理（橙色云） | 自动 |
+
+**说明**
+
+- 根域当时指向 **旧 Pages 项目** `thinkingleaf-20251121`；若你已改为新项目 `thinkingleaf-space-20251122`，根域目标会变为向导给出的 `*.pages.dev`，不必强行改回上表，除非你要 **刻意回滚到旧项目**。
+- `www` 当时指向 **GitHub Pages**；若统一改为 Cloudflare Pages，通常会把 `www` 改为指向同一 `*.pages.dev` 或按 Pages 自定义域名向导生成。
+- 恢复时：在 DNS 中 **逐条对照** 上表编辑「类型、名称、内容、代理」；若提示 **CNAME 与同名 A/AAAA 冲突**，先删除冲突记录再保存。

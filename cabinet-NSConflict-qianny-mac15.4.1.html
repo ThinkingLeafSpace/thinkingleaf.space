@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-emotion="wander" data-tls-archive="1" class="cabinet-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="居 · 拾遗：造物展品索引与流动档案馆（优牙专场十册故事，文字先行）。">
+  <meta name="keywords" content="居 · 拾遗, 造物拾遗, 创意收藏, 展品, 艺术作品, 筑居思">
+  <meta name="author" content="Qianny">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zhujusi.com/cabinet.html">
+  <meta property="og:title" content="居 · 拾遗 - 筑居思">
+  <meta property="og:description" content="造物拾遗与展品索引：树枝画框、红靴子与绿植、菜之花等。">
+  <meta property="og:image" content="https://zhujusi.com/images/putiye心形菩提叶.svg">
+  <meta property="og:site_name" content="筑居思">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://zhujusi.com/cabinet.html">
+  <meta name="twitter:title" content="居 · 拾遗 - 筑居思">
+  <meta name="twitter:description" content="造物拾遗与展品索引：树枝画框、红靴子与绿植、菜之花等。">
+  <meta name="twitter:image" content="https://zhujusi.com/images/putiye心形菩提叶.svg">
+  
+  <link rel="canonical" href="https://zhujusi.com/cabinet.html">
+  <title>居 · 拾遗 - 筑居思</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ui-principles.css">
+    <link rel="stylesheet" href="css/lazy-loading.css">
+    <link rel="stylesheet" href="css/link-preview.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/brutalist-archive.css">
+  <link rel="stylesheet" href="css/living-archive.css">
+  <link rel="icon" href="images/putiye心形菩提叶.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <!-- 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@latest/style.css">
+  
+  <style>
+    /* 网站LOGO样式 */
+    .site-logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      z-index: 100;
+    }
+    .site-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .cabinet-hero {
+      text-align: center;
+      padding: 4rem 0 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .cabinet-hero h1 {
+      margin-bottom: 1rem;
+    }
+    
+    .cabinet-hero p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: var(--color-text-secondary);
+    }
+    
+    /* 轮播容器样式 */
+    .cabinet-carousel-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    
+    .cabinet-carousel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      min-height: 600px;
+    }
+    
+    .carousel-item {
+      position: absolute;
+      width: 100%;
+      max-width: 500px;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .carousel-item.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+      z-index: 10;
+    }
+    
+    .carousel-item.prev,
+    .carousel-item.next {
+      opacity: 0.3;
+      transform: translateY(-20px) scale(0.9);
+      z-index: 2;
+    }
+    
+    /* 导航区域 */
+    .carousel-nav-area {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 150px;
+      z-index: 100;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .carousel-nav-top {
+      top: 0;
+    }
+    
+    .carousel-nav-bottom {
+      bottom: 0;
+    }
+    
+    .carousel-nav-area:hover {
+      background-color: rgba(200, 70, 48, 0.05);
+    }
+    
+    /* 卡片样式 */
+    .collection-card {
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .dark-theme .collection-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-text-secondary);
+    }
+    
+    .carousel-item.active .collection-card {
+      box-shadow: 0 8px 30px rgba(200, 70, 48, 0.15);
+      border-color: var(--color-accent-lotus-red);
+    }
+    
+    .collection-image {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      position: relative;
+      border-radius: 8px;
+    }
+    
+    .collection-image img,
+    .collection-img {
+      max-width: 80%;
+      width: auto;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 4px;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .carousel-item.active .collection-image img {
+      transform: scale(1);
+    }
+    
+    .carousel-item .collection-image img {
+      transform: scale(0.9);
+    }
+    
+    /* 白色叠加层（非主图内容） */
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.2);
+      z-index: 1;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    
+    .collection-info {
+      text-align: center;
+    }
+    
+    .collection-info h4 {
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+    
+    .carousel-item.active .collection-info h4 {
+      color: var(--color-accent-lotus-red);
+    }
+    
+    .collection-info p {
+      color: var(--color-text-secondary);
+      margin-bottom: 1rem;
+    }
+    
+    .card-link {
+      display: inline-block;
+      color: var(--color-accent-lotus-red);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    .card-link:hover {
+      background-color: rgba(200, 70, 48, 0.1);
+    }
+    
+    .collection-category {
+      margin-bottom: 4rem;
+      margin-top: 3rem;
+    }
+    
+    .collection-category h2 {
+      margin-bottom: 2.5rem;
+      margin-top: 0;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(200, 70, 48, 0.15);
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+    }
+    
+    .dark-theme .collection-category h2 {
+      border-bottom-color: rgba(200, 70, 48, 0.25);
+    }
+    
+    .collection-category p {
+      margin-bottom: 2rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .collection-category .content-cards {
+      margin-top: 2.5rem;
+      gap: 5.5rem;
+    }
+    
+    .collection-category .content-card {
+      position: relative;
+      padding: 2.5rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+      border: 1px solid rgba(200, 70, 48, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+    
+    .collection-category .content-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-accent-lotus-red) 0%, rgba(200, 70, 48, 0.3) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .collection-category .content-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .dark-theme .collection-category .content-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border-color: rgba(200, 70, 48, 0.2);
+    }
+    
+    .collection-category .content-card h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--color-text);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .collection-category .content-card h4::after {
+      content: '→';
+      position: absolute;
+      right: -1.5rem;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
+      color: var(--color-accent-lotus-red);
+    }
+    
+    .collection-category .content-card:hover h4::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .collection-category .content-card p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+      margin-bottom: 0;
+      font-weight: 400;
+    }
+    
+    .collection-category .content-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(200, 70, 48, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: rgba(200, 70, 48, 0.3);
+    }
+    
+    .dark-theme .collection-category .content-card:hover {
+      box-shadow: 0 12px 40px rgba(200, 70, 48, 0.25), 0 4px 12px rgba(0, 0, 0, 0.5);
+      border-color: rgba(200, 70, 48, 0.4);
+    }
+    
+    .collection-category .content-card a {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .collection-feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 4rem 0;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+    }
+    
+    .dark-theme .collection-feature {
+      background-color: transparent;
+      border: 1px solid var(--color-text-secondary);
+    }
+    
+    .collection-feature-image {
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    
+    .collection-feature-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    
+    .collection-feature-content {
+      text-align: center;
+      max-width: 700px;
+    }
+    
+    .collection-feature-content h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .collection-feature-content p {
+      margin-bottom: 1.5rem;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .cabinet-carousel {
+        min-height: 500px;
+      }
+      
+      .carousel-item {
+        max-width: 90%;
+        padding: 1.5rem;
+      }
+      
+      .carousel-nav-area {
+        height: 100px;
+      }
+      
+      .collection-feature {
+        padding: 1.5rem;
+      }
+      
+      .collection-feature-content {
+        padding: 0;
+      }
+      
+      .collection-category .content-cards {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+      
+      .collection-category .content-card {
+        padding: 2rem;
+      }
+      
+      .collection-category .content-card h4 {
+        font-size: 1.3rem;
+      }
+      
+      .collection-category h2 {
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .cabinet-hero h1 {
+        font-size: 24px;
+      }
+      
+      .cabinet-carousel {
+        min-height: 450px;
+      }
+      
+      .carousel-item {
+        max-width: 95%;
+        padding: 1rem;
+      }
+      
+      .collection-image img,
+      .collection-img {
+        max-width: 85%;
+      }
+      
+      .collection-category .content-card {
+        padding: 1.5rem;
+      }
+      
+      .collection-category .content-card h4 {
+        font-size: 1.2rem;
+      }
+      
+      .collection-category .content-card p {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* 居 · 拾遗：去掉顶栏重复按钮后，单独收紧配色（与全站纸底、莲红强调一致） */
+    body.cabinet-page .main-content section.hero {
+      text-align: center;
+      padding-bottom: 0.5rem;
+    }
+    body.cabinet-page .main-content section.hero h2 {
+      color: var(--color-accent-lotus-red, var(--accent));
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin: 0 0 0.65rem;
+      font-size: clamp(1.35rem, 2.8vw, 1.65rem);
+    }
+    body.cabinet-page .main-content section.hero > p {
+      color: var(--color-text-secondary);
+      max-width: 34em;
+      margin: 0 auto;
+      line-height: 1.75;
+      font-size: 0.98rem;
+    }
+
+  </style>
+</head>
+<body data-emotion="wander" class="cabinet-page">
+  <!-- 左侧固定导航栏 -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <a href="index.html" aria-label="返回首页"><h1>筑居<span>思</span></h1></a>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="what-is-zhu-ju-si.html">🧭 何为筑居思？</a></li>
+      <li><a href="about.html">👤 关于</a></li>
+      <li><a href="remake.html">🔨 筑 · 创造</a></li>
+      <li><a href="cabinet.html">☕ 居 · 拾遗</a></li>
+      <li><a href="blogs.html">🧠 思 · 博客</a></li>
+    </ul>
+    <div class="theme-toggle">
+      <button id="theme-toggle-btn" aria-label="切换主题">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 移动端菜单按钮 -->
+  <button class="mobile-menu-toggle" aria-label="打开导航菜单">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- 阅读进度指示器 -->
+  <div class="progress-container">
+    <div class="progress-bar" id="reading-progress"></div>
+  </div>
+
+  <div class="main-content">
+    <div class="container">
+      <main>
+        <section class="hero">
+          <h2>居 · 拾遗</h2>
+          <p>造物展品与文字档案：个人拾遗索引，以及工作坊共同创作者的故事册。</p>
+        </section>
+
+        <section class="collection-category cabinet-living-archive" id="living-archive" aria-labelledby="cabinet-archive-heading">
+          <p class="tls-archive-strip">ZJS-FA · 流动档案馆 · 文字先行</p>
+          <div class="la-hub-header cabinet-la-hub-header">
+            <div>
+              <h2 id="cabinet-archive-heading">流动档案馆</h2>
+              <p class="cabinet-archive-lede">像一本只开了文字页的册子：先遇见人的句子、物的来历、改造里冒出来的那一点真实。影像与旧物照片，留给二期慢慢补档。</p>
+            </div>
+            <button type="button" class="la-random-btn" data-la-random aria-label="随机抽一册故事">
+              <span class="la-random-btn__icon" aria-hidden="true"></span>
+              <span class="la-random-btn__label">随机 · 抽一抽</span>
+            </button>
+          </div>
+
+          <div class="la-event-links">
+            <a href="events/youya-jiewuxiuxin-20260516.html">场次 · 2026-05-16 优牙 · 借物修心</a>
+            <a href="events/anji-angora-202606.html">场次 · 2026-06-06—07 安吉 · 指尖剧场</a>
+          </div>
+
+          <p class="tls-meta cabinet-archive-meta">优牙专场 · 十一位共同创作者 · No.01–No.10 十册</p>
+
+          <div id="la-story-grid" class="la-story-grid" aria-live="polite"></div>
+
+          <p class="cabinet-archive-more">
+            <a href="living-archive/index.html">独立页打开完整列表</a>
+            · <a href="remake.html#g11">筑 · 创造 · 场次索引</a>
+          </p>
+        </section>
+
+        <section class="collection-category cabinet-exhibits" aria-labelledby="cabinet-exhibits-heading">
+          <h2 id="cabinet-exhibits-heading">展品</h2>
+          <div class="content-cards content-cards--hz">
+            <a href="exhibits/exhibit-001.html" class="content-card content-card--hz">
+              <span class="content-card__accent" aria-hidden="true"></span>
+              <div class="content-card__body">
+                <h4>展品001-树枝画框</h4>
+                <span class="date">2023-12-15</span>
+                <p>公园捡到的枯树枝，断裂纹理细腻</p>
+              </div>
+            </a>
+            <a href="exhibits/exhibit-002.html" class="content-card content-card--hz">
+              <span class="content-card__accent" aria-hidden="true"></span>
+              <div class="content-card__body">
+                <h4>展品002-红靴子与绿植</h4>
+                <span class="date">2023-11-20</span>
+                <p>3D打印的红靴子，种下种子生出芽儿</p>
+              </div>
+            </a>
+            <a href="exhibits/exhibit-003.html" class="content-card content-card--hz">
+              <span class="content-card__accent" aria-hidden="true"></span>
+              <div class="content-card__body">
+                <h4>展品003-菜之花</h4>
+                <span class="date">2023-10-10</span>
+                <p>探索自然与艺术的边界</p>
+              </div>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-content">
+          <p>© 2026 筑居思. 保留所有权利.</p>
+          <p class="footer-colophon"><a href="colophon.html">制作说明</a></p>
+          <div class="social-links">
+            <a href="https://github.com/ArchQian" aria-label="GitHub" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://web.okjike.com/u/badeec5b-6ff4-4286-8622-3658365472fa" aria-label="即刻" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+            </a>
+            <a href="https://www.zcool.com.cn/u/27619561" aria-label="站酷" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="./rss.xml" aria-label="RSS订阅" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/living-archive-data.js"></script>
+  <script src="js/living-archive.js"></script>
+  <script src="js/theme-switcher.js" defer></script>
+  <script src="js/lazy-loading.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/ui-enhancements.js" defer></script>
+  <script src="js/link-preview.js" defer></script>
+  <script>
+    // 造物拾遗轮播功能
+    (function() {
+      const carousel = document.getElementById('cabinet-carousel');
+      if (!carousel) return;
+      
+      const items = carousel.querySelectorAll('.carousel-item');
+      const navTop = document.querySelector('.carousel-nav-top');
+      const navBottom = document.querySelector('.carousel-nav-bottom');
+      
+      if (items.length === 0) return;
+      
+      let currentIndex = 0;
+      let isTransitioning = false;
+      let hoverTimeout = null;
+      
+      // 初始化：显示第一个项目
+      function initCarousel() {
+        items.forEach((item, index) => {
+          item.classList.remove('active', 'prev', 'next');
+          if (index === currentIndex) {
+            item.classList.add('active');
+          }
+        });
+      }
+      
+      // 更新轮播显示
+      function updateCarousel() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        items.forEach((item, index) => {
+          item.classList.remove('active', 'prev', 'next');
+        });
+        
+        // 设置当前项
+        if (items[currentIndex]) {
+          items[currentIndex].classList.add('active');
+        }
+        
+        // 设置前一项（如果有）
+        const prevIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+        if (items[prevIndex]) {
+          items[prevIndex].classList.add('prev');
+        }
+        
+        // 设置后一项（如果有）
+        const nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+        if (items[nextIndex]) {
+          items[nextIndex].classList.add('next');
+        }
+        
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 300);
+      }
+      
+      // 切换到下一个
+      function nextItem() {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel();
+      }
+      
+      // 切换到上一个
+      function prevItem() {
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+        updateCarousel();
+      }
+      
+      // 导航区域hover事件
+      function setupNavHover(navElement, direction) {
+        let hoverActive = false;
+        
+        navElement.addEventListener('mouseenter', () => {
+          hoverActive = true;
+          if (hoverTimeout) clearTimeout(hoverTimeout);
+          
+          const switchItem = () => {
+            if (hoverActive && !isTransitioning) {
+              if (direction === 'next') {
+                nextItem();
+              } else {
+                prevItem();
+              }
+              hoverTimeout = setTimeout(switchItem, 800); // 每800ms切换一次
+            }
+          };
+          
+          // 延迟一下再开始切换，给用户一点反应时间
+          hoverTimeout = setTimeout(switchItem, 300);
+        });
+        
+        navElement.addEventListener('mouseleave', () => {
+          hoverActive = false;
+          if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+            hoverTimeout = null;
+          }
+        });
+      }
+      
+      // 点击卡片跳转到详情页
+      items.forEach((item) => {
+        const link = item.querySelector('.card-link');
+        if (link) {
+          item.addEventListener('click', (e) => {
+            // 如果点击的不是链接本身，则跳转
+            if (e.target !== link && !link.contains(e.target)) {
+              const href = item.getAttribute('data-href');
+              if (href) {
+                window.location.href = href;
+              }
+            }
+          });
+          
+          // 添加hover效果，让卡片看起来可点击
+          item.style.cursor = 'pointer';
+        }
+      });
+      
+      // 设置导航区域
+      if (navTop) {
+        setupNavHover(navTop, 'prev');
+      }
+      
+      if (navBottom) {
+        setupNavHover(navBottom, 'next');
+      }
+      
+      // 初始化
+      initCarousel();
+      updateCarousel();
+      
+      // 键盘支持（可选）
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          nextItem();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          prevItem();
+        }
+      });
+    })();
+  </script>
+</body>
+</html> 

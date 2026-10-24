@@ -119,8 +119,8 @@
         "</div>" +
         "</details>" +
         '<div class="la-story-card__foot">' +
-        '<a href="' +
-        storyUrl(story) +
+        '<a href="story.html?id=' +
+        story.id +
         '">进入完整故事册 →</a>' +
         "</div>";
 
@@ -138,9 +138,7 @@
 
     if (!story) {
       root.innerHTML =
-        '<p>未找到该故事册。请从 <a href="' +
-        archiveBasePath() +
-        'index.html">流动档案馆</a> 重新选择。</p>';
+        '<p>未找到该故事册。请从 <a href="index.html">流动档案馆</a> 重新选择。</p>';
       document.title = "故事未找到 · 流动档案馆";
       return;
     }
