@@ -2082,8 +2082,8 @@ vnextTopExplore=()=>{
  const link=(label,href)=>`<a href="${vnextSafe(href)}">${label}</a>`;
  return `<details class="vn-global-explore"><summary aria-label="展开探索入口">探索 <span aria-hidden="true">⌄</span></summary><div class="vn-global-explore-panel" role="group" aria-label="公开探索入口">${link('研究书房',root+'index.html?space=study#/home')}${link('会客与现场',root+'index.html?space=studio#/home')}${link('现场项目',root+'pages/projects.html#/projects')}</div></details>`;
 };
-const v7OldWorld=vnextWorld;
-vnextWorld=()=>v7OldWorld().replace('<button type="button" data-vn-space="archive">全部档案 ↗</button>','');
+const v7OldWorld=home;
+home=()=>v7OldWorld().replace('<button type="button" data-vn-space="archive">全部档案 ↗</button>','');
 
 window.addEventListener('hashchange',route);route();
 })();
