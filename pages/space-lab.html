@@ -2108,6 +2108,28 @@ v44ResearchSubpage=key=>{
   .replace(/<div class="v44-social-links">[\s\S]*?<\/div>/,'')
   .replace(/<div class="v44-source-pending">[\s\S]*?<\/div>/,'');
 };
+/* V7 public: one back link per detail page, always pointing to its own section. */
+function v7Nav(){
+ const main=document.querySelector('main');if(!main)return;
+ const root=window.__zjsRelativeRoot||'';
+ const hash=decodeURIComponent(location.hash.replace(/^#\/?/,''));
+ main.querySelectorAll('a,button').forEach(a=>{
+  const t=a.textContent.trim();
+  if(/^← (所有项目|回到项目公开|返回研究与写作|研究与写作|回到树屋)$|^返回项目目录|^回到研究书房|^返回项目作品集/.test(t))a.remove();
+ });
+ main.querySelectorAll('a[href]').forEach(a=>{
+  const h=a.getAttribute('href');
+  if(/index\.html#\/research\//.test(h))a.setAttribute('href',h.replace(/(\.\.\/)*index\.html#\/research\//,root+'pages/research.html#/research/'));
+  if(/#\/work\/remake-lab-2025$/.test(h))a.setAttribute('href',root+'pages/projects/remake-lab.html');
+ });
+ const section=[[/^(projects|work)\/./,'pages/projects.html','项目公开'],[/^research\/./,'pages/research.html','研究与写作'],[/^services\/./,'pages/services.html','合作']].find(([re])=>re.test(hash));
+ if(section&&!main.querySelector('.v7-back')){
+  main.insertAdjacentHTML('afterbegin',`<div class="v7-back"><a href="${root+section[1]}">← ${section[2]}</a></div>`);
+ }
+ if(!document.getElementById('v7-back-style'))document.head.insertAdjacentHTML('beforeend','<style id="v7-back-style">.v7-back{padding:14px max(16px,4vw);font:14px var(--sans,sans-serif);border-bottom:1px solid rgba(40,55,47,.12)}.v7-back a{color:inherit;text-decoration:none}.v7-back a:hover{text-decoration:underline}</style>');
+}
+const v7NavRoute=route;
+route=()=>{v7NavRoute();v7Nav();};
 window.addEventListener('hashchange',route);route();
 })();
 </script></body></html>
