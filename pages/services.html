@@ -1466,7 +1466,7 @@ const v44VideoDetails=[
 ];
 const v44ResearchDetails=assemblyUnits.map((x,i)=>({...x,id:'item-'+String(i+1).padStart(2,'0')}));
 function v44StudySection(){return `<section class="v44-study"><div class="wrap"><div class="v44-section-head"><div><span class="v44-overline">QUESTIONS IN PROGRESS</span><h2>六个持续追问的问题</h2><p>文章、成片与仍在研究的问题分开标记。并非全部都已经制作成视频。</p></div><a class="v44-text-link" href="https://mp.weixin.qq.com/s/A9vMbmE9uGuR54jQkp_Efg" target="_blank" rel="noopener">阅读地方认同长文 ↗</a></div><div class="v44-question-list">${v44ResearchDetails.map(x=>`<a href="#/research/${x.id}" class="v44-question"><span class="v44-q-number">${x.n}</span><div><small>${esc(x.state)}</small><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p></div><span class="v44-q-arrow" aria-hidden="true">↗</span></a>`).join('')}</div></div></section>`;}
-function v44VideoSection(){return `<section class="v44-films"><div class="wrap"><div class="v44-section-head"><div><span class="v44-overline">FILMS / WORK IN MOTION</span><h2>影像记录</h2><p>点击封面可查看对应影片的完整介绍与状态。站外链接须待准确地址和免登录情况核对后才启用。</p></div><span class="v44-note-chip">06 条影像记录</span></div><div class="v44-film-grid">${v44VideoDetails.map(v=>`<a href="#/research/film-${v.num}" class="v44-film"><div class="v44-film-art">${image(v.image,v.title)}<span class="v44-play" aria-hidden="true">↗</span></div><div class="v44-film-copy"><small>FILM ${v.num} · ${esc(v.status)}</small><h3>${esc(v.title)}</h3><p>${esc(v.short)}</p><span class="v44-film-open">查看影片档案 ↗</span></div></a>`).join('')}</div></div></section>`;}
+function v44VideoSection(){return `<section class="v44-films"><div class="wrap"><div class="v44-section-head"><div><span class="v44-overline">FILMS / WORK IN MOTION</span><h2>影像记录</h2><p>点击封面进入影片页，可直接在站内播放。</p></div><span class="v44-note-chip">10 条影像记录</span></div><div class="v44-film-grid">${v44VideoDetails.map(v=>`<a href="#/research/film-${v.num}" class="v44-film"><div class="v44-film-art">${image(v.image,v.title)}<span class="v44-play" aria-hidden="true">↗</span></div><div class="v44-film-copy"><small>FILM ${v.num} · ${esc(v.status)}</small><h3>${esc(v.title)}</h3><p>${esc(v.short)}</p><span class="v44-film-open">查看影片档案 ↗</span></div></a>`).join('')}</div></div></section>`;}
 const v44ResearchBase=researchPage;
 researchPage=()=>`<main class="v44-research">${pageHero('研究与写作','从项目现场与日常观察提出问题，留下做过的研究、形成的影像，也保留暂时没有答案的部分。','FIELD / STUDIES / FILMS')}${v44StudySection()}${v44VideoSection()}<section class="v44-writings"><div class="wrap"><div class="v44-section-head"><div><span class="v44-overline">EARLIER WRITING</span><h2>已有文章与历史档案</h2></div></div><div class="v44-writing-grid">${research.map((r,i)=>`<article class="v44-writing"><small>${esc(r.date)} · ${esc(r.kind)}</small><h3>${esc(r.title)}</h3><p>${esc(r.intro)}</p>${external(r.url,'阅读历史原文')}</article>`).join('')}</div></div></section></main>`;
 function v44ResearchSubpage(key){
@@ -2089,6 +2089,25 @@ home=()=>v7OldWorld().replace('<button type="button" data-vn-space="archive">全
 /* V7 public: drop the review notice banner and the top-right explore menu. */
 const v7PublicHeader=header;
 header=current=>v7PublicHeader(current).replace(/<div class="notice">[\s\S]*?<\/div>/,'').replace(/<details class="vn-global-explore">[\s\S]*?<\/details>/,'');
+/* V7 public: films play on-site (compressed copies in assets/films/), plus four newer films. */
+v44VideoDetails.push(
+ {num:'07',title:'一块玉，凭什么证明谁是皇帝？',short:'传国玉玺怎样一次次被重新认定。',status:'已发布',image:'video-07',text:'从传国玉玺的流转谈起，看一件物如何靠反复认定获得权威。'},
+ {num:'08',title:'长安和开封，谁更能逛街？',short:'唐宋两座城的规则，怎样决定人能不能随时逛街。',status:'已发布',image:'video-08',text:'从坊市制度到街市开放，比较两种城市规则下的日常逛街。'},
+ {num:'09',title:'为什么有些店，一进门就想走？',short:'身体会先于理由记住一个空间。',status:'已发布',image:'video-09',text:'从进门的几秒钟出发，讨论空间怎样影响人是否愿意留下。'},
+ {num:'10',title:'南京城墙为什么不方？',short:'一座不规则城墙背后的地形与选择。',status:'已完成',image:'video-10',text:'从城墙的走向追问，城市形状如何由山水和历史选择共同决定。'}
+);
+v44VideoDetails.forEach(v=>{if(!brand.assets[v.image])brand.assets[v.image]=(window.__zjsRelativeRoot||'')+'assets/films/film-'+v.num+'.jpg';});
+const v7FilmSubpage=v44ResearchSubpage;
+v44ResearchSubpage=key=>{
+ const html=v7FilmSubpage(key);
+ if(!html||!key.startsWith('film-'))return html;
+ const src=(window.__zjsRelativeRoot||'')+'assets/films/'+key;
+ return html
+  .replace(/<figure class="v44-entry-image">[\s\S]*?<\/figure>/,`<figure class="v44-entry-image"><video controls playsinline preload="metadata" poster="${src}.jpg" src="${src}.mp4" style="width:100%;max-height:80vh;background:#111"></video></figure>`)
+  .replace('<br><br>成片已定位；播放数据与授权仍待核。','')
+  .replace(/<div class="v44-social-links">[\s\S]*?<\/div>/,'')
+  .replace(/<div class="v44-source-pending">[\s\S]*?<\/div>/,'');
+};
 window.addEventListener('hashchange',route);route();
 })();
 </script></body></html>
